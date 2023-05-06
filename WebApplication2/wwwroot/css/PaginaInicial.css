@@ -1,0 +1,153 @@
+﻿body {
+    
+
+}
+
+#recomenda {
+
+    color:white;
+}
+.iconestrela {
+    width: 50px;
+    height: 50px;
+}
+.nome-item {
+    font-family: Roboto,sans-serif;
+    font-size: medium;
+    font-weight: bold;
+    font-kerning: auto;
+    text-align: center;
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    padding: 5px;
+}
+.img-loja {
+    background-color: #565656;
+    border-radius: 10px;
+    width: 290px;
+    height: 50%;
+    margin-left: 43px;
+    padding: 10px;
+    margin-top: 30px;
+}
+    .img-loja a::after {
+        background-color: white;
+    }
+
+section .banneratras:last-child {
+    display:grid;
+    margin-top: 30px;
+    border-radius: 10px;
+    width: 80%;
+    margin-left: 10%;
+    height: 1050px;
+    margin-top: 11%;
+    position: absolute;
+    background-color: #333030;
+}
+.natal {
+    margin-top: 15px;
+    height: 700px;
+    padding: 0;
+    width: 100%;
+    border-radius: 10px;
+    position: relative;
+    margin-bottom: -450px;
+}
+.bannerup:first-child {
+    gap: 5px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    justify-content: center;
+    padding: 10px;
+    margin-left: 4%;
+    margin-top: 2%;
+    width: 90%;
+    height: 800px;
+    background-color: #333030;
+    position: relative;
+}
+.itemlateral {
+    position: relative;
+}
+.precoitem {
+    color: #00ea05;
+    font-size: 1.470rem;
+    font-family: Roboto;
+    font-weight: 800;
+    line-height: 1.43;
+    font-weight: bolder;
+    width: fit-content;
+    margin-left: 50px;
+
+}
+#item1 {
+
+    width: 400px;
+    height: 400px;
+    
+ 
+}
+#item2 {
+
+    width: 400px;
+    height: 400px;
+    
+}
+#item3 {
+
+    width: 400px;
+    height: 400px;
+   
+}
+#item4 {
+
+    width: 400px;
+    height: 400px;
+   
+}
+#item5 {
+
+    width: 400px;
+    height: 400px;
+   
+}
+#item6 {
+
+    width: 400px;
+    height: 400px;
+  
+}
+.de-por {
+    margin-left: 50px;
+    color: red;
+    text-decoration: line-through;
+    font-size: 13px;
+    margin-bottom:-15px;
+    margin-top: -10px;
+}
+.pix{
+    color: white;
+    font-size: 10px;
+    margin-top: -20px;
+    margin-left: 50px;
+
+}
+.ate {
+    color: white;
+    font-size: 10px;
+    margin-top: -20px;
+    margin-left: 240px;
+}
+.avista {
+    color:chartreuse;
+    margin-bottom: -20px;
+    margin-left: 50px;
+}
+.precosecundario {
+    color: red;
+    font-size: 21px;
+    margin-left: 60%;
+    margin-top: -20.5%;
+}

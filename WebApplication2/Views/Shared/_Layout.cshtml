@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebApplication2</title>
+    <link rel="stylesheet" href="~/css/Projeto.css" src="~/css/Projeto.css" />
+   </head>
+
+<body>
+    <nav class="navup">
+        <div class="itens">
+           <h class="titulonav"> E-duCommerce </h>
+            <img class="icon" alt="simbolocasa" src="~/Imagens/icons8-casa-24.png" width="24px" height="24px" />
+           <a class="itemhome" asp-action="Index" asp-controller="Home">Página inicial</a>
+            <img class="icon" alt="simbololoja" src="~/Imagens/icons8-loja-online-24.png" width="24px" height="24px" />
+            <a class="itemhome" asp-action="" asp-controller="">Loja</a>     
+            <img class="icon" alt="simbolofacebook" src="~/Imagens/icons8-facebook-novo-24.png" width="24px" height="24px" />
+           <a class="itemhome" asp-action="" asp-controller="">Redes sociais</a>
+            <img class="icon" id="carrinho" alt="simbolocarrinho" src="~/Imagens/icons8-grocery-store-24.png" width="24px" height="24px" />
+            <a class="itemhome" asp-action="" asp-controller="">Carrinho</a>
+            <a href="/Cadastro/Cadastro" class="itemhome" style="text-allign: center; font-size: 12px;" >Entre em sua conta / Registre-se</a>
+        </div>
+    </nav>
+ @RenderBody()
+</body>
+</html>

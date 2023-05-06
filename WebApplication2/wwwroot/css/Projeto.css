@@ -1,0 +1,58 @@
+﻿body {
+    background-color:#1c2860;
+ 
+}
+.navup {
+    background: rgb(250,251,252);
+    background: linear-gradient(90deg, rgba(250,251,252,1) 4%, rgba(49,107,194,0.39399509803921573) 29%, rgba(0,119,255,1) 44%, rgba(51,52,75,1) 100%);
+    box-shadow: 3px 1px 1px #005dd0;
+    width: 100%;
+    height: 100px;
+    margin-top: -10px;
+    margin-left: -10px;
+    padding: 10px;
+}
+.itemhome {
+    padding: 30px;
+    margin-right: 4%;
+    color: lightgray;
+    font-size: medium;
+    font-family:'Century Gothic';
+
+    height: fit-content;
+    
+}
+.itens{
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    position: center;
+    height: 100%;
+    text-decoration-line: blink;
+    height: fit-content;
+
+}
+.titulonav {
+    padding: 30px;
+    margin-right: 20%;
+    margin-left: 13%;
+    margin-bottom: 10%;
+    padding-inline: 10px;
+    text-shadow: #CCC 30px 20px 1px;
+    color:#2c2c2c;
+    font-size: xx-large;
+    margin-bottom: 10px;
+    font-weight: bolder;
+    font-family: 'Century Gothic';
+    height: fit-content;
+    width: 50%;
+}
+.icon {
+    margin-top: 29px;
+    margin-right: -28px;
+
+}
+a:link{
+    text-decoration: none;
+}
