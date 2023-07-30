@@ -1,4 +1,4 @@
-EduCommerce - E-commerce em ASP.NET com SQL Server
+<h1 align = center">EduCommerce - E-commerce em ASP.NET com SQL Server</h1>
 <h2>Descrição do Projeto</h2>
 <p>
   O EduCommerce é um projeto de e-commerce desenvolvido em ASP.NET que utiliza o banco de dados SQL Server. O objetivo do sistema é oferecer uma plataforma de comércio eletrônico completa, permitindo que os usuários realizem compras, gerenciem seus carrinhos de compra, façam login, cadastro e autenticação. Além disso, o projeto possui funcionalidades de administrador para gerenciar produtos, pedidos e usuários.
