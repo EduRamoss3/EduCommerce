@@ -1,0 +1,11 @@
+﻿@using WebApplication2.ViewModel;
+@model CarrinhoViewModel
+@if(Model.CarrinhoCompra.ItensCarrinhos.Count > 0){
+    <a asp-controller="Carrinho" asp-action="Index">
+        <span><img src="~/Imagens/shopping-cart_3144456.png" /></span>
+        <span style="color:darkorange">
+            @Model.CarrinhoCompra.ItensCarrinhos.Count
+        </span>
+    </a>
+
+}

@@ -1,0 +1,20 @@
+﻿@using WebApplication2.ViewModel;
+@model ProdutoViewModel
+<link rel="stylesheet" href="~/css/PaginaInicial.css" />
+<picture>
+    <img class="natal" src="~/Imagens/campp.jpg" alt="campanha_de_natal" />
+</picture>
+<section>
+    <div class="banneratras">
+        <div class="bannerup">
+
+            @foreach (var produto in Model.Produtos)
+            {
+                <div id="item1">
+                    <partial name="_SearchBy" for="@produto" />
+                </div>
+            }
+
+        </div>
+    </div>
+</section>

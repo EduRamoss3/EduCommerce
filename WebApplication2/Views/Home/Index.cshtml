@@ -1,85 +1,21 @@
-﻿@{
+﻿@using WebApplication2.ViewModel;
+@model ProdutoViewModel
+@{
     ViewData["Title"] = "E-duCommerce, Seja bem-vindo a tecnologia!";
 }
 <link rel="stylesheet" href="~/css/PaginaInicial.css" />
 <picture>
-    <img class="natal" src="~/Imagens/campp.jpg" alt="campanha_de_natal"/>
+    <img class="natal" src="~/Imagens/campp.jpg" alt="campanha_de_natal" />
 </picture>
 <section>
-   <div class="banneratras">
+    <div class="banneratras">
         <div class="bannerup">
-            <div id="item1">
-                <a href="">
-                    <input class="img-loja" type="image" src="~/Imagens/Portable-Laptop-Notebook-PNG-Image.png" width="200" height="200" />
-                    <h1 class="nome-item">Notebook X515JF Asus, Processador Core i5, 8GB de Memória, 256GB SSD de Armazenamento, Tela de 15.6", Windows 11 Home, Cinza - CX 1 UN </h1>
-                    <p class="de-por">de R$3500,00 por:</p>
-                    <p class="avista">à vista</p>
-                    <h2 class="precoitem">R$3096,52</h2>
-                    <p class="pix">No PIX com 10% de desconto</p>
-                    <h2 class="precosecundario">R$3260,00</h2>
-                    <p class="ate">em até 12x de R$271,66<br /> sem juros no cartão</p>
-                </a>
-             </div>
-            <div id="item2">
-                <a href="">
-                    <input class="img-loja" type="image" src="~/Imagens/pngwing.com.png" width="200" height="200" />
-                    <h1 class="nome-item">Unidade de fonte de alimentação 80 Plus EVGA 500B PC Fonte de alimentação 210-GQ-0650-V2 </h1>
-                    <p class="de-por">de R$400,00 por:</p>
-                    <p class="avista">à vista</p>
-                    <h2 class="precoitem">R$350,69</h2>
-                    <p class="pix">No PIX com 10% de desconto</p>
-                    <h2 class="precosecundario">R$380,00</h2>
-                    <p class="ate">em até 12x de R$31,66<br /> sem juros no cartão</p>
-                </a>
-             </div>
-            <div id="item3">
-                <a href="">
-                    <input class="img-loja" type="image" src="~/Imagens/computador.png" width="200" height="200" />
-                    <h1 class="nome-item"> Computador Mancer Gamer, AMD RYZEN 3 3200G, 16GB DDR4, SSD 240GB </h1>
-                    <p class="de-por">de R$2200,00 por:</p>
-                    <p class="avista">à vista</p>
-                    <h2 class="precoitem">R$1899,90</h2>
-                    <p class="pix">No PIX com 10% de desconto</p>
-                    <h2 class="precosecundario">R$2060,00</h2>
-                    <p class="ate">em até 12x de R$171,00<br /> sem juros no cartão</p>
-                </a>
-            </div>
-            <div id="item4">
-                <a href="">
-                    <input class="img-loja" type="image" src="~/Imagens/asus.png" width="200" height="200" />
-                    <h1 class="nome-item"> Notebook deepcool ASUS  N9, PRETO, Asus-N146-N9BKL  Processador Core i5, 4GB de Memória, 122GB SSD de Armazenamento</h1>
-                    <p class="de-por">de R$2000,00 por:</p>
-                    <p class="avista">à vista</p>
-                    <h2 class="precoitem">R$1500,20</h2>
-                    <p class="pix">No PIX com 10% de desconto</p>
-                    <h2 class="precosecundario">R$1760,00</h2>
-                    <p class="ate">em até 12x de R$146,66<br /> sem juros no cartão</p>
-                </a>
-            </div>
-            <div id="item5">
-                <a href="">
-                    <input class="img-loja" type="image" src="~/Imagens/tela.png" width="200" height="200" />
-                    <h1 class="nome-item">Protetor de tela para iPhone X</h1>
-                    <p class="de-por">de R$120,00 por:</p>
-                    <p class="avista">à vista</p>
-                    <h2 class="precoitem">R$80,00</h2>
-                                   <p class="pix">No PIX com 10% de desconto</p>
-                    <h2 class="precosecundario">R$100,00</h2>
-                    <p class="ate">em até 10x de R$10,00<br /> sem juros no cartão</p>
-                </a>
-            </div>
-            <div id="item6">
-                <a href="">
-                    <input class="img-loja" type="image" src="~/Imagens/teclado.png" width="200" height="200" />
-                    <h1 class="nome-item">Teclado gamer RGB Redragon Varuna V1215 </h1>
-                    <p class="de-por">de R$700,00 por:</p>
-                    <p class="avista">à vista</p>
-                    <h2 class="precoitem">R$560,00</h2>
-                    <p class="pix">No PIX com 10% de desconto</p>
-                    <h2 class="precosecundario">R$660,00</h2>
-                    <p class="ate">em até 12x de R$55,00<br /> sem juros no cartão</p>
-                </a>
-            </div>
+                @foreach (var produto in Model.Produtos)
+                {
+                <div id="item1">
+                    <partial name="_SearchBy" for="@produto" />
+                </div>
+                }
         </div>
-   </div>
+    </div>
 </section>

@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebApplication2.Models;
+using WebApplication2.Context;
 
 #nullable disable
 
 namespace WebApplication2.Migrations
 {
-    [DbContext(typeof(BancodeDados))]
+    [DbContext(typeof(AppDbContext))]
     partial class BancodeDadosModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -22,113 +22,201 @@ namespace WebApplication2.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("WebApplication2.Models.Pessoa", b =>
+            modelBuilder.Entity("WebApplication2.Models.Carrinho", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<string>("IdCarrinho")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("QuantidadeTotal")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdCarrinho");
+
+                    b.ToTable("Carrinhos");
+                });
+
+            modelBuilder.Entity("WebApplication2.Models.ItemCarrinho", b =>
+                {
+                    b.Property<int>("IdItensCarrinho")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdItensCarrinho"));
 
-                    b.Property<string>("CPF")
+                    b.Property<string>("CarrinhoIdCarrinho")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("IdCarrinho")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DateNasc")
-                        .HasColumnType("datetime2");
+                    b.Property<int?>("ProdutoIdProduto")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("QntProduto")
+                        .HasMaxLength(100)
+                        .HasColumnType("int");
 
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("IdItensCarrinho");
 
-                    b.Property<string>("Nome")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasIndex("CarrinhoIdCarrinho");
 
-                    b.Property<string>("Senha")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasIndex("ProdutoIdProduto");
 
-                    b.HasKey("ID");
-
-                    b.ToTable("Pessoas");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Pessoa");
-
-                    b.UseTphMappingStrategy();
+                    b.ToTable("ItemCarrinhos");
                 });
 
             modelBuilder.Entity("WebApplication2.Models.Produto", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("IdProduto")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdProduto"));
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<decimal>("AVista")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<decimal>("AntigoPreco")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("DataEntrada")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Discriminator")
+                    b.Property<string>("DescricaoCurta")
+                        .IsRequired()
+                        .HasMaxLength(208)
+                        .HasColumnType("nvarchar(208)");
+
+                    b.Property<string>("ImagemUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("MaxVezes")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<double>("Preco")
+                        .HasMaxLength(100000)
+                        .HasColumnType("float");
+
+                    b.Property<decimal>("PrecoSecundario")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<int>("Quantidade")
+                        .HasMaxLength(999)
+                        .HasColumnType("int");
+
+                    b.Property<int>("Tipos")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("VendasVendaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdProduto");
+
+                    b.HasIndex("VendasVendaId");
+
+                    b.ToTable("Produtos");
+                });
+
+            modelBuilder.Entity("WebApplication2.Models.Usuario", b =>
+                {
+                    b.Property<int>("IdPessoa")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdPessoa"));
+
+                    b.Property<string>("CPF")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<DateTime>("DateNasc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Nome")
+                    b.Property<string>("IdCarrinho")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Preco")
-                        .HasColumnType("float");
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("Tipo")
-                        .HasColumnType("int");
+                    b.Property<string>("Senha")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.Property<string>("_CarrinhoIdCarrinho")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.ToTable("Produtos");
+                    b.HasKey("IdPessoa");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Produto");
+                    b.HasIndex("_CarrinhoIdCarrinho");
 
-                    b.UseTphMappingStrategy();
-                });
-
-            modelBuilder.Entity("WebApplication2.Models.Administrador", b =>
-                {
-                    b.HasBaseType("WebApplication2.Models.Pessoa");
-
-                    b.HasDiscriminator().HasValue("Administrador");
-                });
-
-            modelBuilder.Entity("WebApplication2.Models.Cliente", b =>
-                {
-                    b.HasBaseType("WebApplication2.Models.Pessoa");
-
-                    b.Property<int>("ClienteId")
-                        .HasColumnType("int");
-
-                    b.HasDiscriminator().HasValue("Cliente");
-                });
-
-            modelBuilder.Entity("WebApplication2.Models.Carrinho", b =>
-                {
-                    b.HasBaseType("WebApplication2.Models.Produto");
-
-                    b.Property<int>("QuantidadeProd")
-                        .HasColumnType("int");
-
-                    b.HasDiscriminator().HasValue("Carrinho");
+                    b.ToTable("Usuarios");
                 });
 
             modelBuilder.Entity("WebApplication2.Models.Vendas", b =>
                 {
-                    b.HasBaseType("WebApplication2.Models.Produto");
+                    b.Property<int>("VendaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VendaId"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("VendaId")
-                        .HasColumnType("int");
+                    b.HasKey("VendaId");
 
-                    b.HasDiscriminator().HasValue("Vendas");
+                    b.ToTable("Vendas");
+                });
+
+            modelBuilder.Entity("WebApplication2.Models.ItemCarrinho", b =>
+                {
+                    b.HasOne("WebApplication2.Models.Carrinho", null)
+                        .WithMany("ItensCarrinhos")
+                        .HasForeignKey("CarrinhoIdCarrinho");
+
+                    b.HasOne("WebApplication2.Models.Produto", "Produto")
+                        .WithMany()
+                        .HasForeignKey("ProdutoIdProduto");
+
+                    b.Navigation("Produto");
+                });
+
+            modelBuilder.Entity("WebApplication2.Models.Produto", b =>
+                {
+                    b.HasOne("WebApplication2.Models.Vendas", null)
+                        .WithMany("Produtos")
+                        .HasForeignKey("VendasVendaId");
+                });
+
+            modelBuilder.Entity("WebApplication2.Models.Usuario", b =>
+                {
+                    b.HasOne("WebApplication2.Models.Carrinho", "_Carrinho")
+                        .WithMany()
+                        .HasForeignKey("_CarrinhoIdCarrinho");
+
+                    b.Navigation("_Carrinho");
+                });
+
+            modelBuilder.Entity("WebApplication2.Models.Carrinho", b =>
+                {
+                    b.Navigation("ItensCarrinhos");
+                });
+
+            modelBuilder.Entity("WebApplication2.Models.Vendas", b =>
+                {
+                    b.Navigation("Produtos");
                 });
 #pragma warning restore 612, 618
         }
