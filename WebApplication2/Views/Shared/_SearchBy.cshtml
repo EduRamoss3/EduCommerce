@@ -1,15 +1,21 @@
 ﻿@model Produto
-<link rel="stylesheet" href="~/css/PaginaInicial.css" />
 
-<input class="img-loja" type="image" src="@Model.ImagemUrl" width="200" height="200" />
-<h1 class="nome-item">@Model.Nome</h1>
-<p>@Model.DescricaoCurta</p>
-<p class="de-por">de R$@Model.AntigoPreco por:</p>
-<p class="avista">à vista @Model.AVista</p>
-<h2 class="precoitem">R$@Model.Preco</h2>
-<p class="pix">No PIX com 10% de desconto</p>
-<h2 class="precosecundario">R$@Model.PrecoSecundario</h2>
-<p class="ate">em até 12x de R$@Model.MaxVezes<br /> sem juros no cartão</p>
-<div class="text-box">
-    <a class="btndetail" asp-controller="Produto" asp-action="Produto" method="get" asp-route-id="@Model.IdProduto" role="button">Detalhes</a>
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="@Model.ImagemUrl" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Nome</h5>
+        <p class="card-text">@Model.DescricaoCurta</p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">de R$@Model.AntigoPreco por: @Model.Preco</li>
+        <li class="list-group-item">em até 12x de R$@Model.MaxVezes sem juros no cartão!</></li>
+        <li class="list-group-item">à vista @Model.AVista</li>
+    </ul>
+    <div class="card-body">
+        <span class="card-text">R$@Model.Preco</span>
+        <span class="card-subtitle">No PIX com 10% de desconto<</span>/>
+    </div>
+    <div class="text-box">
+        <a class="btn btn-outline-success" asp-controller="Produto" asp-action="Produto" method="get" asp-route-id="@Model.IdProduto" role="button">Detalhes</a>
+    </div>
 </div>

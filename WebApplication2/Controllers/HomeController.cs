@@ -16,6 +16,12 @@ namespace WebApplication2.Controllers
 
         public IActionResult Index()
         {
+            TempData["HttpContext"] = HttpContext;
+            if(HttpContext.Session is not null)
+            {
+                TempData["Usuario"] = HttpContext.Session.GetString("Usuario");
+            }
+            
             IEnumerable<Produto> produtos = _produtos.GetAll();
             ProdutoViewModel pVM = new ProdutoViewModel()
             {

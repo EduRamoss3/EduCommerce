@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - WebApplication2</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @RenderSection("scripts", required: false)
 
 </head>
 
@@ -28,15 +29,37 @@
                     </li>
                     <li class="nav-item">
                         @await Component.InvokeAsync("CarrinhoComponent")
-                    </li> 
+                    </li>
                     <li class="nav-item">
                         @if (ViewData["Title"] == "E-duCommerce, Seja bem-vindo a tecnologia!")
                         {
                             <partial name="_Searching" />
                         }
                     </li>
-                   
-                </ul>    
+                    @{
+                        var httpContext = TempData["HttpContext"] as HttpContext;
+                        if (httpContext != null && string.IsNullOrEmpty(httpContext.Session.GetString("Usuario")))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-action="Cadastrar" asp-controller="Cadastro">Cadastre-se</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-action="Login" asp-controller="Usuario">Fazer login</a>
+                            </li>
+                        }
+
+                        else if (TempData["Usuario"] != null)
+                        {
+                            var usuario = TempData["Usuario"];
+                            <li class="nav-item">
+                                Seja bem-vindo @usuario!
+                            </li>
+                            <a class="nav-link" asp-action="Logout" asp-controller="Usuario">Deslogar</a>
+                        }
+                    }
+
+
+                </ul>
             </div>
         </div>
     </nav>

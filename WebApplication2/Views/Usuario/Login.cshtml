@@ -1,0 +1,40 @@
+﻿@using WebApplication2.ViewModel;
+@model UsuarioViewModel
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+<table class="table-bordered">
+    <tr>
+        <td>
+            <div class="row">
+                <div class="col-10 col-md-10 col-lg-10">
+                    <form asp-controller="Usuario" asp-action="Login" method="post">
+                        <div class="col-md-8">
+                            <div class="text-danger" asp-validation-summary="All"></div>
+                        </div>
+                        <div class="col-md-8">
+                            <span class="text-danger" asp-validation-for="Usuario"></span>
+                            <label asp-for="Usuario"></label>
+                            <input asp-for="Usuario" />
+                        </div>
+                        <div class="col-md-8">
+                            <span class="text-danger" asp-validation-for="Senha"></span>
+                            <label asp-for="Senha"></label>
+                            <input asp-for="Senha" />
+                        </div>
+                        <div class="col-md-6">
+                            <input class="btn btn-success"
+                                   asp-controller="Usuario"
+                                   asp-action="Login" formmethod="post" 
+                                   type="submit" 
+                                   role="button"
+                                   value="Login" 
+                                   />
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </td>
+    </tr>
+
+</table>

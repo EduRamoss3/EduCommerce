@@ -12,9 +12,15 @@ builder.Services.AddDbContext<AppDbContext>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped(sp => Carrinho.GetCarrinho(sp));
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddScoped<ILoginService, LoginService>();
 
 builder.Services.AddMemoryCache();
-builder.Services.AddSession();
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = ".AdventureWorks.Session";
+    options.IdleTimeout = TimeSpan.FromMinutes(20.1);
+    options.Cookie.IsEssential = true;
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
