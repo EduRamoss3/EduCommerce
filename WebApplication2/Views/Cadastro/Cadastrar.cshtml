@@ -1,50 +1,63 @@
 ﻿@using WebApplication2.ViewModel;
 @model Usuario
+<link rel="stylesheet" href="~/css/Variaveis.css" />
+<style>
+    #input{
+        width: 100%;
+        height: 30%;
+        font-weight:lighter;
 
-<table class="table">
-    <tr>
-        <td>
-            <div class="row">
-                <div class="col-md-12 col-lg-12">
-                    <h4>Registrar usuário</h4>
-                    <form asp-controller="Cadastro" asp-action="Cadastrar" method="post">
-                        <hr />
-                        <div asp-validation-summary="All" class="text-danger"></div>
+    }
+    #label{
+        font-weight: bold;
+        font-size: 20px;
 
-                        <div class="col-md-6">
-                            <label asp-for="Nome"></label>
-                            <input asp-for="Nome" />
-                            <span asp-validation-for="Nome"></span>
-                        </div>
-                        <div class="col-md-6">
-                            <label asp-for="Email"></label>
-                            <input asp-for="Email" />
-                            <span asp-validation-for="Email"></span>
-                        </div>
-                        <div class="col-md-6">
-                            <label asp-for="DateNasc"></label>
-                            <input asp-for="DateNasc" />
-                            <span asp-validation-for="DateNasc"></span>
-                        </div>
-                        <div class="col-md-8">
-                            <label asp-for="CPF"></label>
-                            <input asp-for="CPF" />
-                            <span asp-validation-for="CPF"></span>
-                        </div>
-                        <div class="col-md-8">
-                            <label asp-for="Senha"></label>
-                            <input asp-for="Senha" />
-                            <span asp-validation-for="Senha"></span>
-                        </div>
-                        <div class="form-group">
-                            <input class="btn btn-success" type="submit" value="Cadastrar" />
-                        </div>
-                    </form>
+    }
+</style>
+<div class="container">
+    <table class="table">
+        <tr>
+            <td>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12" style="color: white;">
+                        <h4>Registrar usuário</h4>
+                        <form asp-controller="Cadastro" asp-action="Cadastrar" method="post">
+                            <hr />
+                            <div asp-validation-summary="All" class="text-danger"></div>
+
+                            <div class="col-md-6" >
+                                <label id="label" asp-for="Nome"></label>
+                                <input id="input" asp-for="Nome" />
+                                <span asp-validation-for="Nome"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label id ="label" asp-for="Email"></label>
+                                <input id="input" asp-for="Email" />
+                                <span asp-validation-for="Email"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label id="label" asp-for="DateNasc"></label>
+                                <input id="input" asp-for="DateNasc" />
+                                <span asp-validation-for="DateNasc"></span>
+                            </div>
+                            <div class="col-md-8">
+                                <label id="label" asp-for="CPF"></label>
+                                <input id="input" asp-for="CPF" />
+                                <span asp-validation-for="CPF"></span>
+                            </div>
+                            <div class="col-md-8">
+                                <label id="label" asp-for="Senha"></label>
+                                <input id="input" asp-for="Senha" />
+                                <span asp-validation-for="Senha"></span>
+                            </div>
+                            <div class="form-group">
+                                <input class="btn btn-success" type="submit" value="Cadastrar" />
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </td>
-       
-    </tr>
+            </td>
 
-
-</table>
+        </tr>
+    </table>
+</div>

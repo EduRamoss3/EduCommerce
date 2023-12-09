@@ -7,11 +7,20 @@
     }
     .container{
         display: flex;
+        width: max-content;
+        height: 400px;
         align-items: center;
         justify-content: center;
         align-content: center;
-        background-color: white;
+        background-color: #242729;
+        border:ridge;
+        border-color: white;
         flex-wrap: wrap;
+    }
+    #titulo{
+        color: lawngreen;
+        font-weight: bolder;
+        font-size: 40px;
     }
 </style>
 <div class="container">
@@ -19,8 +28,8 @@
         <tr>
             <td>
                 <div class="row row-cols-xl-auto">
+                    <h1 id="titulo">Faça o seu login!</h1>
                     <div class="col-10 col-md-10 col-lg-10" >
-
                         <form asp-controller="Usuario" asp-action="Login" method="post">
                             <div asp-validation-summary="ModelOnly"></div>
                             <div class="col-md-8">
