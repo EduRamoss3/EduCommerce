@@ -81,6 +81,26 @@
       "PackagePath": "staticwebassets\\Imagens\\notebook.jpg"
     },
     {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\pc1.png",
+      "PackagePath": "staticwebassets\\Imagens\\pc1.png"
+    },
+    {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\pc2.png",
+      "PackagePath": "staticwebassets\\Imagens\\pc2.png"
+    },
+    {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\pc3.png",
+      "PackagePath": "staticwebassets\\Imagens\\pc3.png"
+    },
+    {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\pc4.png",
+      "PackagePath": "staticwebassets\\Imagens\\pc4.png"
+    },
+    {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\pc5.png",
+      "PackagePath": "staticwebassets\\Imagens\\pc5.png"
+    },
+    {
       "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\pngwing.com.png",
       "PackagePath": "staticwebassets\\Imagens\\pngwing.com.png"
     },
@@ -111,6 +131,10 @@
     {
       "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\css\\Projeto.css",
       "PackagePath": "staticwebassets\\css\\Projeto.css"
+    },
+    {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\css\\Variaveis.css",
+      "PackagePath": "staticwebassets\\css\\Variaveis.css"
     },
     {
       "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\css\\site.css",

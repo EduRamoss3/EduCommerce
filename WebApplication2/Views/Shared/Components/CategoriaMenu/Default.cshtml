@@ -1,0 +1,12 @@
+﻿@using WebApplication2.ViewModel;
+@model CategoriaViewModel
+<ul>
+        @foreach (Categoria c in Model.Categorias)
+        {    <li>
+                <a class="dropdown-item" style="background-color:lightgreen; font-weight: bold; color: white;
+                border-color: green; padding: 10px; border-radius: 10px; text-shadow: 0px 1px 0px black;"  
+                asp-action="ProdutosByCategoria" asp-controller="Produto" asp-for="@c.CategoriaNome"
+                   asp-route-idCategoria="@c.IdCategoria" name="idCategoria">@c.CategoriaNome</a>
+            </li>
+        }
+</ul>

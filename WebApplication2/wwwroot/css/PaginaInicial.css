@@ -1,82 +1,63 @@
 ﻿body {
+    background-color: #242729;
+    margin: 0;
+    padding: 0;
 }
 
-#recomenda {
-    color: white;
+.banneratras {
+    width: 100%;
+    overflow: hidden;
 }
-.itensProduto{
-    justify-items: right;
-  
+
+.natal {
+    margin-top: 11px;
+    height: 800px;
+    padding: 0;
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: -250px;
 }
+
+.bannerup {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    padding: 20px 20px 0; /* Adiciona espaço vazio dos dois lados e um pouco de espaço no topo */
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+    .bannerup {
+        padding: 0 calc(2 * 16px); /* Adiciona espaço vazio dos dois lados, aproximadamente dois dedos */
+    }
+}
+
+.card {
+    background-color: #333030;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    width: 100%; /* Garante que o card ocupe 100% da largura do seu contêiner */
+}
+
+.img-loja {
+    background-color: #565656;
+    border-radius: 10px;
+    width: 100%;
+    height: 70%;
+}
+
 .nome-item {
-    font-family: Roboto,sans-serif;
+    font-family: Roboto, sans-serif;
     font-size: medium;
     font-weight: bold;
-    font-kerning: auto;
     text-align: center;
     color: white;
     text-shadow: 1px 1px 1px black;
     padding: 5px;
-}
-.containerItem {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
-.img-loja {
-    background-color: #565656;
-    border-radius: 10px;
-    width: 300px;
-    height: 70%;
-    margin-left: 43px;
-    padding: 10px;
-    margin-top: 30px;
-}
-
-    .img-loja a::after {
-        background-color: white;
-    }
-
-section .banneratras:last-child {
-    display: grid;
-    margin-top: 30px;
-    border-radius: 10px;
-    width: 80%;
-    margin-left: 10%;
-    height: 1050px;
-    margin-top: 11%;
-    position: absolute;
-    background-color: #333030;
-}
-
-.natal {
-    margin-top: 15px;
-    height: 700px;
-    padding: 0;
-    width: 100%;
-    border-radius: 10px;
-    position: relative;
-    margin-bottom: -450px;
-}
-
-.bannerup:first-child {
-    gap: 5px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 200px;
-    justify-content: center;
-    padding: 10px;
-    margin-left: 4%;
-    margin-top: 2%;
-    width: 90%;
-    height: 800px;
-    background-color: #333030;
-    position: relative;
-}
-
-.itemlateral {
-    position: relative;
 }
 
 .precoitem {
@@ -86,76 +67,8 @@ section .banneratras:last-child {
     font-weight: 800;
     line-height: 1.43;
     font-weight: bolder;
-    width: fit-content;
-    margin-left: 50px;
+    margin-top: 10px;
 }
-
-#item1 {
-    width: 400px;
-    height: 400px;
-}
-
-.de-por {
-    margin-left: 50px;
-    color: red;
-    text-decoration: line-through;
-    font-size: 13px;
-    margin-bottom: -15px;
-    margin-top: -10px;
-}
-
-.pix {
-    color: white;
-    font-size: 10px;
-    margin-top: -20px;
-    margin-left: 50px;
-}
-
-.ate {
-    color: white;
-    font-size: 10px;
-    margin-top: -20px;
-    margin-left: 240px;
-}
-
-.avista {
-    color: chartreuse;
-    margin-bottom: -20px;
-    margin-left: 50px;
-}
-
-.precosecundario {
-    color: red;
-    font-size: 21px;
-    margin-left: 60%;
-    margin-top: -20.5%;
-}
-
-
-.navgs {
-    display: flex;
-    align-items: center;
-}
-
-    .navgs input[type="text"] {
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        margin-right: 5px;
-    }
-
-    .navgs button {
-        padding: 8px 15px;
-        background-color: #007bff; /* Cor de fundo do botão de pesquisa */
-        color: #fff; /* Cor do texto do botão de pesquisa */
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-        .navgs button:hover {
-            background-color: #0056b3; /* Cor de fundo do botão de pesquisa ao passar o mouse */
-        }
 
 .btndetail {
     font-size: 20px;
@@ -163,9 +76,6 @@ section .banneratras:last-child {
     background-color: green;
     padding: 15px;
     border-radius: 10px;
-    font-family:Gadugi;
-}
-.text-box{
-    display: grid;
-    justify-items:legacy center;
+    font-family: Gadugi;
+    margin-top: 10px;
 }

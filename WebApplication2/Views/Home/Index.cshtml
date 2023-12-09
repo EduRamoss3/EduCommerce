@@ -10,13 +10,20 @@
         alert('@TempData["Sucesso"]');
     </script>
 }
+<style>
+    #sect{
+        width: 100%;
+        background-color: #242729;
+        position: absolute;
+
+    }
+</style>
 
 <link rel="stylesheet" href="~/css/PaginaInicial.css" />
 <picture>
     <img class="natal" src="~/Imagens/campp.jpg" alt="campanha_de_natal" />
 </picture>
-<section>
-
+<section id="sect">
     <div class="banneratras">
         <div class="bannerup">
             @foreach (var produto in Model.Produtos)

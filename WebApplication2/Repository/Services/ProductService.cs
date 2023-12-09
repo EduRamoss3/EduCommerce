@@ -81,5 +81,11 @@ namespace WebApplication2.Repository.Services
             var produto = _context.Produtos.Where(p => p.Nome == searchString).ToList();
             return produto;
         }
+
+        public IEnumerable<Produto> GetByCategoria(int categoriaId)
+        {
+            var produto = _context.Produtos.Where(p => p.IdCategoria == categoriaId).ToList();
+            return produto;
+        }
     }
 }

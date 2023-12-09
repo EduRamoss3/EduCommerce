@@ -53,6 +53,15 @@ namespace WebApplication2.Models
             }
            
         }
+        public int GetTotalItens()
+        {
+            int total = 0;
+            foreach(ItemCarrinho i in ItensCarrinhos)
+            {
+                total += i.QntProduto;
+            }
+            return total;
+        }
         public List<ItemCarrinho> GetItemCarrinhos()
         {
             return ItensCarrinhos ??= _context.ItemCarrinhos

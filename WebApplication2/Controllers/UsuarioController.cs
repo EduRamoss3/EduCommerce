@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using WebApplication2.Models;
 using WebApplication2.Repository.Interfaces;
 using WebApplication2.ViewModel;
@@ -7,45 +9,51 @@ namespace WebApplication2.Controllers
 {
     public class UsuarioController : Controller
     {
-        private readonly ILoginService _loginService;
-        public UsuarioController(ILoginService loginService)
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
+        public UsuarioController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager)
         {
-            _loginService = loginService;
+            _signInManager = signInManager;
+            _userManager = userManager;
         }
-   
-        public IActionResult Login()
+
+        [AllowAnonymous]
+        public IActionResult Login(string returnUrl)
         {
-            return View(new UsuarioViewModel());
+            return View(new UsuarioViewModel()
+            {
+                ReturnUrl = returnUrl
+            });
         }
+        [AllowAnonymous]
         [HttpPost]
-        public IActionResult Login(UsuarioViewModel usuarioViewModel)
+        public async Task<IActionResult> Login(UsuarioViewModel usuarioViewModel)
         {
             if (ModelState.IsValid)
             {
-                var result = _loginService.RealizarLogin(usuarioViewModel.Usuario, usuarioViewModel.Senha);
-                if (!result)
+                var user = await _userManager.FindByNameAsync(usuarioViewModel.Usuario);
+                if (user is not null)
                 {
-                    ModelState.AddModelError("Erro", "Usuário ou senha incorretos");
-                    return View(usuarioViewModel);
+                    var result = await _signInManager.PasswordSignInAsync(user, usuarioViewModel.Senha, false, false);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
-                else
-                {
-                    HttpContext.Session.SetString("Usuario", usuarioViewModel.Usuario);
-                    return RedirectToAction("Index", "Home");
-                }
+
             }
-            else
-            {
-                ModelState.AddModelError("ErroFormato", "Formato de dados incorretos!");
-                return View(usuarioViewModel);
-            }
-            
+            ModelState.AddModelError("", "Nome ou senha não coincidem!");
+            return View(usuarioViewModel);
+
         }
-        public IActionResult Logout()
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> Logout()
         {
             HttpContext.Session.Clear();
-            TempData["Message"] = "Deslogado com sucesso!";
-            return RedirectToAction("Index","Home");
+            HttpContext.User = null;
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

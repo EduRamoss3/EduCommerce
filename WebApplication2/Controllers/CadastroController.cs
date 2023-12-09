@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using WebApplication2.Models;
 using WebApplication2.Repository.Interfaces;
 using WebApplication2.ViewModel;
@@ -7,10 +8,10 @@ namespace WebApplication2.Controllers
 {
     public class CadastroController : Controller
     {
-        private readonly ILoginService _loginService;
-        public CadastroController(ILoginService loginService)
+        private readonly UserManager<IdentityUser> _userManager;
+        public CadastroController(UserManager<IdentityUser> userManager)
         {
-            _loginService = loginService;
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -19,21 +20,21 @@ namespace WebApplication2.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Cadastrar(Usuario usuario)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Cadastrar(Usuario usuario)
         {
-            if (ModelState.IsValid && usuario is not null)
+            if (ModelState.IsValid)
             {
-                var result =_loginService.Cadastrar(usuario);
-                if (result)
+                var user = new IdentityUser { UserName = usuario.Nome };
+                var result = await _userManager.CreateAsync(user, usuario.Senha);
+                if (result.Succeeded)
                 {
-                    TempData["Sucesso"] = "Sucesso ao cadastrar!";
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Login", "Usuario");
                 }
-                
-            }
-            else
-            {
-                ModelState.AddModelError("Cadastro", "Falha ao realizar o cadastro");
+                else
+                {
+                    this.ModelState.AddModelError("", "Erro ao realizar o cadastro!");
+                }
             }
             return View(usuario);
 

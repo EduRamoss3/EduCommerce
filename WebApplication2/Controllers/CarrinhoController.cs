@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using NuGet.Protocol.Core.Types;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WebApplication2.Migrations;
 using WebApplication2.Models;
 using WebApplication2.Repository.Interfaces;
@@ -16,7 +16,7 @@ namespace WebApplication2.Controllers
             _carrinhoCompra = carrinhoCompra;
             _productService = productService;
         }
-
+        [Authorize]
         public IActionResult Index()
         {
             var itens = _carrinhoCompra.GetItemCarrinhos();
@@ -29,20 +29,32 @@ namespace WebApplication2.Controllers
             return View(carrinhoViewModel);
 
         }
+
         public IActionResult AdicionarNoCarrinho(int Idproduto)
         {
-            var produtoSelecionado = _productService.GetById(Idproduto);
-            if(produtoSelecionado is not null)
+            if (User.Identity.IsAuthenticated)
             {
-                _carrinhoCompra.AdicionarNoCarrinho(produtoSelecionado.Value);
-               return RedirectToAction("Index");
+                var produtoSelecionado = _productService.GetById(Idproduto);
+                if (produtoSelecionado is not null)
+                {
+                    _carrinhoCompra.AdicionarNoCarrinho(produtoSelecionado.Value);
+                    return RedirectToAction("Index","Carrinho");
+                }
+                else
+                {
+                    return produtoSelecionado.Result;
+                }
+
             }
             else
             {
-                return produtoSelecionado.Result;
+                return RedirectToAction("Login", "Usuario");
             }
+          
             
         }
+        [Authorize]
+
         public IActionResult RemoverItemNoCarrinhoCompra(int Idproduto)
         {
             var produtoSelecionado = _productService.GetById(Idproduto);
@@ -56,6 +68,8 @@ namespace WebApplication2.Controllers
                 return produtoSelecionado.Result;
             }
         }
+        [Authorize]
+
         public IActionResult LimparCarrinho()
         {
             _carrinhoCompra.LimparCarrinho();

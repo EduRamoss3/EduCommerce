@@ -37,36 +37,9 @@ namespace WebApplication2.Models
         [Required(ErrorMessage = "Máxima de parcelas é obrigatória!")]
         [Column(TypeName = "decimal(10,2)")]
         public decimal MaxVezes { get; set; }
-        public Produto(int idProduto, string nome, double preco, DateTime dataEntrada, Tipo tipos, int quantidade, string imagemUrl, string descricaoCurta, decimal antigoPreco, decimal aVista, decimal precoSecundario, decimal maxVezes)
-        {
-            IdProduto = idProduto;
-            Nome = nome;
-            Preco = preco;
-            DataEntrada = dataEntrada;
-            Tipos = tipos;
-            Quantidade = quantidade;
-            ImagemUrl = imagemUrl;
-            DescricaoCurta = descricaoCurta;
-            AntigoPreco = antigoPreco;
-            AVista = aVista;
-            PrecoSecundario = precoSecundario;
-            MaxVezes = maxVezes;
-        }
-
-        public Produto( string nome, double preco, DateTime dataEntrada, Tipo tipos, int quantidade, string imagemUrl, string descricaoCurta, decimal antigoPreco, decimal aVista, decimal precoSecundario, decimal maxVezes)
-        {
-            Nome = nome;
-            Preco = preco;
-            DataEntrada = dataEntrada;
-            Tipos = tipos;
-            Quantidade = quantidade;
-            ImagemUrl = imagemUrl;
-            DescricaoCurta = descricaoCurta;
-            AntigoPreco = antigoPreco;
-            AVista = aVista;
-            PrecoSecundario = precoSecundario;
-            MaxVezes = maxVezes;
-        }
+        [Required]
+        public int IdCategoria { get; set; }
+       
 
     }
 }

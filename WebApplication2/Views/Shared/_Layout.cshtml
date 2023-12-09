@@ -5,64 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - WebApplication2</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/Variaveis.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    @RenderSection("scripts", required: false)
 
+    @RenderSection("scripts", required: false)
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" asp-action="Index" asp-controller="Home">E-duCommerce</a>
-            <div class="collapse navbar-collapse" id="navbarScroll">
-                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" asp-action="Index" asp-controller="Home">Página inicial</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Loja</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">
-                            Redes Sociais
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        @await Component.InvokeAsync("CarrinhoComponent")
-                    </li>
-                    <li class="nav-item">
-                        @if (ViewData["Title"] == "E-duCommerce, Seja bem-vindo a tecnologia!")
-                        {
-                            <partial name="_Searching" />
-                        }
-                    </li>
-                    @{
-                        var httpContext = TempData["HttpContext"] as HttpContext;
-                        if (httpContext != null && string.IsNullOrEmpty(httpContext.Session.GetString("Usuario")))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-action="Cadastrar" asp-controller="Cadastro">Cadastre-se</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-action="Login" asp-controller="Usuario">Fazer login</a>
-                            </li>
-                        }
-
-                        else if (TempData["Usuario"] != null)
-                        {
-                            var usuario = TempData["Usuario"];
-                            <li class="nav-item">
-                                Seja bem-vindo @usuario!
-                            </li>
-                            <a class="nav-link" asp-action="Logout" asp-controller="Usuario">Deslogar</a>
-                        }
-                    }
-
-
-                </ul>
-            </div>
+    <div class="wrapper">
+        <div class="sidebar" id="sidebar">
+            <button class="toggle-btn" style="color: lightgray" onclick="toggleSidebar()">☰</button>
+            @await Component.InvokeAsync("CategoriaMenu")
         </div>
-    </nav>
-    @RenderBody()
+        <div class="content">
+            <nav class="navbar navbar-expand-lg  custom-navbar" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                <a class="navbar-brand" style="color:lawngreen; font-size: 50px" asp-action="Index" asp-controller="Home">E-duCommerce</a>
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="navbarScroll">
+                        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                            <li class="nav-item">
+                                <a class="nav-link active" style="color:lightgray" aria-current="page" asp-action="Index" asp-controller="Home">Página inicial</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" style="color: lightgray">Loja</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" style="color: lightgray">
+                                    Redes Sociais
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                @await Component.InvokeAsync("CarrinhoComponent")
+                            </li>
+
+                        </ul>
+                        @await Html.PartialAsync("_LoginPartial")
+                        @await Html.PartialAsync("_Searching")
+                    </div>
+                </div>
+            </nav>
+            <script src="~/lib/jquery/dist/jquery.min.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="~/js/site.js" asp-append-version="true"></script>
+            @RenderBody()
+        </div>
+    </div>
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById('sidebar');
+            var content = document.querySelector('.content');
+
+            if (sidebar.style.width === '250px') {
+                sidebar.style.width = '0';
+                content.style.marginLeft = '0';
+            } else {
+                sidebar.style.width = '250px';
+                content.style.marginLeft = '250px';
+            }
+        }
+    </script>
 </body>
 </html>

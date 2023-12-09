@@ -14,30 +14,32 @@ namespace WebApplication2.Controllers
             _produtos = produtos;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(ProdutoViewModel produtoViewModel)
         {
-            TempData["HttpContext"] = HttpContext;
-            if(HttpContext.Session is not null)
+            if (produtoViewModel.Produtos is null)
             {
-                TempData["Usuario"] = HttpContext.Session.GetString("Usuario");
+                IEnumerable<Produto> produtos = _produtos.GetAll();
+                ProdutoViewModel produtoViewModelPadrao = new ProdutoViewModel()
+                {
+                    Produtos = produtos
+                };
+                return View(produtoViewModelPadrao);
             }
-            
-            IEnumerable<Produto> produtos = _produtos.GetAll();
-            ProdutoViewModel pVM = new ProdutoViewModel()
+            else
             {
-                Produtos = produtos
-            };
-            return View(pVM);
+                return View(produtoViewModel);
+            }
+
         }
         [HttpGet]
         [Route("{controller}/Search")]
         public IActionResult SearchBy(string searchString)
         {
             IEnumerable<Produto> produtos;
-            if(!string.IsNullOrEmpty(searchString))
+            if (!string.IsNullOrEmpty(searchString))
             {
                 produtos = _produtos.GetByName(searchString);
-                if(produtos is null)
+                if (produtos is null)
                 {
                     return new NotFoundObjectResult("Produto não encontrado!");
                 }
@@ -53,7 +55,7 @@ namespace WebApplication2.Controllers
                 return new NotFoundObjectResult(searchString);
             }
         }
-        
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
