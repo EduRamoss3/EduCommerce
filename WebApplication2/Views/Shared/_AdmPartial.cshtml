@@ -1,0 +1,10 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignManager
+@if (SignManager.IsSignedIn(User))
+{
+   // <li class="nav-item">
+     //   <a class="nav-link" style="color: lightgray" asp-action="CreateProductByAdm" asp-controller="Produto">
+       //     Adicionar produto
+        //</a>
+   // </li>
+}

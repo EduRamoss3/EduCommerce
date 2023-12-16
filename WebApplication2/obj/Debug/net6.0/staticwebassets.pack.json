@@ -1,8 +1,20 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\10295192-m.jpg",
+      "PackagePath": "staticwebassets\\Imagens\\10295192-m.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\12048485.jpg",
+      "PackagePath": "staticwebassets\\Imagens\\12048485.jpg"
+    },
+    {
       "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\126510.png",
       "PackagePath": "staticwebassets\\Imagens\\126510.png"
+    },
+    {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\CtXnRGFWIAAWUAv.jpg",
+      "PackagePath": "staticwebassets\\Imagens\\CtXnRGFWIAAWUAv.jpg"
     },
     {
       "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\Portable-Laptop-Notebook-PNG-Image.png",
@@ -19,6 +31,10 @@
     {
       "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\botao-de-simbolo-de-telefone.png",
       "PackagePath": "staticwebassets\\Imagens\\botao-de-simbolo-de-telefone.png"
+    },
+    {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\cadeira_gamer.png",
+      "PackagePath": "staticwebassets\\Imagens\\cadeira_gamer.png"
     },
     {
       "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\campp.jpg",
@@ -49,6 +65,14 @@
       "PackagePath": "staticwebassets\\Imagens\\estrela.png"
     },
     {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\headset_surround.png",
+      "PackagePath": "staticwebassets\\Imagens\\headset_surround.png"
+    },
+    {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\iconelogin.png",
+      "PackagePath": "staticwebassets\\Imagens\\iconelogin.png"
+    },
+    {
       "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\icons8-casa-24.png",
       "PackagePath": "staticwebassets\\Imagens\\icons8-casa-24.png"
     },
@@ -77,6 +101,14 @@
       "PackagePath": "staticwebassets\\Imagens\\lixeiras.png"
     },
     {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\mg.jpg",
+      "PackagePath": "staticwebassets\\Imagens\\mg.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\mouse_wireless.png",
+      "PackagePath": "staticwebassets\\Imagens\\mouse_wireless.png"
+    },
+    {
       "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\notebook.jpg",
       "PackagePath": "staticwebassets\\Imagens\\notebook.jpg"
     },
@@ -101,8 +133,32 @@
       "PackagePath": "staticwebassets\\Imagens\\pc5.png"
     },
     {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\placa-mae_rgb.png",
+      "PackagePath": "staticwebassets\\Imagens\\placa-mae_rgb.png"
+    },
+    {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\placa.png",
+      "PackagePath": "staticwebassets\\Imagens\\placa.png"
+    },
+    {
       "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\pngwing.com.png",
       "PackagePath": "staticwebassets\\Imagens\\pngwing.com.png"
+    },
+    {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\prodcamera.png",
+      "PackagePath": "staticwebassets\\Imagens\\prodcamera.png"
+    },
+    {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\prodfone.png",
+      "PackagePath": "staticwebassets\\Imagens\\prodfone.png"
+    },
+    {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\prodnot.png",
+      "PackagePath": "staticwebassets\\Imagens\\prodnot.png"
+    },
+    {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\razer-brand-banner.jpg",
+      "PackagePath": "staticwebassets\\Imagens\\razer-brand-banner.jpg"
     },
     {
       "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\register.png",
@@ -113,12 +169,28 @@
       "PackagePath": "staticwebassets\\Imagens\\shopping-cart_3144456.png"
     },
     {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\smartphone.png",
+      "PackagePath": "staticwebassets\\Imagens\\smartphone.png"
+    },
+    {
       "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\teclado.png",
       "PackagePath": "staticwebassets\\Imagens\\teclado.png"
     },
     {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\teclado_rgb.png",
+      "PackagePath": "staticwebassets\\Imagens\\teclado_rgb.png"
+    },
+    {
       "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\tela.png",
       "PackagePath": "staticwebassets\\Imagens\\tela.png"
+    },
+    {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\vista-da-configuracao-e-do-controlador-de-teclado-para-jogos-de-neon-iluminado (1).jpg",
+      "PackagePath": "staticwebassets\\Imagens\\vista-da-configuracao-e-do-controlador-de-teclado-para-jogos-de-neon-iluminado (1).jpg"
+    },
+    {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\vista-da-configuracao-e-do-controlador-de-teclado-para-jogos-de-neon-iluminado.jpg",
+      "PackagePath": "staticwebassets\\Imagens\\vista-da-configuracao-e-do-controlador-de-teclado-para-jogos-de-neon-iluminado.jpg"
     },
     {
       "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\css\\Formulario.css",

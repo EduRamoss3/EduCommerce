@@ -2,17 +2,26 @@
 @model Usuario
 <link rel="stylesheet" href="~/css/Variaveis.css" />
 <style>
-    #input{
-        width: 100%;
-        height: 30%;
-        font-weight:lighter;
-
+  
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 500px;
+        background: linear-gradient(to right, #585a5e, #333333);
+        border-style: outset;
+        border-color: black;
+        width: 800px;
+        padding: 10px;
+        box-shadow: 15px 25px 10px black;
     }
-    #label{
-        font-weight: bold;
-        font-size: 20px;
-
+    #titulo{
+        color: lawngreen;
+        font-weight: bolder;
+        font-size: 40px;
+        text-align: center;
     }
+
 </style>
 <div class="container">
     <table class="table">
@@ -20,34 +29,34 @@
             <td>
                 <div class="row">
                     <div class="col-md-12 col-lg-12" style="color: white;">
-                        <h4>Registrar usuário</h4>
+                        <h4 id="titulo">Registrar usuário</h4>
                         <form asp-controller="Cadastro" asp-action="Cadastrar" method="post">
                             <hr />
                             <div asp-validation-summary="All" class="text-danger"></div>
 
                             <div class="col-md-6" >
-                                <label id="label" asp-for="Nome"></label>
-                                <input id="input" asp-for="Nome" />
+                                <label  asp-for="Nome"></label>
+                                <input class="form-control" asp-for="Nome" />
                                 <span asp-validation-for="Nome"></span>
                             </div>
                             <div class="col-md-6">
-                                <label id ="label" asp-for="Email"></label>
-                                <input id="input" asp-for="Email" />
+                                <label  asp-for="Email"></label>
+                                <input class="form-control" asp-for="Email" />
                                 <span asp-validation-for="Email"></span>
                             </div>
                             <div class="col-md-6">
-                                <label id="label" asp-for="DateNasc"></label>
-                                <input id="input" asp-for="DateNasc" />
+                                <label  asp-for="DateNasc"></label>
+                                <input class="form-control" asp-for="DateNasc" />
                                 <span asp-validation-for="DateNasc"></span>
                             </div>
                             <div class="col-md-8">
-                                <label id="label" asp-for="CPF"></label>
-                                <input id="input" asp-for="CPF" />
+                                <label  asp-for="CPF"></label>
+                                <input class="form-control" asp-for="CPF" />
                                 <span asp-validation-for="CPF"></span>
                             </div>
                             <div class="col-md-8">
-                                <label id="label" asp-for="Senha"></label>
-                                <input id="input" asp-for="Senha" />
+                                <label  asp-for="Senha"></label>
+                                <input class="form-control" asp-for="Senha" />
                                 <span asp-validation-for="Senha"></span>
                             </div>
                             <div class="form-group">

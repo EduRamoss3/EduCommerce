@@ -2,57 +2,70 @@
 @model UsuarioViewModel
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 <style>
-    body{
+    body {
         background-color: #242729;
+        
+        
     }
-    .container{
+
+    .container {
         display: flex;
-        width: max-content;
-        height: 400px;
-        align-items: center;
         justify-content: center;
-        align-content: center;
-        background-color: #242729;
-        border:ridge;
-        border-color: white;
-        flex-wrap: wrap;
+        align-items: center;
+        height: 500px;
+        background: linear-gradient(to right, #585a5e, #333333);
+        border-style: outset;
+        border-color: black;
+        width: 800px;
+        padding: 10px;
+        box-shadow: 15px 25px 10px black;
+        background-image: url('vista-da-configuracao-e-do-controlador-de-teclado-para-jogos-de-neon-iluminado.jpg');
+        background-repeat: no-repeat;
+        background-size: cover; /* Ajusta o tamanho para cobrir completamente o contêiner */
+        background-position: center;
     }
-    #titulo{
+
+
+    #titulo {
         color: lawngreen;
         font-weight: bolder;
         font-size: 40px;
+        text-align: center;
+    }
+
+    .imglogin {
+        margin-right: 20px;
+    }
+
+    .login-form {
+        color: white;
     }
 </style>
 <div class="container">
-    <table class="table-responsive-lg" style="color: white;">
-        <tr>
-            <td>
-                <div class="row row-cols-xl-auto">
-                    <h1 id="titulo">Faça o seu login!</h1>
-                    <div class="col-10 col-md-10 col-lg-10" >
-                        <form asp-controller="Usuario" asp-action="Login" method="post">
-                            <div asp-validation-summary="ModelOnly"></div>
-                            <div class="col-md-8">
-                                <label asp-for="Usuario"></label>
-                                <input asp-for="Usuario" />
-                                <span class="text-danger" asp-validation-for="Usuario"></span>
-                            </div>
-                            <div class="col-md-8">
-                                <label asp-for="Senha"></label>
-                                <input asp-for="Senha" />
-                                <span class="text-danger" asp-validation-for="Senha"></span>
-                            </div>
-                            <div class="col-md-6">
-                                <input class="btn btn-success" asp-controller="Usuario" asp-action="Login" formmethod="post" type="submit" role="button" value="Login" />
-                            </div>
-                        </form>
+    <div class="row">
+        <div class="col-md-6 text-center">
+            <img class="imglogin" width="400px" height="400px" src="~/Imagens/iconelogin.png" alt="iconelogin" />
+        </div>
+        <div class="col-md-6 text-center">
+            <h1 id="titulo">Faça o seu login!</h1>
+            <div class="login-form">
+                <form asp-controller="Usuario" asp-action="Login" method="post">
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <div class="form-group">
+                        <label asp-for="Usuario"></label>
+                        <input asp-for="Usuario" class="form-control" />
+                        <span class="text-danger" asp-validation-for="Usuario"></span>
                     </div>
-                </div>
-
-            </td>
-        </tr>
-
-    </table>
-
-
+                    <div class="form-group">
+                        <label asp-for="Senha"></label>
+                        <input asp-for="Senha" class="form-control" />
+                        <span class="text-danger" asp-validation-for="Senha"></span>
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn-success" asp-controller="Usuario" asp-action="Login" formmethod="post" type="submit" role="button" value="Login" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

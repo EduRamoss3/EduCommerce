@@ -1,5 +1,6 @@
 ﻿@using WebApplication2.ViewModel;
 @model CarrinhoViewModel
+
 <div class="container">
     <div class="row">
         <div>
@@ -8,7 +9,7 @@
         </div>
         <table class="table table-bordered table-striped">
             <thead>
-                <tr>
+                <tr style="color: white;">
                     <th>Quantidade</th>
                     <th>Nome</th>
                     <th>Produto</th>
@@ -20,7 +21,7 @@
             <tbody>
                 @foreach (var item in Model.CarrinhoCompra.ItensCarrinhos)
                 {
-                    <tr>
+                    <tr style="color: lightgoldenrodyellow;">
                         <td class="text-center">@item.QntProduto</td>
                         <td class="text-left">@item.Produto.Nome</td>
                         <td class="text-center">

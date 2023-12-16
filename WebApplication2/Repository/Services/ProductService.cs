@@ -87,5 +87,21 @@ namespace WebApplication2.Repository.Services
             var produto = _context.Produtos.Where(p => p.IdCategoria == categoriaId).ToList();
             return produto;
         }
+
+        public ActionResult PatchQnt(Produto produto)
+        {
+            var dbProd = _context.Produtos.FirstOrDefault(p => p.IdProduto == produto.IdProduto);
+            if(dbProd is not null)
+            {
+                dbProd.Quantidade++;
+                _context.Produtos.Update(dbProd);
+                _context.SaveChanges();
+                return new OkObjectResult(produto);
+            }
+            else
+            {
+                return new NotFoundObjectResult(dbProd);
+            }
+        }
     }
 }

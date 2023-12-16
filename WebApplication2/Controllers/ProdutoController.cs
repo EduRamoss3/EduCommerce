@@ -34,5 +34,34 @@ namespace WebApplication2.Controllers
             };
             return View("~/Views/Home/Index.cshtml",produtoViewModel);
         }
+        [HttpPost]
+        public IActionResult CreateProductByAdm (Produto produto)
+        {
+           var existProd = _produtos.GetByName(produto.Nome);
+           if(produto is not null && existProd is null)
+            {
+                if (ModelState.IsValid)
+                {
+                    _produtos.Create(produto);
+                    return RedirectToAction("ProdutoDetalhe", "Produto", produto.IdProduto);
+                }
+                else
+                {
+                    ModelState.AddModelError("Verifique", "Dados incorretos, verifique todos os campos antes de cadastrar!");
+                    return View();
+                }
+            }
+            else
+            {
+                _produtos.PatchQnt(produto);
+                TempData["UpdtQntProd"] = "Produto ja existente, a quantidade no estoque foi aumentada.";
+                return View();
+            }
+        }
+        [HttpGet]
+        public IActionResult CreateProductByAdm()
+        {
+            return View();
+        }
     }
 }

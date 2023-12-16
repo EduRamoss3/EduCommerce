@@ -12,5 +12,6 @@ namespace WebApplication2.Repository.Interfaces
         ActionResult Delete(int id);
         ActionResult Update(Produto produto);
         IEnumerable<Produto> GetByName(string searchString);
+        ActionResult PatchQnt(Produto produto);
     }
 }
