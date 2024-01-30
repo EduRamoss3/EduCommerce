@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vzb0z+HNQ1rRRpBkx/Mq47q4Wk8i/cN0BF+BGQumAfc=",
+  "Hash": "V9WsBzKbX3zbChvOzcr1nXHCVEh8q5HBGT4Ht5jBoBQ=",
   "Source": "WebApplication2",
   "BasePath": "_content/WebApplication2",
   "Mode": "Default",
@@ -882,6 +882,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Imagens\\teclado_rgb.png"
+    },
+    {
+      "Identity": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\teclado_rgb2.png",
+      "SourceId": "WebApplication2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\",
+      "BasePath": "_content/WebApplication2",
+      "RelativePath": "Imagens/teclado_rgb2.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Imagens\\teclado_rgb2.png"
     },
     {
       "Identity": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\tela.png",
