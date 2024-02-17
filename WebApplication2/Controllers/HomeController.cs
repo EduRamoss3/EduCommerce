@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.Scripting;
 using System.Diagnostics;
 using WebApplication2.Models;
 using WebApplication2.Repository.Interfaces;
@@ -14,11 +16,11 @@ namespace WebApplication2.Controllers
             _produtos = produtos;
         }
 
-        public IActionResult Index(ProdutoViewModel produtoViewModel)
+        public async Task<IActionResult> Index(ProdutoViewModel produtoViewModel)
         {
             if (produtoViewModel.Produtos is null)
             {
-                IEnumerable<Produto> produtos = _produtos.GetAll();
+                IEnumerable<Produto> produtos =  await _produtos.GetAll();
                 ProdutoViewModel produtoViewModelPadrao = new ProdutoViewModel()
                 {
                     Produtos = produtos
@@ -32,16 +34,17 @@ namespace WebApplication2.Controllers
 
         }
         [HttpGet]
-        [Route("{controller}/Search")]
-        public IActionResult SearchBy(string searchString)
+        public async Task<IActionResult> SearchBy(string[] searchString)
         {
             IEnumerable<Produto> produtos;
-            if (!string.IsNullOrEmpty(searchString))
+            if (searchString is not null)
             {
-                produtos = _produtos.GetByName(searchString);
+                produtos = await _produtos.GetByName(searchString);
                 if (produtos is null)
                 {
-                    return new NotFoundObjectResult("Produto não encontrado!");
+                    ModelState.AddModelError("erroPesquisaNome", "Produto não encontrado!");
+
+                    return RedirectToAction("Index", "Home");
                 }
                 ProdutoViewModel pVM = new ProdutoViewModel()
                 {
@@ -49,11 +52,7 @@ namespace WebApplication2.Controllers
                 };
                 return View("~/Views/Produto/SearchProduto.cshtml", pVM);
             }
-
-            else
-            {
-                return new NotFoundObjectResult(searchString);
-            }
+            return View(this);
         }
 
 

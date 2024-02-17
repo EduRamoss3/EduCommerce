@@ -12,7 +12,10 @@ namespace WebApplication2.Models
         public int IdPessoa { get; set; }
         [Required(ErrorMessage = "O nome é obrigatório!")]
         [StringLength(100,ErrorMessage = "O nome só permite 100 caracteres")]
+        [DisplayName("Usuário")]
         public string Nome { get; set; }
+        [Required]
+        public string Telefone { get; set; }
         [Required(ErrorMessage = "O CPF é obrigatório!")]
         [MaxLength(14)]
         [MinLength(14)]
@@ -31,7 +34,10 @@ namespace WebApplication2.Models
         public DateTime DateNasc { get; set; }
         public string IdCarrinho { get; set; }
         public virtual Carrinho _Carrinho { get; set; }
-
-       
+        public bool PasswordIsValid(string senha)
+        {
+            if (senha == Senha) { return true; }
+            return false;
+        }
     }
 }

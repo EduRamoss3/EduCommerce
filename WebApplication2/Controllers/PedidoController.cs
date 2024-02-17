@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WebApplication2.Migrations;
 using WebApplication2.Models;
 using WebApplication2.Repository.Interfaces;
 
 namespace WebApplication2.Controllers
 {
+    [Authorize]
+    
     public class PedidoController : Controller
     {
         private readonly Carrinho _carrinho;

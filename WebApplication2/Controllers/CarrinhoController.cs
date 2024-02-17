@@ -7,6 +7,7 @@ using WebApplication2.ViewModel;
 
 namespace WebApplication2.Controllers
 {
+    [Authorize]
     public class CarrinhoController : Controller
     {
         private readonly Carrinho _carrinhoCompra;
@@ -30,11 +31,11 @@ namespace WebApplication2.Controllers
 
         }
 
-        public IActionResult AdicionarNoCarrinho(int Idproduto)
+        public  async Task<IActionResult> AdicionarNoCarrinho(int Idproduto)
         {
             if (User.Identity.IsAuthenticated)
             {
-                var produtoSelecionado = _productService.GetById(Idproduto);
+                var produtoSelecionado = await _productService.GetById(Idproduto);
                 if (produtoSelecionado is not null)
                 {
                     _carrinhoCompra.AdicionarNoCarrinho(produtoSelecionado.Value);
@@ -55,9 +56,9 @@ namespace WebApplication2.Controllers
         }
         [Authorize]
 
-        public IActionResult RemoverItemNoCarrinhoCompra(int Idproduto)
+        public async Task<IActionResult> RemoverItemNoCarrinhoCompra(int Idproduto)
         {
-            var produtoSelecionado = _productService.GetById(Idproduto);
+            var produtoSelecionado = await _productService.GetById(Idproduto);
             if(produtoSelecionado is not null)
             {
                 _carrinhoCompra.RemoverDoCarrinho(produtoSelecionado.Value);

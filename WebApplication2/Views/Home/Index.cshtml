@@ -8,6 +8,9 @@
 {
     <script>
         alert('@TempData["Sucesso"]');
+        if (@ViewBag.NewBag.Count > 0){
+            alert('Produto inexistente');
+        }
     </script>
 }
 <style>
@@ -18,7 +21,7 @@
 
     }
 </style>
-
+                 
 <link rel="stylesheet" href="~/css/PaginaInicial.css" />
     <div id="carouselLanches" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">

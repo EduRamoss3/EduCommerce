@@ -9,8 +9,10 @@ namespace WebApplication2.Controllers
     public class CadastroController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
-        public CadastroController(UserManager<IdentityUser> userManager)
+        private readonly IUsuarioService _usuarioService;
+        public CadastroController(UserManager<IdentityUser> userManager, IUsuarioService usuarioService)
         {
+            _usuarioService = usuarioService;
             _userManager = userManager;
         }
 
@@ -25,19 +27,30 @@ namespace WebApplication2.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = usuario.Nome };
-                var result = await _userManager.CreateAsync(user, usuario.Senha);
-                if (result.Succeeded)
+                var user = new IdentityUser()
                 {
-                    return RedirectToAction("Login", "Usuario");
-                }
-                else
-                {
-                    this.ModelState.AddModelError("", "Erro ao realizar o cadastro!");
-                }
+                    UserName = usuario.Nome,
+                    NormalizedUserName = usuario.Nome.ToUpper(),
+                    Email = usuario.Email,
+                    NormalizedEmail = usuario.Email.ToUpper(),
+                    PhoneNumber = usuario.Telefone
+
+                };
+            
+            var result = await _userManager.CreateAsync(user, usuario.Senha);
+            if (result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(user, "Member");
+                await _usuarioService.Add(usuario);
+                return RedirectToAction("Login", "Usuario");
             }
+            else
+            {
+                ModelState.AddModelError("", result.Errors.ToString());
+            }
+        }
             return View(usuario);
 
-        }
     }
+}
 }

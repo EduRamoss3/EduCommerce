@@ -1,10 +1,10 @@
 ﻿@using Microsoft.AspNetCore.Identity;
-@inject SignInManager<IdentityUser> SignManager
-@if (SignManager.IsSignedIn(User))
+@if (User.IsInRole("Admin"))
 {
-   // <li class="nav-item">
-     //   <a class="nav-link" style="color: lightgray" asp-action="CreateProductByAdm" asp-controller="Produto">
-       //     Adicionar produto
-        //</a>
-   // </li>
+    <ul class="nav navbar-nav navbar-left">
+       <li class="nav-link">
+           <h3>Olá Admin @User.Identity.Name!</h3>
+            <a asp-area="Admin" asp-action="Index" asp-controller="Admin">Admin</a>
+       </li>
+    </ul>
 }

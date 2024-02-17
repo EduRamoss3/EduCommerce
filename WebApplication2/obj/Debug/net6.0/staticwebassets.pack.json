@@ -173,6 +173,10 @@
       "PackagePath": "staticwebassets\\Imagens\\smartphone.png"
     },
     {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\software-engineer.png",
+      "PackagePath": "staticwebassets\\Imagens\\software-engineer.png"
+    },
+    {
       "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\teclado.png",
       "PackagePath": "staticwebassets\\Imagens\\teclado.png"
     },

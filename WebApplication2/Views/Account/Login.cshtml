@@ -1,0 +1,71 @@
+﻿@using WebApplication2.ViewModel;
+@model UsuarioViewModel
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<style>
+    body {
+        background-color: #242729;
+        
+        
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 500px;
+        background: linear-gradient(to right, #585a5e, #333333);
+        border-style: outset;
+        border-color: black;
+        width: 800px;
+        padding: 10px;
+        box-shadow: 15px 25px 10px black;
+        background-image: url('vista-da-configuracao-e-do-controlador-de-teclado-para-jogos-de-neon-iluminado.jpg');
+        background-repeat: no-repeat;
+        background-size: cover; /* Ajusta o tamanho para cobrir completamente o contêiner */
+        background-position: center;
+    }
+
+
+    #titulo {
+        color: lawngreen;
+        font-weight: bolder;
+        font-size: 40px;
+        text-align: center;
+    }
+
+    .imglogin {
+        margin-right: 20px;
+    }
+
+    .login-form {
+        color: white;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 text-center">
+            <img class="imglogin" width="400px" height="400px" src="~/Imagens/iconelogin.png" alt="iconelogin" />
+        </div>
+        <div class="col-md-6 text-center">
+            <h1 id="titulo">Faça o seu login!</h1>
+            <div class="login-form">
+                <form asp-controller="Usuario" asp-action="Login" method="post">
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <div class="form-group">
+                        <label asp-for="Usuario"></label>
+                        <input asp-for="Usuario" class="form-control" />
+                        <span class="text-danger" asp-validation-for="Usuario"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Senha"></label>
+                        <input asp-for="Senha" class="form-control" />
+                        <span class="text-danger" asp-validation-for="Senha"></span>
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn-success" asp-controller="Account" asp-action="Login" formmethod="post" type="submit" role="button" value="Login" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

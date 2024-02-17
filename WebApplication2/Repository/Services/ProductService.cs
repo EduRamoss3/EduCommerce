@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Packaging;
 using WebApplication2.Context;
 using WebApplication2.Models;
 using WebApplication2.Repository.Interfaces;
@@ -14,12 +15,12 @@ namespace WebApplication2.Repository.Services
             _context = context;
         }
 
-        public ActionResult Create(Produto produto)
+        public async Task<IActionResult> Create(Produto produto)
         {
             if (produto is not null)
             {
                 _context.Produtos.Add(produto);
-                _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return new OkObjectResult(produto);
             }
             else
@@ -28,13 +29,13 @@ namespace WebApplication2.Repository.Services
             }
         }
 
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var produto = _context.Produtos.FirstOrDefault(p => p.IdProduto == id);
+            var produto = await _context.Produtos.FirstOrDefaultAsync(p => p.IdProduto == id);
             if (produto is not null)
             {
                 _context.Produtos.Remove(produto);
-                _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return new OkObjectResult(produto);
             }
             else
@@ -43,16 +44,16 @@ namespace WebApplication2.Repository.Services
             }
         }
 
-        public IEnumerable<Produto> GetAll()
+        public async Task<IEnumerable<Produto>> GetAll()
         {
-            var produtos = _context.Produtos.ToList();
+            var produtos = await _context.Produtos.ToListAsync();
             return produtos;
           
         }
 
-        public ActionResult<Produto> GetById(int id)
+        public async Task<ActionResult<Produto>> GetById(int id)
         {
-            var produto = _context.Produtos.FirstOrDefault(p => p.IdProduto == id);
+            var produto = await _context.Produtos.FirstOrDefaultAsync(p => p.IdProduto == id);
             if (produto is not null)
             {
                 return produto;
@@ -63,12 +64,12 @@ namespace WebApplication2.Repository.Services
             }
         }
 
-        public ActionResult Update(Produto produto)
+        public async Task<IActionResult> Update(Produto produto)
         {
             if (produto is not null)
             {
                 _context.Produtos.Update(produto);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return new OkObjectResult(produto);
             }
             else
@@ -76,26 +77,83 @@ namespace WebApplication2.Repository.Services
                 return new BadRequestObjectResult(produto);
             }
         }
-        public IEnumerable<Produto> GetByName(string searchString)
+        
+    
+        public async Task<IEnumerable<Produto>>  GetByName(string[] searchString)
         {
-            var produto = _context.Produtos.Where(p => p.Nome == searchString).ToList();
+            IEnumerable<Produto> listNameLike = await GetAll();
+            List<Produto> resultProd = new List<Produto>();
+            foreach(Produto prod in listNameLike)
+            {
+                if (Compare(searchString, prod.Nome))
+                {
+                    resultProd.Add(prod);                 
+                }
+            }
+            if(resultProd is not null)
+            {
+                return resultProd;
+            }
+            
+            string vectorToString = searchString[0];
+            
+            return listNameLike.Where(p => p.Nome == vectorToString).ToList();
+        }
+        public  bool Compare(string[] search, string nameProd)
+        {
+            string[] wordsProdName = nameProd.Split(" ");  // todas as palavras do nome do produto em um vetor
+            string[] compareStrings = new string[search.Count()]; // criação de um vetor para armazenar as palavras de pesquisa
+
+            foreach(string strSearch in search)
+            {
+              compareStrings = strSearch.Split(" "); //adicionando as palavras de pesquisa no vetor
+            }
+            if (compareStrings.Length > 1) // se o vetor de pesquisa for maior que 1, ou seja, uma frase, então faremos a comparação:
+            {
+                for (int i = 0; i < wordsProdName.Length - 1; i++)
+                {
+                    string wordConc = wordsProdName[i].ToLower() + " " + wordsProdName[i + 1].ToLower();
+                    string compareConc = compareStrings[0].ToLower() + " " + compareStrings[1].ToLower();
+                    if (wordConc == compareConc) // se as palavras formarem uma frase com pelo menos duas palavras, então, ele retorna esse produto
+                    {
+                        return true;
+                    }
+                    
+                }
+            }
+            else
+            {
+                foreach (string word in wordsProdName) // se for somente uma palavra, então ele faz a comparação:
+                {
+                    string wordLower = word.ToLower();
+
+                    foreach (string compareStrSearch in compareStrings)
+                    {
+                        if (wordLower == compareStrSearch) // se alguma  palavra que está no nome for igual a palavra que está na pesquisa, então retornará verdadeiro
+                        {
+                            return true;
+                        }
+                    }
+
+                }
+            }
+            return false;
+
+        }
+        public async Task<IEnumerable<Produto>> GetByCategoria(int categoriaId)
+        {
+            var produto = await _context.Produtos.Where(p => p.IdCategoria == categoriaId).ToListAsync();
             return produto;
         }
 
-        public IEnumerable<Produto> GetByCategoria(int categoriaId)
+        public async Task<IActionResult> PatchQnt(Produto produto)
         {
-            var produto = _context.Produtos.Where(p => p.IdCategoria == categoriaId).ToList();
-            return produto;
-        }
-
-        public ActionResult PatchQnt(Produto produto)
-        {
-            var dbProd = _context.Produtos.FirstOrDefault(p => p.IdProduto == produto.IdProduto);
+            var dbProd = await _context.Produtos.FirstOrDefaultAsync(p => p.IdProduto == produto.IdProduto);
             if(dbProd is not null)
             {
                 dbProd.Quantidade++;
                 _context.Produtos.Update(dbProd);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return new OkObjectResult(produto);
             }
             else

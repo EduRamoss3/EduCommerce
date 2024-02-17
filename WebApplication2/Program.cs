@@ -16,7 +16,16 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IPedidoService, PedidoService>();
 builder.Services.AddScoped<ICategoriaService, CategoriaService>();
 builder.Services.AddScoped(sp => Carrinho.GetCarrinho(sp));
+builder.Services.AddScoped<ISeedRoleInitial, SeedUserRoleInitial>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Admin",
+        politica =>
+        {
+            politica.RequireRole("Admin");
+        });
+});
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>()
@@ -39,6 +48,7 @@ builder.Services.AddSession(options =>
 });
 var app = builder.Build();
 
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -47,16 +57,39 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
+CriarPerfisUsuarios(app);
+app.UseSession();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
+
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-app.UseSession();
+    endpoints.MapControllerRoute(
+        name: "areas",
+        pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}");
+    endpoints.MapControllerRoute(
+        name: "acessdenied",
+        pattern: "{controller=Account}/{action=AccessDenied}");
+});
+
 app.Run();
+void CriarPerfisUsuarios(WebApplication app)
+{
+    var scopedFactory = app.Services.GetService<IServiceScopeFactory>();
+    using (var scope = scopedFactory.CreateScope())
+    {
+        var service = scope.ServiceProvider.GetService<ISeedRoleInitial>();
+        service.SeedRoles();
+        service.SeedUsers();
+    }
+}
