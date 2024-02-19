@@ -20,11 +20,13 @@ namespace WebApplication2.Areas.Admin.Controllers
     {
         private readonly AppDbContext _context;
         private readonly IPedidoService _pedidoService;
+        private readonly IProductService _productService;
 
-        public AdminPedidosController(AppDbContext context, IPedidoService pedidoService)
+        public AdminPedidosController(AppDbContext context, IPedidoService pedidoService, IProductService productService)
         {
             _context = context;
             _pedidoService = pedidoService;
+            _productService = productService;
         }
 
         [HttpGet]
@@ -38,6 +40,8 @@ namespace WebApplication2.Areas.Admin.Controllers
         [Route("{controller}/Details/{id}")]
         public async Task<IActionResult> Details(int? id)
         {
+            List<int> Idprodutos = new List<int>();
+            List<Produto> AllProd = new List<Produto>();
             if (id == null || _context.Pedidos == null)
             {
                 return NotFound();
@@ -51,12 +55,22 @@ namespace WebApplication2.Areas.Admin.Controllers
             }
             
             var pedidoDetalhe = _pedidoService.DetalhePedido(pedido.IdPedido);
-            var produtosPedido =  _pedidoService.ProdutosPedido(pedidoDetalhe.IdProduto);
+            string[] idsPedido = pedidoDetalhe.strPedidos.Split(",");
+            foreach(string idProd in idsPedido)
+            {
+                Idprodutos.Add(Convert.ToInt32(idProd));
+
+            }
+            foreach(int idProd in Idprodutos)
+            {
+                var item = _productService.GetById(idProd);
+                AllProd.Add(item);
+            }
             PedidoViewModel pedidoViewModel = new PedidoViewModel()
             {
                 _Pedido = pedido,
                 _PedidoDetalhe = pedidoDetalhe,
-                _ProdutosPedido = produtosPedido,
+                _ProdutosPedido = AllProd,
             };
 
             return View(pedidoViewModel);

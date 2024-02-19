@@ -350,6 +350,9 @@ namespace WebApplication2.Migrations
                     b.Property<int>("Quantidade")
                         .HasColumnType("int");
 
+                    b.Property<string>("strPedidos")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("PedidoDetalheId");
 
                     b.HasIndex("PedidoId");

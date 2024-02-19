@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Humanizer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplication2.Context;
@@ -26,15 +27,31 @@ namespace WebApplication2.Repository.Services
                 await _context.Pedidos.AddAsync(pedido);
                 await _context.SaveChangesAsync();
                 var carrinhoItems = _carrinho.ItensCarrinhos;
+                List<string> strList = new List<string>();
+                string result = "";
+                foreach (var produto in carrinhoItems)
+                {
+                    string produtoIdString = produto.Produto.IdProduto.ToString();
+                    strList.Add(produtoIdString);
+                }
+                foreach(string produtoIdString in strList) // adicionando todos os ids em uma string, para futuramente usar split(",") e obter todos os ids
+                {
+                    result += produtoIdString + ",";
+                }
+                result = result.TrimEnd(',');
+
+
                 foreach (var item in carrinhoItems)
                 {
-                    Models.PedidoDetalhe pedidoDetalhe = new Models.PedidoDetalhe
+                    
+                    PedidoDetalhe pedidoDetalhe = new PedidoDetalhe
                     {
                         PedidoId = pedido.IdPedido,
                         IdProduto = item.Produto.IdProduto,
                         Quantidade = item.QntProduto,
                         Preco = (decimal)(item.Produto.Preco * item.QntProduto),
-                        Produto = item.Produto
+                        Produto = item.Produto,
+                        strPedidos = result,
                     };
                    _context.PedidoDetalhe.Add(pedidoDetalhe);
                 }

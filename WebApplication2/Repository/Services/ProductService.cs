@@ -51,15 +51,15 @@ namespace WebApplication2.Repository.Services
 
         }
 
-        public async Task<ActionResult<Produto>> GetById(int id)
+        public Produto GetById(int id)
         {
-            var produto = await _context.Produtos.FirstOrDefaultAsync(p => p.IdProduto == id);
+            var produto =  _context.Produtos.FirstOrDefault(p => p.IdProduto == id);
             if (produto is not null)
             {
                 return produto;
             }
 
-            return new NotFoundObjectResult(produto);
+            return null;
         }
 
         public async Task<IActionResult> Update(Produto produto)
