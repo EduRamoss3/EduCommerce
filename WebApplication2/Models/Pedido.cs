@@ -20,6 +20,8 @@ namespace WebApplication2.Models
         [Required]
         public int TotalItensPedido { get; set; }
         public double TotalPedido { get; set; }
+        public bool Concluido { get; set; }
+        public bool Entregue { get; set; }
         public List<PedidoDetalhe> _PedidoDetalhes { get; set; }
 
     }

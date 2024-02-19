@@ -48,7 +48,7 @@ namespace WebApplication2.Repository.Services
         {
             var produtos = await _context.Produtos.ToListAsync();
             return produtos;
-          
+
         }
 
         public async Task<ActionResult<Produto>> GetById(int id)
@@ -58,10 +58,8 @@ namespace WebApplication2.Repository.Services
             {
                 return produto;
             }
-            else
-            {
-                return new NotFoundObjectResult(produto);
-            }
+
+            return new NotFoundObjectResult(produto);
         }
 
         public async Task<IActionResult> Update(Produto produto)
@@ -77,65 +75,54 @@ namespace WebApplication2.Repository.Services
                 return new BadRequestObjectResult(produto);
             }
         }
-        
-    
-        public async Task<IEnumerable<Produto>>  GetByName(string[] searchString)
+
+
+        public async Task<IEnumerable<Produto>> GetByName(string searchString)
         {
             IEnumerable<Produto> listNameLike = await GetAll();
+            IEnumerable <Produto> listNameEmpty = Enumerable.Empty<Produto>();
             List<Produto> resultProd = new List<Produto>();
-            foreach(Produto prod in listNameLike)
+            foreach (Produto prod in listNameLike)
             {
                 if (Compare(searchString, prod.Nome))
                 {
-                    resultProd.Add(prod);                 
+                    resultProd.Add(prod);
                 }
             }
-            if(resultProd is not null)
+            if (resultProd is not null)
             {
                 return resultProd;
             }
-            
-            string vectorToString = searchString[0];
-            
-            return listNameLike.Where(p => p.Nome == vectorToString).ToList();
+            return listNameEmpty;
         }
-        public  bool Compare(string[] search, string nameProd)
+        public bool Compare(string search, string nameProd)
         {
             string[] wordsProdName = nameProd.Split(" ");  // todas as palavras do nome do produto em um vetor
-            string[] compareStrings = new string[search.Count()]; // criação de um vetor para armazenar as palavras de pesquisa
-
-            foreach(string strSearch in search)
-            {
-              compareStrings = strSearch.Split(" "); //adicionando as palavras de pesquisa no vetor
-            }
+            string[] compareStrings = search.Split(" "); // criação de um vetor para armazenar as palavras de pesquisa
             if (compareStrings.Length > 1) // se o vetor de pesquisa for maior que 1, ou seja, uma frase, então faremos a comparação:
             {
-                for (int i = 0; i < wordsProdName.Length - 1; i++)
+                for (int i = 1; i < wordsProdName.Length; i++)
                 {
-                    string wordConc = wordsProdName[i].ToLower() + " " + wordsProdName[i + 1].ToLower();
+                    string wordConc = wordsProdName[i-1].ToLower() + " " + wordsProdName[i].ToLower();
                     string compareConc = compareStrings[0].ToLower() + " " + compareStrings[1].ToLower();
                     if (wordConc == compareConc) // se as palavras formarem uma frase com pelo menos duas palavras, então, ele retorna esse produto
                     {
                         return true;
                     }
-                    
                 }
             }
-            else
+            foreach (string word in wordsProdName) // se for somente uma palavra, então ele faz a comparação:
             {
-                foreach (string word in wordsProdName) // se for somente uma palavra, então ele faz a comparação:
+                foreach (string compareStrSearch in compareStrings)
                 {
-                    string wordLower = word.ToLower();
-
-                    foreach (string compareStrSearch in compareStrings)
+                    string wordProdLower = word.ToLower();
+                    string wordSearchLower = compareStrSearch.ToLower();
+                    if (wordProdLower == wordSearchLower) // se alguma  palavra que está no nome for igual a palavra que está na pesquisa, então retornará verdadeiro
                     {
-                        if (wordLower == compareStrSearch) // se alguma  palavra que está no nome for igual a palavra que está na pesquisa, então retornará verdadeiro
-                        {
-                            return true;
-                        }
+                        return true;
                     }
-
                 }
+
             }
             return false;
 
@@ -149,7 +136,7 @@ namespace WebApplication2.Repository.Services
         public async Task<IActionResult> PatchQnt(Produto produto)
         {
             var dbProd = await _context.Produtos.FirstOrDefaultAsync(p => p.IdProduto == produto.IdProduto);
-            if(dbProd is not null)
+            if (dbProd is not null)
             {
                 dbProd.Quantidade++;
                 _context.Produtos.Update(dbProd);

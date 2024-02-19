@@ -11,6 +11,7 @@ namespace WebApplication2.Models
         public int Quantidade { get; set; }
         [Column(TypeName = "decimal(18,2)")]
         public decimal Preco { get; set; }
+        public string strPedidos { get; set; }
         public virtual Produto Produto { get; set; }
         public virtual Pedido Pedido { get; set; }
 

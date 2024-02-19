@@ -34,7 +34,7 @@ namespace WebApplication2.Controllers
 
         }
         [HttpGet]
-        public async Task<IActionResult> SearchBy(string[] searchString)
+        public async Task<IActionResult> SearchBy(string searchString)
         {
             IEnumerable<Produto> produtos;
             if (searchString is not null)

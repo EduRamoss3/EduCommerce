@@ -24,7 +24,7 @@ namespace WebApplication2.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Checkout(Pedido pedido)
+        public async Task<IActionResult> Checkout(Pedido pedido)
         {
             int totalItemsPedido = 0;
             double precoTotalPedido = 0.0;
@@ -43,8 +43,8 @@ namespace WebApplication2.Controllers
             pedido.TotalPedido = precoTotalPedido;
             if (ModelState.IsValid)
             {
-                var result = _pedidoService.CriarPedido(pedido);
-                if (result)
+                var result = await _pedidoService.CriarPedido(pedido);
+                if (result is not null)
                 {
                     ViewBag.CheckoutCompletoMensagem = "Obrigado pelo seu pedido ;)";
                     ViewBag.TotalPedido = _carrinho.GetTotalCarrinho();

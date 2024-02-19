@@ -11,7 +11,7 @@ namespace WebApplication2.Repository.Interfaces
         Task<IActionResult> Create(Produto produto);
         Task<IActionResult> Delete(int id);
         Task<IActionResult> Update(Produto produto);
-        Task<IEnumerable<Produto>> GetByName(string[] searchString);
+        Task<IEnumerable<Produto>> GetByName(string searchString);
         Task<IActionResult> PatchQnt(Produto produto);
     }
 }

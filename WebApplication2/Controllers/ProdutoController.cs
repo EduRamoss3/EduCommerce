@@ -16,21 +16,21 @@ namespace WebApplication2.Controllers
             _categorias = categorias;   
         }
         [HttpGet]
-        public IActionResult ProdutoDetalhe(int id)
+        public async Task<IActionResult> ProdutoDetalhe(int id)
         {
-            var produto = _produtos.GetById(id);
+            var produto = await _produtos.GetById(id);
             return View(produto);
         }
-        public IActionResult ProdutosByCategoria(int idCategoria)
+        public async Task<IActionResult> ProdutosByCategoria(int idCategoria)
         {
-            var prodCatg = _categorias.GetByCategoria(idCategoria);
+            var prodCatg = await _categorias.GetByCategoria(idCategoria);
             if(prodCatg is null)
             {
                 ModelState.AddModelError("Erro", "Nenhum produto com essa categoria");
             }
             ProdutoViewModel produtoViewModel = new ProdutoViewModel()
             {
-                Produtos = prodCatg
+                Produtos = prodCatg.Value
             };
             return View("~/Views/Home/Index.cshtml",produtoViewModel);
         }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication2.Models;
 using WebApplication2.Repository.Interfaces;
@@ -6,13 +7,14 @@ using WebApplication2.ViewModel;
 
 namespace WebApplication2.Controllers
 {
+    [AllowAnonymous]
     public class CadastroController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly IUsuarioService _usuarioService;
-        public CadastroController(UserManager<IdentityUser> userManager, IUsuarioService usuarioService)
+        
+        public CadastroController(UserManager<IdentityUser> userManager)
         {
-            _usuarioService = usuarioService;
+            
             _userManager = userManager;
         }
 
@@ -41,8 +43,8 @@ namespace WebApplication2.Controllers
             if (result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(user, "Member");
-                await _usuarioService.Add(usuario);
-                return RedirectToAction("Login", "Usuario");
+              
+                return RedirectToAction("Login", "Account");
             }
             else
             {

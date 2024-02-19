@@ -1,4 +1,6 @@
-﻿using WebApplication2.Context;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using WebApplication2.Context;
 using WebApplication2.Enums;
 using WebApplication2.Models;
 using WebApplication2.Repository.Interfaces;
@@ -17,9 +19,14 @@ namespace WebApplication2.Repository.Services
             return _context.Categorias.ToList();
         }
 
-        public IEnumerable<Produto> GetByCategoria(int idCategoria)
+        public async Task<ActionResult<IEnumerable<Produto>>> GetByCategoria(int idCategoria)
         {
-            return _context.Produtos.Where(t => t.IdCategoria == idCategoria).ToList();
+            var list = await _context.Produtos.Where(p => p.IdCategoria == idCategoria).ToListAsync();
+            if(list is not null)
+            {
+                return list;
+            }
+            return new NotFoundObjectResult("Sem categorias nesse id");
         }
     }
 }

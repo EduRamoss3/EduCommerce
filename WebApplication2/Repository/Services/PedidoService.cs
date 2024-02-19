@@ -1,7 +1,11 @@
-﻿using WebApplication2.Context;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using WebApplication2.Context;
 using WebApplication2.Migrations;
 using WebApplication2.Models;
 using WebApplication2.Repository.Interfaces;
+using PedidoDetalhe = WebApplication2.Models.PedidoDetalhe;
 
 namespace WebApplication2.Repository.Services
 {
@@ -15,12 +19,12 @@ namespace WebApplication2.Repository.Services
             _carrinho = carrinho;
         }
 
-        public bool CriarPedido(Pedido pedido)
+        public async Task<ActionResult> CriarPedido(Pedido pedido)
         {
             if (pedido is not null)
             {
-                _context.Pedidos.Add(pedido);
-                _context.SaveChanges();
+                await _context.Pedidos.AddAsync(pedido);
+                await _context.SaveChangesAsync();
                 var carrinhoItems = _carrinho.ItensCarrinhos;
                 foreach (var item in carrinhoItems)
                 {
@@ -34,18 +38,30 @@ namespace WebApplication2.Repository.Services
                     };
                    _context.PedidoDetalhe.Add(pedidoDetalhe);
                 }
-                _context.SaveChanges();
-                return true;
+                await _context.SaveChangesAsync();
+                return new OkObjectResult("Pedido criado com sucesso!");
             }
-            else
-            {
-                return false;
-            }
+            return new NotFoundObjectResult("O Pedido é nulo!");
         }
 
-        public Pedido VerificarPedido(int id)
+        public async Task<ActionResult> VerificarPedido(int id)
         {
             throw new NotImplementedException();
+        }
+        public PedidoDetalhe DetalhePedido(int id)
+        {
+            var detalhe = _context.PedidoDetalhe.FirstOrDefault(p => p.PedidoId == id);
+            if(detalhe is null)
+            {
+                PedidoDetalhe pedidoDetalheNull = new PedidoDetalhe();
+                return pedidoDetalheNull;
+            }
+            return detalhe;
+        }
+        public List<Produto> ProdutosPedido(int id)
+        {
+            var produtosPedido = _context.Produtos.Where(p => p.IdProduto == id).ToList();
+            return produtosPedido;
         }
     }
 }

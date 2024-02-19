@@ -2,9 +2,8 @@
 @if (User.IsInRole("Admin"))
 {
     <ul class="nav navbar-nav navbar-left">
-       <li class="nav-link">
-           <h3>Olá Admin @User.Identity.Name!</h3>
-            <a asp-area="Admin" asp-action="Index" asp-controller="Admin">Admin</a>
-       </li>
+        <li class="nav-link">
+            <a style="color:orange;" asp-area="Admin" asp-action="Index" asp-controller="Admin">Área de Administração</a>
+        </li>
     </ul>
 }
