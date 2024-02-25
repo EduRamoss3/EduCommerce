@@ -78,7 +78,7 @@ namespace WebApplication2.Areas.Admin.Controllers
             }
             
          
-            return View(produto.Value);
+            return View(produto);
         }
 
 
@@ -113,10 +113,6 @@ namespace WebApplication2.Areas.Admin.Controllers
         [Route("{controller}/Delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            if (id == null || await _productService.GetById(id) == null)
-            {
-                return NotFound();
-            }
 
             var produto = await _productService.GetById(id);
             if (produto == null)
@@ -124,7 +120,7 @@ namespace WebApplication2.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(produto.Value);
+            return View(produto);
         }
 
         

@@ -18,13 +18,12 @@ namespace WebApplication2.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class AdminPedidosController : Controller
     {
-        private readonly AppDbContext _context;
+
         private readonly IPedidoService _pedidoService;
         private readonly IProductService _productService;
 
-        public AdminPedidosController(AppDbContext context, IPedidoService pedidoService, IProductService productService)
+        public AdminPedidosController(IPedidoService pedidoService, IProductService productService)
         {
-            _context = context;
             _pedidoService = pedidoService;
             _productService = productService;
         }
@@ -33,43 +32,40 @@ namespace WebApplication2.Areas.Admin.Controllers
         [Route("{controller}")]
         public async Task<IActionResult> Index()
         {
-            var pedidos = await _context.Pedidos.ToListAsync();
-            return View(pedidos);
+            var pedidos = await _pedidoService.GetAll();
+            return View(pedidos.Value);
         }
 
         [HttpGet]
         [Route("{controller}/Details/{id}")]
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
             List<int> Idprodutos = new List<int>();
             List<Produto> AllProd = new List<Produto>();
-            if (id == null || _context.Pedidos == null)
-            {
-                return NotFound();
-            }
 
-            var pedido = await _context.Pedidos
-                .FirstOrDefaultAsync(m => m.IdPedido == id);
-            if (pedido == null)
+
+            var pedido = await _pedidoService.GetById(id);
+            if(pedido is null)
             {
                 return NotFound();
             }
             
-            var pedidoDetalhe = _pedidoService.DetalhePedido(pedido.IdPedido);
-            string[] idsPedido = pedidoDetalhe.strPedidos.Split(",");
-            foreach(string idProd in idsPedido)
+
+            var pedidoDetalhe = _pedidoService.DetalhePedido(pedido.Value.IdPedido); //pegando o pedido detalhe
+            string[] idsPedido = pedidoDetalhe.strPedidos.Split(",");  // pegando todos os ids de produtos que estão em str pedidos, exemplo "1,2,3,4,5" 
+            foreach (string idProd in idsPedido)
             {
-                Idprodutos.Add(Convert.ToInt32(idProd));
+                Idprodutos.Add(Convert.ToInt32(idProd)); //depois de separado por virgula, transformei todos em numero e adicionei em uma lista
 
             }
-            foreach(int idProd in Idprodutos)
+            foreach (int idProd in Idprodutos) // agora, com base em todos os ids de produtos, posso pesquisar cada produto que foi utilizado
             {
                 var item = await _productService.GetById(idProd);
                 AllProd.Add(item.Value);
             }
             PedidoViewModel pedidoViewModel = new PedidoViewModel()
             {
-                _Pedido = pedido,
+                _Pedido = pedido.Value,
                 _PedidoDetalhe = pedidoDetalhe,
                 _ProdutosPedido = AllProd,
             };
@@ -84,91 +80,61 @@ namespace WebApplication2.Areas.Admin.Controllers
             return View();
         }
 
-        // POST: Admin/AdminPedidos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("{controller}/Create/{id}")]
-        public async Task<IActionResult> Create([Bind("IdPedido,Nome,DataPedido,Rua,Numero,Telefone,TotalItensPedido,TotalPedido")] Pedido pedido)
+        [Route("{controller}/Create")]
+        public async Task<IActionResult>Create(Pedido pedido)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(pedido);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                await _pedidoService.CriarPedido(pedido);
+                return RedirectToAction("Index", "AdminPedidos");
             }
             return View(pedido);
         }
 
         [HttpGet]
         [Route("{controller}/Edit/{id}")]
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null || _context.Pedidos == null)
-            {
-                return NotFound();
-            }
-
-            var pedido = await _context.Pedidos.FindAsync(id);
-            if (pedido == null)
-            {
-                return NotFound();
-            }
-            return View(pedido);
+            var _pedido = await _pedidoService.GetById(id);
+            return View(_pedido.Value);
         }
 
-      
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("{controller}/Edit/{id}")]
-        public async Task<IActionResult> Edit(int id, [Bind("IdPedido,Nome,DataPedido,Rua,Numero,Telefone,TotalItensPedido,TotalPedido")] Pedido pedido)
+        public async Task<ActionResult<Pedido>> Edit(int id, Pedido pedido)
         {
-            if (id != pedido.IdPedido)
-            {
-                return NotFound();
-            }
 
-            if (ModelState.IsValid)
+            if (pedido is not null)
             {
-                try
+               
+                var result = await _pedidoService.Update(id, pedido);
+                if (ModelState.IsValid)
                 {
-                    _context.Update(pedido);
-                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction("Index", "AdminPedidos",result);
                 }
-                catch (DbUpdateConcurrencyException)
+                else
                 {
-                    if (!PedidoExists(pedido.IdPedido))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    return View();
                 }
-                return RedirectToAction(nameof(Index));
+
             }
-            return View(pedido);
+            ModelState.AddModelError("Erro", "Pedido é nulo");
+            return View();
+          
         }
 
         [HttpGet]
         [Route("{controller}/Delete/{id}")]
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null || _context.Pedidos == null)
-            {
-                return NotFound();
-            }
+            var pedido = await _pedidoService.GetById(id);
 
-            var pedido = await _context.Pedidos
-                .FirstOrDefaultAsync(m => m.IdPedido == id);
-            if (pedido == null)
-            {
-                return NotFound();
-            }
-
-            return View(pedido);
+            return View(pedido.Value);
         }
 
 
@@ -177,23 +143,15 @@ namespace WebApplication2.Areas.Admin.Controllers
         [Route("~/Admin/AdminPedidos/DeleteConfirmed/{id}")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Pedidos == null)
-            {
-                return Problem("Entity set 'AppDbContext.Pedidos'  is null.");
-            }
-            var pedido = await _context.Pedidos.FindAsync(id);
+           
+            var pedido = await _pedidoService.GetById(id);
             if (pedido != null)
             {
-                _context.Pedidos.Remove(pedido);
+               var result = await _pedidoService.Delete(id);
+                return RedirectToAction("Index", "AdminPedidos");
             }
-            
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PedidoExists(int id)
-        {
-          return _context.Pedidos.Any(e => e.IdPedido == id);
-        }
     }
 }

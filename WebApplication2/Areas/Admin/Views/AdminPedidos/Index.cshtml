@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebApplication2.Models.Pedido>
+﻿@model IEnumerable<Pedido>
 
 @{
     ViewData["Title"] = "Index";
@@ -67,10 +67,10 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.TotalPedido)
                 </td>
-                <td>
+                <td class="form-check-label">
                     @Html.DisplayFor(modelItem => item.Entregue)
                 </td>
-                <td>
+                <td class="form-check-label">
                     @Html.DisplayFor(modelItem => item.Concluido)
                 </td>
                 <td>
