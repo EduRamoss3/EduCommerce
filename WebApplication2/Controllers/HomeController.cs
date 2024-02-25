@@ -36,7 +36,7 @@ namespace WebApplication2.Controllers
         [HttpGet]
         public async Task<IActionResult> SearchBy(string searchString)
         {
-            IEnumerable<Produto> produtos;
+            IEnumerable<Produto> produtos = new List<Produto>();
             if (searchString is not null)
             {
                 produtos = await _produtos.GetByName(searchString);
@@ -52,7 +52,7 @@ namespace WebApplication2.Controllers
                 };
                 return View("~/Views/Produto/SearchProduto.cshtml", pVM);
             }
-            return View(this);
+            return RedirectToAction("Index", "Home");
         }
 
 

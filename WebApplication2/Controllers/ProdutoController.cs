@@ -18,7 +18,7 @@ namespace WebApplication2.Controllers
         [HttpGet]
         public async Task<IActionResult> ProdutoDetalhe(int id)
         {
-            var produto = _produtos.GetById(id);
+            var produto = await _produtos.GetById(id);
             return View(produto);
         }
         public async Task<IActionResult> ProdutosByCategoria(int idCategoria)

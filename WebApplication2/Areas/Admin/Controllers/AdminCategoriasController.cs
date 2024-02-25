@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using WebApplication2.Areas.Admin.ViewModel;
 using WebApplication2.Context;
 using WebApplication2.Models;
 
@@ -51,7 +52,7 @@ namespace WebApplication2.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        [Route("{controller}/Index_create")]
+        [Route("{controller}/Create")]
         public IActionResult Create()
         {
             return View();
@@ -87,7 +88,15 @@ namespace WebApplication2.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            return View(categoria);
+            var _CtgNomesList = await _context.Categorias.ToListAsync();
+
+            CategoriaViewModel categoriaViewModel = new CategoriaViewModel()
+            {
+                _Categoria = categoria,
+                ListNomes = _CtgNomesList
+
+            };
+            return View(categoriaViewModel);
         }
 
         // POST: Admin/AdminCategorias/Edit/5
@@ -95,9 +104,10 @@ namespace WebApplication2.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("{controller}/Editing")]
+        [Route("{controller}/Edit")]
         public async Task<IActionResult> Edit(int id, [Bind("IdCategoria,CategoriaNome,Tipos")] Categoria categoria)
         {
+          
             if (id != categoria.IdCategoria)
             {
                 return NotFound();
@@ -126,9 +136,10 @@ namespace WebApplication2.Areas.Admin.Controllers
             return View(categoria);
         }
 
+      
         [HttpDelete]
         [Route("{controller}/Delete/{id}")]
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
             if (id == null || _context.Categorias == null)
             {
@@ -146,9 +157,10 @@ namespace WebApplication2.Areas.Admin.Controllers
         }
 
         // POST: Admin/AdminCategorias/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("{controller}/Confirm_delete/{id}")]
+        [Route("{controller}/Delete/{id}")]
+        
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Categorias == null)

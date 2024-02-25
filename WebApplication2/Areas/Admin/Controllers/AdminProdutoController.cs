@@ -6,8 +6,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using WebApplication2.Areas.Admin.ViewModel;
 using WebApplication2.Context;
+using WebApplication2.Enums;
 using WebApplication2.Models;
+using WebApplication2.Repository.Interfaces;
+using WebApplication2.Repository.Services;
 
 namespace WebApplication2.Areas.Admin.Controllers
 {
@@ -16,40 +20,30 @@ namespace WebApplication2.Areas.Admin.Controllers
     
     public class AdminProdutoController : Controller
     {
-        private readonly AppDbContext _context;
-
-        public AdminProdutoController(AppDbContext context)
+        private readonly IProductService _productService;
+        public AdminProdutoController(IProductService productService)
         {
-            _context = context;
+            _productService = productService;
         }
+
+       
         [HttpGet]
         [Route("{controller}/Index")]
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Produtos.ToListAsync());
+          return View(await _productService.GetAll());
         }
 
         [HttpGet]
         [Route("{controller}/Details/{id}")]
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null || _context.Produtos == null)
-            {
-                return NotFound();
-            }
-
-            var produto = await _context.Produtos
-                .FirstOrDefaultAsync(m => m.IdProduto == id);
-            if (produto == null)
-            {
-                return NotFound();
-            }
-
+            var produto = await _productService.GetById(id);
             return View(produto);
         }
 
         [HttpGet]
-        [Route("{controller}/Index_create")]
+        [Route("{controller}/Create")]
         public IActionResult Create()
         {
             return View();
@@ -58,39 +52,38 @@ namespace WebApplication2.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("{controller}/Index_creating")]
+        [Route("{controller}/Create")]
         public async Task<IActionResult> Create([Bind("IdProduto,Nome,Preco,DataEntrada,Tipos,Quantidade,ImagemUrl,DescricaoCurta,AntigoPreco,AVista,PrecoSecundario,MaxVezes,IdCategoria")] Produto produto)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(produto);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                await _productService.Create(produto);
+                return RedirectToAction("Index");
+                
             }
             return View(produto);
         }
 
         [HttpGet]
         [Route("{controller}/Edit/{id}")]
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null || _context.Produtos == null)
-            {
-                return NotFound();
-            }
 
-            var produto = await _context.Produtos.FindAsync(id);
+
+            var produto = await _productService.GetById(id);
             if (produto == null)
             {
                 return NotFound();
             }
+            
+         
             return View(produto);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("{controller}/Editing/{id}")]
+        [Route("{controller}/Edit/{id}")]
         public async Task<IActionResult> Edit(int id, [Bind("IdProduto,Nome,Preco,DataEntrada,Tipos,Quantidade,ImagemUrl,DescricaoCurta,AntigoPreco,AVista,PrecoSecundario,MaxVezes,IdCategoria")] Produto produto)
         {
             if (id != produto.IdProduto)
@@ -102,19 +95,13 @@ namespace WebApplication2.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(produto);
-                    await _context.SaveChangesAsync();
+                    await _productService.Update(produto, id);
+                    RedirectToAction("AdminProduto", "Index");
+                    
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProdutoExists(produto.IdProduto))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    new NotFoundObjectResult("Objeto não encontrado!");
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -123,15 +110,14 @@ namespace WebApplication2.Areas.Admin.Controllers
 
         [HttpGet]
         [Route("{controller}/Delete/{id}")]
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null || _context.Produtos == null)
+            if (id == null || await _productService.GetById(id) == null)
             {
                 return NotFound();
             }
 
-            var produto = await _context.Produtos
-                .FirstOrDefaultAsync(m => m.IdProduto == id);
+            var produto = await _productService.GetById(id);
             if (produto == null)
             {
                 return NotFound();
@@ -143,26 +129,25 @@ namespace WebApplication2.Areas.Admin.Controllers
         
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Route("{controller}/Confirm_delete/{id}")]
+        [Route("{controller}/Delete/{id}")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Produtos == null)
+            if (await _productService.GetById(id) == null)
             {
                 return Problem("Entity set 'AppDbContext.Produtos'  is null.");
             }
-            var produto = await _context.Produtos.FindAsync(id);
+            var produto = await _productService.GetById(id);
             if (produto != null)
             {
-                _context.Produtos.Remove(produto);
+               await  _productService.Delete(id);
             }
             
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProdutoExists(int id)
+        private async Task<bool> ProdutoExists(int id)
         {
-          return _context.Produtos.Any(e => e.IdProduto == id);
+            return await _productService.Any(id);
         }
     }
 }

@@ -6,12 +6,13 @@ namespace WebApplication2.Repository.Interfaces
     public interface IProductService
     {
         Task<IEnumerable<Produto>> GetAll();
-        Produto GetById(int id);
+        Task<ActionResult<Produto>> GetById(int id);
         Task<IEnumerable<Produto>> GetByCategoria(int categoriaId);  
         Task<IActionResult> Create(Produto produto);
         Task<IActionResult> Delete(int id);
-        Task<IActionResult> Update(Produto produto);
+        Task<IActionResult> Update(Produto produto, int id);
         Task<IEnumerable<Produto>> GetByName(string searchString);
         Task<IActionResult> PatchQnt(Produto produto);
+        Task<bool> Any(int id); 
     }
 }

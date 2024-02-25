@@ -14,6 +14,11 @@ namespace WebApplication2.Repository.Services
         {
             _context = context;
         }
+        public async Task<bool> Any(int id)
+        {
+            var produto =  _context.Produtos.Any(p => p.IdProduto == id);
+            return produto;
+        }
 
         public async Task<IActionResult> Create(Produto produto)
         {
@@ -51,25 +56,28 @@ namespace WebApplication2.Repository.Services
 
         }
 
-        public Produto GetById(int id)
+        public async Task<ActionResult<Produto>> GetById(int id)
         {
-            var produto =  _context.Produtos.FirstOrDefault(p => p.IdProduto == id);
+            var produto = await _context.Produtos.FirstOrDefaultAsync(p => p.IdProduto == id);
             if (produto is not null)
             {
                 return produto;
             }
 
-            return null;
+            return new NotFoundObjectResult("Produto não encontrado!");
         }
 
-        public async Task<IActionResult> Update(Produto produto)
+        public async Task<IActionResult> Update(Produto produto, int id)
         {
-            if (produto is not null)
+            var productExist = await _context.Produtos.FirstOrDefaultAsync(p => p.IdProduto == id);
+            if (productExist is not null)
             {
-                _context.Produtos.Update(produto);
+                productExist = produto;
+                _context.Produtos.Update(productExist);
                 await _context.SaveChangesAsync();
-                return new OkObjectResult(produto);
+                return new OkObjectResult(productExist);
             }
+
             else
             {
                 return new BadRequestObjectResult(produto);
@@ -80,7 +88,7 @@ namespace WebApplication2.Repository.Services
         public async Task<IEnumerable<Produto>> GetByName(string searchString)
         {
             IEnumerable<Produto> listNameLike = await GetAll();
-            IEnumerable <Produto> listNameEmpty = Enumerable.Empty<Produto>();
+            IEnumerable<Produto> listNameEmpty = Enumerable.Empty<Produto>();
             List<Produto> resultProd = new List<Produto>();
             foreach (Produto prod in listNameLike)
             {
@@ -103,7 +111,7 @@ namespace WebApplication2.Repository.Services
             {
                 for (int i = 1; i < wordsProdName.Length; i++)
                 {
-                    string wordConc = wordsProdName[i-1].ToLower() + " " + wordsProdName[i].ToLower();
+                    string wordConc = wordsProdName[i - 1].ToLower() + " " + wordsProdName[i].ToLower();
                     string compareConc = compareStrings[0].ToLower() + " " + compareStrings[1].ToLower();
                     if (wordConc == compareConc) // se as palavras formarem uma frase com pelo menos duas palavras, então, ele retorna esse produto
                     {

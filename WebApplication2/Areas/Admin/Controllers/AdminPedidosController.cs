@@ -63,8 +63,8 @@ namespace WebApplication2.Areas.Admin.Controllers
             }
             foreach(int idProd in Idprodutos)
             {
-                var item = _productService.GetById(idProd);
-                AllProd.Add(item);
+                var item = await _productService.GetById(idProd);
+                AllProd.Add(item.Value);
             }
             PedidoViewModel pedidoViewModel = new PedidoViewModel()
             {

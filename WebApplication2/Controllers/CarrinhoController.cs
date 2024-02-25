@@ -31,14 +31,14 @@ namespace WebApplication2.Controllers
 
         }
 
-        public  async Task<IActionResult> AdicionarNoCarrinho(int Idproduto)
+        public async Task<IActionResult> AdicionarNoCarrinho(int Idproduto)
         {
             if (User.Identity.IsAuthenticated)
             {
-                var produtoSelecionado =  _productService.GetById(Idproduto);
+                var produtoSelecionado = await _productService.GetById(Idproduto);
                 if (produtoSelecionado is not null)
                 {
-                    _carrinhoCompra.AdicionarNoCarrinho(produtoSelecionado);
+                     _carrinhoCompra.AdicionarNoCarrinho(produtoSelecionado.Value);
                     return RedirectToAction("Index","Carrinho");
                 }
                 else
@@ -58,15 +58,15 @@ namespace WebApplication2.Controllers
 
         public async Task<IActionResult> RemoverItemNoCarrinhoCompra(int Idproduto)
         {
-            var produtoSelecionado = _productService.GetById(Idproduto);
+            var produtoSelecionado = await _productService.GetById(Idproduto);
             if(produtoSelecionado is not null)
             {
-                _carrinhoCompra.RemoverDoCarrinho(produtoSelecionado);
+                _carrinhoCompra.RemoverDoCarrinho(produtoSelecionado.Value);
                 return RedirectToAction("Index");
             }
             else
             {
-                return Problem();
+                return produtoSelecionado.Result;
             }
         }
         [Authorize]
