@@ -105,7 +105,7 @@ namespace WebApplication2.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("{controller}/Edit")]
-        public async Task<IActionResult> Edit(int id, [Bind("IdCategoria,CategoriaNome,Tipos")] Categoria categoria)
+        public async Task<IActionResult> Edit(int id,Categoria categoria)
         {
           
             if (id != categoria.IdCategoria)
@@ -117,7 +117,9 @@ namespace WebApplication2.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(categoria);
+                    var categoryExist = _context.Categorias.FirstOrDefault(p => p.IdCategoria == id);
+                    categoryExist.CategoriaNome = categoria.CategoriaNome;
+                    _context.Update(categoryExist);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -137,7 +139,7 @@ namespace WebApplication2.Areas.Admin.Controllers
         }
 
       
-        [HttpDelete]
+    
         [Route("{controller}/Delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {

@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<WebApplication2.Models.Categoria>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Inicio";
 }
 
-<h1>Index</h1>
+<h1>Inicio</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Criar nova categoria</a>
 </p>
 <table class="table" style="color: white;">
     <thead>
@@ -31,9 +31,9 @@
                 @Html.DisplayFor(modelItem => item.Tipos)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdCategoria">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdCategoria">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdCategoria">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.IdCategoria">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.IdCategoria">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdCategoria">Deletar</a>
             </td>
         </tr>
 }

@@ -1,6 +1,7 @@
 ﻿body {
     font-weight: 800;
- 
+    width: 100vw;
+    height: 100vh;
 }
 label {
     margin-top: 20px;

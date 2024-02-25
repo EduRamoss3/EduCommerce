@@ -75,9 +75,16 @@ namespace WebApplication2.Areas.Admin.Controllers
 
         [HttpGet]
         [Route("{controller}/Create")]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var produtos = await _productService.GetAll();
+            ItemCarrinho itemCarrinho = new ItemCarrinho();
+            
+            CreateProductViewModel createProductViewModel = new CreateProductViewModel()
+            {
+                Produtos = produtos.Value,
+            };
+            return View(createProductViewModel);
         }
 
         [HttpPost]

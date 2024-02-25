@@ -13,14 +13,12 @@ namespace WebApplication2.Models
         [StringLength(100,ErrorMessage = "O Tamanho máximo do nome é de 100 caractéres")]
         public string Nome { get; set; }
         [Required(ErrorMessage = "O preço é requerido!")]
-        [MaxLength(100000)]
         public double Preco { get; set; }
         [Required(ErrorMessage ="A data do produto é obrigátoria!")]
         public DateTime DataEntrada { get; set; }
         [Required]
         public Tipo Tipos { get; set; }
         [Required(ErrorMessage = " A quantidade de produtos não pode ser 0")]
-        [MaxLength(999)]
         public int Quantidade { get; set; }
         public string ImagemUrl { get; set; }
         [Required(ErrorMessage = " A descrição é obrigatória!")]
@@ -40,7 +38,7 @@ namespace WebApplication2.Models
         public decimal MaxVezes { get; set; }
         [Required]
         public int IdCategoria { get; set; }
-
+       
        
     }
 }

@@ -1,6 +1,7 @@
 ﻿body {
-    background-color:#1c2860;
- 
+    background-color: #1c2860;
+    width: 100vw;
+    height: 100vh;
 }
 .navup {
     background: rgb(250,251,252);

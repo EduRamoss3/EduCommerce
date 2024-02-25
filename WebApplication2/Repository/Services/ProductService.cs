@@ -72,7 +72,18 @@ namespace WebApplication2.Repository.Services
             var productExist = await _context.Produtos.FirstOrDefaultAsync(p => p.IdProduto == id);
             if (productExist is not null)
             {
-                productExist = produto;
+                productExist.IdProduto = id;
+                productExist.AVista = produto.AVista;
+                productExist.DataEntrada = produto.DataEntrada;
+                productExist.DescricaoCurta = produto.DescricaoCurta;
+                productExist.IdCategoria = produto.IdCategoria;
+                productExist.ImagemUrl = produto.ImagemUrl;
+                productExist.AntigoPreco = produto.AntigoPreco;
+                productExist.PrecoSecundario = produto.PrecoSecundario;
+                productExist.Quantidade = produto.Quantidade;
+                productExist.Nome = produto.Nome;
+                productExist.Preco = produto.Preco;
+                
                 _context.Produtos.Update(productExist);
                 await _context.SaveChangesAsync();
                 return new OkObjectResult(productExist);

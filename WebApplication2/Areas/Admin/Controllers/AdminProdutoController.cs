@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApplication2.Areas.Admin.ViewModel;
 using WebApplication2.Context;
 using WebApplication2.Enums;
+using WebApplication2.Migrations;
 using WebApplication2.Models;
 using WebApplication2.Repository.Interfaces;
 using WebApplication2.Repository.Services;
@@ -78,35 +79,32 @@ namespace WebApplication2.Areas.Admin.Controllers
             }
             
          
-            return View(produto);
+            return View(produto.Value);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("{controller}/Edit/{id}")]
-        public async Task<IActionResult> Edit(int id, [Bind("IdProduto,Nome,Preco,DataEntrada,Tipos,Quantidade,ImagemUrl,DescricaoCurta,AntigoPreco,AVista,PrecoSecundario,MaxVezes,IdCategoria")] Produto produto)
+        public async Task<ActionResult<Produto>> Edit(int id,  Produto produto)
         {
-            if (id != produto.IdProduto)
+            if (produto is not null)
             {
-                return NotFound();
-            }
+               
+                if (ModelState.IsValid)
+                {
+                    var result = await _productService.Update(produto, id);
+                    return RedirectToAction("Index", "AdminProduto", result);
+                }
+                else
+                {
+                    return View();
+                }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    await _productService.Update(produto, id);
-                    RedirectToAction("AdminProduto", "Index");
-                    
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    new NotFoundObjectResult("Objeto não encontrado!");
-                }
-                return RedirectToAction(nameof(Index));
             }
-            return View(produto);
+            ModelState.AddModelError("Erro", "Pedido é nulo");
+            return View();
+
         }
 
         [HttpGet]
