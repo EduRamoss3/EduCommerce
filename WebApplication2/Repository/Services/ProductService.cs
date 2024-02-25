@@ -49,7 +49,7 @@ namespace WebApplication2.Repository.Services
             }
         }
 
-        public async Task<IEnumerable<Produto>> GetAll()
+        public async Task<ActionResult<IEnumerable<Produto>>> GetAll()
         {
             var produtos = await _context.Produtos.ToListAsync();
             return produtos;
@@ -87,10 +87,11 @@ namespace WebApplication2.Repository.Services
 
         public async Task<IEnumerable<Produto>> GetByName(string searchString)
         {
-            IEnumerable<Produto> listNameLike = await GetAll();
+            var find = await GetAll();
+            ActionResult<IEnumerable<Produto>> listNameLike = find;
             IEnumerable<Produto> listNameEmpty = Enumerable.Empty<Produto>();
             List<Produto> resultProd = new List<Produto>();
-            foreach (Produto prod in listNameLike)
+            foreach (Produto prod in listNameLike.Value)
             {
                 if (Compare(searchString, prod.Nome))
                 {

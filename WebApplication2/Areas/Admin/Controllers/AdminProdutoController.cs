@@ -31,7 +31,8 @@ namespace WebApplication2.Areas.Admin.Controllers
         [Route("{controller}/Index")]
         public async Task<IActionResult> Index()
         {
-          return View(await _productService.GetAll());
+            var list = await _productService.GetAll();
+           return View(list.Value);
         }
 
         [HttpGet]
@@ -77,7 +78,7 @@ namespace WebApplication2.Areas.Admin.Controllers
             }
             
          
-            return View(produto);
+            return View(produto.Value);
         }
 
 
@@ -123,7 +124,7 @@ namespace WebApplication2.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(produto);
+            return View(produto.Value);
         }
 
         

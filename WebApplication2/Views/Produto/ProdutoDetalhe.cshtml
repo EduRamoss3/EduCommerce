@@ -1,23 +1,23 @@
-﻿@model Produto
+﻿@model ActionResult<Produto>
 <link rel="stylesheet" href="~/css/Variaveis.css" />
 <div class="product-details-container">
     <div class="product-image">
-        <input class="img-loja" type="image" style="width: 560px; height: 560px" src='~/Imagens/@Model.ImagemUrl' />
+        <input class="img-loja" type="image" style="width: 560px; height: 560px" src='~/Imagens/@Model.Value.ImagemUrl' />
     </div>
     <div class="product-details">
-        <h1 class="nome-item">@Model.Nome</h1>
-        <p>@Model.DescricaoCurta</p>
+        <h1 class="nome-item">@Model.Value.Nome</h1>
+        <p>@Model.Value.DescricaoCurta</p>
 
         <p>
-            de <span id="product-de">R$@Model.AntigoPreco</span> por <span id="product-por">R$@Model.Preco</span>
+            de <span id="product-de">R$@Model.Value.AntigoPreco</span> por <span id="product-por">R$@Model.Value.Preco</span>
         </p>
 
-        <h2 id="product-price">R$@Model.Preco</h2>
-        <span id="product-por"> à vista @Model.AVista!</span>
-        <p style="color: yellow; font-size:smaller;">No PIX com 10% de desconto em até 12x de R$@Model.MaxVezes sem juros no cartão</p>
+        <h2 id="product-price">R$@Model.Value.Preco</h2>
+        <span id="product-por"> à vista @Model.Value.AVista!</span>
+        <p style="color: yellow; font-size:smaller;">No PIX com 10% de desconto em até 12x de R$@Model.Value.PrecoSecundario @Model.Value.MaxVezes sem juros no cartão</p>
 
         <div class="text-box">
-            <a class="productbtn"  asp-controller="Carrinho" asp-action="AdicionarNoCarrinho" asp-route-IdProduto="@Model.IdProduto">Adicionar @Model.Nome ao carrinho</a>
+            <a class="productbtn" asp-controller="Carrinho" asp-action="AdicionarNoCarrinho" asp-route-IdProduto="@Model.Value.IdProduto">Adicionar @Model.Value.Nome ao carrinho</a>
         </div>
     </div>
 </div>

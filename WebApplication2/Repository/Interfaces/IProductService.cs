@@ -5,7 +5,7 @@ namespace WebApplication2.Repository.Interfaces
 {
     public interface IProductService
     {
-        Task<IEnumerable<Produto>> GetAll();
+        Task<ActionResult<IEnumerable<Produto>>> GetAll();
         Task<ActionResult<Produto>> GetById(int id);
         Task<IEnumerable<Produto>> GetByCategoria(int categoriaId);  
         Task<IActionResult> Create(Produto produto);

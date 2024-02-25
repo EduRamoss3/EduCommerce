@@ -33,7 +33,8 @@ namespace WebApplication2.Areas.Admin.Controllers
         [Route("{controller}")]
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Pedidos.ToListAsync());
+            var pedidos = await _context.Pedidos.ToListAsync();
+            return View(pedidos);
         }
 
         [HttpGet]

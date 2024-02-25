@@ -20,10 +20,10 @@ namespace WebApplication2.Controllers
         {
             if (produtoViewModel.Produtos is null)
             {
-                IEnumerable<Produto> produtos =  await _produtos.GetAll();
+                ActionResult<IEnumerable<Produto>> produtos =  await _produtos.GetAll();
                 ProdutoViewModel produtoViewModelPadrao = new ProdutoViewModel()
                 {
-                    Produtos = produtos
+                    Produtos = produtos.Value
                 };
                 return View(produtoViewModelPadrao);
             }
