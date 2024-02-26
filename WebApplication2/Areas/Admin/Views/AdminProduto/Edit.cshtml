@@ -4,13 +4,13 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1>Editar</h1>
 
 <h4>Produto</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit" asp-area="Admin" asp-controller="AdminProduto" asp-action="Edit" asp-route-id="@Model.IdProduto" method="post">
+        <form asp-action="Edit" asp-area="Admin" asp-controller="AdminProduto" asp-action="Edit" method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
             <label asp-for="@Model.IdProduto"></label>
             <input asp-for="@Model.IdProduto" />
@@ -77,6 +77,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Voltar para a lista</a>
 </div>
 

@@ -1,18 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using WebApplication2.Areas.Admin.ViewModel;
-using WebApplication2.Context;
-using WebApplication2.Enums;
-using WebApplication2.Migrations;
 using WebApplication2.Models;
 using WebApplication2.Repository.Interfaces;
-using WebApplication2.Repository.Services;
 
 namespace WebApplication2.Areas.Admin.Controllers
 {
@@ -55,7 +44,7 @@ namespace WebApplication2.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("{controller}/Create")]
-        public async Task<IActionResult> Create([Bind("IdProduto,Nome,Preco,DataEntrada,Tipos,Quantidade,ImagemUrl,DescricaoCurta,AntigoPreco,AVista,PrecoSecundario,MaxVezes,IdCategoria")] Produto produto)
+        public async Task<IActionResult> Create(Produto produto)
         {
             if (ModelState.IsValid)
             {

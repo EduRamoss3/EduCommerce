@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using WebApplication2.Areas.Admin.ViewModel;
-using WebApplication2.Context;
 using WebApplication2.Models;
 using WebApplication2.Repository.Interfaces;
 
@@ -73,32 +65,7 @@ namespace WebApplication2.Areas.Admin.Controllers
             return View(pedidoViewModel);
         }
 
-        [HttpGet]
-        [Route("{controller}/Create")]
-        public async Task<IActionResult> Create()
-        {
-            var produtos = await _productService.GetAll();
-            ItemCarrinho itemCarrinho = new ItemCarrinho();
-            
-            CreateProductViewModel createProductViewModel = new CreateProductViewModel()
-            {
-                Produtos = produtos.Value,
-            };
-            return View(createProductViewModel);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Route("{controller}/Create")]
-        public async Task<IActionResult>Create(Pedido pedido)
-        {
-            if (ModelState.IsValid)
-            {
-                await _pedidoService.CriarPedido(pedido);
-                return RedirectToAction("Index", "AdminPedidos");
-            }
-            return View(pedido);
-        }
+      
 
         [HttpGet]
         [Route("{controller}/Edit/{id}")]

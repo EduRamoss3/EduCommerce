@@ -23,7 +23,6 @@ namespace WebApplication2.Models
         public string ImagemUrl { get; set; }
         [Required(ErrorMessage = " A descrição é obrigatória!")]
         [MaxLength(208)]
-        [MinLength(208)]
         public string DescricaoCurta { get; set; }
         [Required(ErrorMessage = "'De - por' é obrigatório!")]
         public decimal AntigoPreco { get; set; }

@@ -28,9 +28,6 @@
                 @Html.DisplayFor(modelItem => item.CategoriaNome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Tipos)
-            </td>
-            <td>
                 <a asp-action="Edit" asp-route-id="@item.IdCategoria">Editar</a> |
                 <a asp-action="Details" asp-route-id="@item.IdCategoria">Detalhes</a> |
                 <a asp-action="Delete" asp-route-id="@item.IdCategoria">Deletar</a>

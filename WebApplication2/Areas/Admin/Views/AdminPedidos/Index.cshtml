@@ -6,9 +6,6 @@
 
 <h1>Visão geral</h1>
 
-<p>
-    <a asp-action="Create">Criar novo pedido (ainda não totalmente implementado)</a>
-</p>
 <table class="table" style="color: white;">
     <thead>
         <tr>
@@ -67,12 +64,34 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.TotalPedido)
                 </td>
-                <td class="form-check-label">
-                    @Html.DisplayFor(modelItem => item.Entregue)
-                </td>
-                <td class="form-check-label">
-                    @Html.DisplayFor(modelItem => item.Concluido)
-                </td>
+                @if(item.Entregue)
+                {
+                    <td class="form-check-label" style="background-color: green;">
+                        @Html.DisplayFor(modelItem => item.Entregue)
+                    </td>
+
+                }
+                else
+                {
+                    <td class="form-check-label" style="background-color: red;">
+                        @Html.DisplayFor(modelItem => item.Entregue)
+                    </td>
+                }
+                @if (item.Concluido)
+                {
+                    <td class="form-check-label" style="background-color: green;">
+                        @Html.DisplayFor(modelItem => item.Concluido)
+                    </td>
+                }
+                else
+                {
+                  
+                    <td class="form-check-label" style="background-color: red;">
+                        @Html.DisplayFor(modelItem => item.Concluido)
+                    </td>
+                }
+                
+                
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.IdPedido">Editar</a> |
                     <a asp-action="Details" asp-route-id="@item.IdPedido">Detalhes</a> |

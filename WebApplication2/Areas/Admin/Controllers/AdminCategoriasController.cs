@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebApplication2.Areas.Admin.ViewModel;
 using WebApplication2.Context;
@@ -58,17 +52,14 @@ namespace WebApplication2.Areas.Admin.Controllers
             return View();
         }
 
-        // POST: Admin/AdminCategorias/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("{controller}/Index_creating")]
-        public async Task<IActionResult> Create([Bind("IdCategoria,CategoriaNome,Tipos")] Categoria categoria)
+        [Route("{controller}/Create")]
+        public async Task<IActionResult> Create(Categoria categoria)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(categoria);
+                _context.Categorias.Add(categoria);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -99,9 +90,7 @@ namespace WebApplication2.Areas.Admin.Controllers
             return View(categoriaViewModel);
         }
 
-        // POST: Admin/AdminCategorias/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("{controller}/Edit")]
@@ -158,7 +147,6 @@ namespace WebApplication2.Areas.Admin.Controllers
             return View(categoria);
         }
 
-        // POST: Admin/AdminCategorias/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("{controller}/Delete/{id}")]
