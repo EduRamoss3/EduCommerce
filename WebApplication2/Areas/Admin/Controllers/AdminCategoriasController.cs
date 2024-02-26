@@ -132,10 +132,7 @@ namespace WebApplication2.Areas.Admin.Controllers
         [Route("{controller}/Delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            if (id == null || _context.Categorias == null)
-            {
-                return NotFound();
-            }
+            
 
             var categoria = await _context.Categorias
                 .FirstOrDefaultAsync(m => m.IdCategoria == id);

@@ -1,7 +1,15 @@
 ﻿@model Produto
 <link rel="stylesheet" href="~/css/Variaveis.css" />
 <div class="card" id="titulos" style="width: 18rem; height: 800px;font-family:'Franklin Gothic Medium', 'Arial Narrow' , Arial, sans-serif;">
-    <img class="card-img-top" src='~/Imagens/@Model.ImagemUrl' width="200px" height="250px"  alt="Card image cap">
+    @if (Model.ImagemUrl.Contains("www"))
+    {
+        <img class="card-img-top" src='@Model.ImagemUrl' width="200px" height="250px" alt="Card image cap">
+    }
+    else
+    {
+        <img class="card-img-top" src='~/Imagens/@Model.ImagemUrl' width="200px" height="250px" alt="Card image cap">
+    }
+    
     <div class="card-body">
         <h5 class="card-title">@Model.Nome</h5>
         <p class="card-text">@Model.DescricaoCurta</p>

@@ -1,6 +1,6 @@
 ﻿namespace WebApplication2.Enums
 {
-    public enum Tipo
+    public enum Tipo : int
     {
         Eletrônico = 1,
         Acessórios = 2,

@@ -12,8 +12,6 @@
     <div class="col-md-4">
         <form asp-action="Edit" asp-area="Admin" asp-controller="AdminProduto" asp-action="Edit" method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
-            <label asp-for="@Model.IdProduto"></label>
-            <input asp-for="@Model.IdProduto" />
             <div class="form-group">
                 <label asp-for="@Model.Nome" class="control-label"></label>
                 <input asp-for="@Model.Nome" class="form-control" />
@@ -68,6 +66,16 @@
                 <label asp-for="@Model.IdCategoria" class="control-label"></label>
                 <input asp-for="@Model.IdCategoria" class="form-control" />
                 <span asp-validation-for="@Model.IdCategoria class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Tipos" class="control-label"></label>
+                <select asp-for="@Model.Tipos" class="form-control">
+                    @foreach (var item in Enum.GetValues(typeof(WebApplication2.Enums.Tipo)))
+                    {
+                        <option value="@item">@item</option>
+                    }
+                </select>
+                <span asp-validation-for="@Model.Tipos" class=" text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

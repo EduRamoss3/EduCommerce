@@ -2,7 +2,15 @@
 <link rel="stylesheet" href="~/css/Variaveis.css" />
 <div class="product-details-container">
     <div class="product-image">
-        <input class="img-loja" type="image" style="width: 560px; height: 560px" src='~/Imagens/@Model.Value.ImagemUrl' />
+        @if (Model.Value.ImagemUrl.Contains("www"))
+        {
+            <input class="img-loja" type="image" style="width: 560px; height: 560px" src='@Model.Value.ImagemUrl' />
+        }
+        else
+        {
+            <input class="img-loja" type="image" style="width: 560px; height: 560px" src='~/Imagens/@Model.Value.ImagemUrl' />
+        }
+        
     </div>
     <div class="product-details">
         <h1 class="nome-item">@Model.Value.Nome</h1>
