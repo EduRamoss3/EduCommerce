@@ -1,6 +1,7 @@
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using ReflectionIT.Mvc.Paging;
 using WebApplication2.Context;
 using WebApplication2.Migrations;
 using WebApplication2.Models;
@@ -25,6 +26,11 @@ builder.Services.AddAuthorization(options =>
         {
             politica.RequireRole("Admin");
         });
+});
+builder.Services.AddPaging(options =>
+{
+    options.ViewName = "Bootstrap4";
+    options.PageParameterName = "pageIndex";
 });
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()

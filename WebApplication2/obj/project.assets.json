@@ -691,6 +691,83 @@
       "MessagePackAnalyzer/2.1.152": {
         "type": "package"
       },
+      "Microsoft.AspNetCore.Authorization/6.0.25": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Metadata": "6.0.25",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.4",
+          "Microsoft.Extensions.Options": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.Authorization.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Authorization.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Components/6.0.25": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Authorization": "6.0.25",
+          "Microsoft.AspNetCore.Components.Analyzers": "6.0.25"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.Components.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Components.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Components.Analyzers/6.0.25": {
+        "type": "package",
+        "build": {
+          "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets": {}
+        }
+      },
+      "Microsoft.AspNetCore.Components.Forms/6.0.25": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "6.0.25"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.Components.Forms.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Components.Forms.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Components.Web/6.0.25": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "6.0.25",
+          "Microsoft.AspNetCore.Components.Forms": "6.0.25",
+          "Microsoft.Extensions.DependencyInjection": "6.0.1",
+          "Microsoft.JSInterop": "6.0.25",
+          "System.IO.Pipelines": "6.0.3"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.Components.Web.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Components.Web.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.AspNetCore.Cryptography.Internal/6.0.1": {
         "type": "package",
         "compile": {
@@ -737,7 +814,57 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Razor.Language/6.0.0": {
+      "Microsoft.AspNetCore.Metadata/6.0.25": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.Metadata.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Metadata.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Mvc.Razor.Extensions/6.0.25": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Razor.Language": "6.0.25",
+          "Microsoft.CodeAnalysis.Razor": "6.0.25"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.Razor.Extensions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.Razor.Extensions.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/6.0.25": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Mvc.Razor.Extensions": "6.0.25",
+          "Microsoft.CodeAnalysis.Razor": "6.0.25",
+          "Microsoft.Extensions.DependencyModel": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ],
+        "build": {
+          "buildTransitive/net6.0/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.targets": {}
+        }
+      },
+      "Microsoft.AspNetCore.Razor.Language/6.0.25": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/Microsoft.AspNetCore.Razor.Language.dll": {}
@@ -1124,10 +1251,10 @@
           }
         }
       },
-      "Microsoft.CodeAnalysis.Razor/6.0.0": {
+      "Microsoft.CodeAnalysis.Razor/6.0.25": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Razor.Language": "6.0.0",
+          "Microsoft.AspNetCore.Razor.Language": "6.0.25",
           "Microsoft.CodeAnalysis.CSharp": "4.0.0",
           "Microsoft.CodeAnalysis.Common": "4.0.0"
         },
@@ -1579,7 +1706,7 @@
           "System.Text.Json": "7.0.0"
         },
         "compile": {
-          "lib/net6.0/_._": {
+          "lib/net6.0/Microsoft.Extensions.DependencyModel.dll": {
             "related": ".xml"
           }
         },
@@ -1831,6 +1958,19 @@
         },
         "runtime": {
           "lib/net6.0/Microsoft.IdentityModel.Tokens.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.JSInterop/6.0.25": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Microsoft.JSInterop.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.JSInterop.dll": {
             "related": ".xml"
           }
         }
@@ -2266,6 +2406,25 @@
         },
         "runtime": {
           "lib/netstandard2.0/NuGet.Versioning.dll": {}
+        }
+      },
+      "ReflectionIT.Mvc.Paging/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "6.0.25",
+          "Microsoft.AspNetCore.Components.Web": "6.0.25",
+          "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "6.0.25",
+          "Microsoft.EntityFrameworkCore": "6.0.25"
+        },
+        "compile": {
+          "lib/net6.0/ReflectionIT.Mvc.Paging.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/ReflectionIT.Mvc.Paging.dll": {
+            "related": ".pdb"
+          }
         }
       },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
@@ -2945,17 +3104,20 @@
           "lib/netstandard1.3/System.IO.FileSystem.Primitives.dll": {}
         }
       },
-      "System.IO.Pipelines/5.0.1": {
+      "System.IO.Pipelines/6.0.3": {
         "type": "package",
         "compile": {
-          "ref/netcoreapp2.0/System.IO.Pipelines.dll": {
+          "lib/net6.0/System.IO.Pipelines.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netcoreapp3.0/System.IO.Pipelines.dll": {
+          "lib/net6.0/System.IO.Pipelines.dll": {
             "related": ".xml"
           }
+        },
+        "build": {
+          "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
       "System.Linq/4.3.0": {
@@ -4854,6 +5016,86 @@
         "tools/uninstall.ps1"
       ]
     },
+    "Microsoft.AspNetCore.Authorization/6.0.25": {
+      "sha512": "ULv2oskcPsbG8+4f6PlpdwWOxuuYQ9UDrjOF8Pn4v41z38tNOumllpf6kCqTJUjbSqEPPAcK0hy/6V6xM1rcGA==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authorization/6.0.25",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.AspNetCore.Authorization.dll",
+        "lib/net461/Microsoft.AspNetCore.Authorization.xml",
+        "lib/net6.0/Microsoft.AspNetCore.Authorization.dll",
+        "lib/net6.0/Microsoft.AspNetCore.Authorization.xml",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Authorization.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Authorization.xml",
+        "microsoft.aspnetcore.authorization.6.0.25.nupkg.sha512",
+        "microsoft.aspnetcore.authorization.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Components/6.0.25": {
+      "sha512": "P5kc416U8FxGXIIervW1acwENc5jMYSar31YMDQWbb8/ORN8Ga4n3hr59/gY+epphbPJviUDwax+wI9fY69gfQ==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.components/6.0.25",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/net6.0/Microsoft.AspNetCore.Components.dll",
+        "lib/net6.0/Microsoft.AspNetCore.Components.xml",
+        "microsoft.aspnetcore.components.6.0.25.nupkg.sha512",
+        "microsoft.aspnetcore.components.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Components.Analyzers/6.0.25": {
+      "sha512": "nTlYOJcTP7yFZw5TAYU1ryEvZbs6FfuUoqNKMTDnxlTCYtSSsT5mNniQ5Vk+wGFmfF8R/oDv9dE7Q8ya4wCEug==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.components.analyzers/6.0.25",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "analyzers/dotnet/cs/Microsoft.AspNetCore.Components.Analyzers.dll",
+        "build/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets",
+        "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets",
+        "microsoft.aspnetcore.components.analyzers.6.0.25.nupkg.sha512",
+        "microsoft.aspnetcore.components.analyzers.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Components.Forms/6.0.25": {
+      "sha512": "YdO7ajZVU4HOieTQ0THKiqLSHXpE4S10o3sUXXxtSK9FSaiok75sdmbKBFXhl+hEYv0O+BFZRNCR1RRzxFuHUg==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.components.forms/6.0.25",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/net6.0/Microsoft.AspNetCore.Components.Forms.dll",
+        "lib/net6.0/Microsoft.AspNetCore.Components.Forms.xml",
+        "microsoft.aspnetcore.components.forms.6.0.25.nupkg.sha512",
+        "microsoft.aspnetcore.components.forms.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Components.Web/6.0.25": {
+      "sha512": "lhCaEJ+BePwKGp/b5sBgZiy3naAXBT1mbn8oiK97wcy+ugSDWJnZoO4gjtoH2L8WL1zTYIl+6lp212a/qKBemw==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.components.web/6.0.25",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/net6.0/Microsoft.AspNetCore.Components.Web.dll",
+        "lib/net6.0/Microsoft.AspNetCore.Components.Web.xml",
+        "microsoft.aspnetcore.components.web.6.0.25.nupkg.sha512",
+        "microsoft.aspnetcore.components.web.nuspec"
+      ]
+    },
     "Microsoft.AspNetCore.Cryptography.Internal/6.0.1": {
       "sha512": "nWXqkRSqJFnCaSiH6g4Ld2xhjdYhuS7iuWKMlEanhJxo79b939BV5e8j32JLW6bp9O3w8aPeiIa2UnN+Q585ag==",
       "type": "package",
@@ -4907,17 +5149,67 @@
         "microsoft.aspnetcore.identity.entityframeworkcore.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Razor.Language/6.0.0": {
-      "sha512": "yCtBr1GSGzJrrp1NJUb4ltwFYMKHw/tJLnIDvg9g/FnkGIEzmE19tbCQqXARIJv5kdtBgsoVIdGLL+zmjxvM/A==",
+    "Microsoft.AspNetCore.Metadata/6.0.25": {
+      "sha512": "o66f8yH8UXQ7jV3Y03XNplRE+jKhi0NilZgBgYn0gtX0kMHx+HbNHne4jGTCGINvnY8WetYPbIKSXYsM/GFhmw==",
       "type": "package",
-      "path": "microsoft.aspnetcore.razor.language/6.0.0",
+      "path": "microsoft.aspnetcore.metadata/6.0.25",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.AspNetCore.Metadata.dll",
+        "lib/net461/Microsoft.AspNetCore.Metadata.xml",
+        "lib/net6.0/Microsoft.AspNetCore.Metadata.dll",
+        "lib/net6.0/Microsoft.AspNetCore.Metadata.xml",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Metadata.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Metadata.xml",
+        "microsoft.aspnetcore.metadata.6.0.25.nupkg.sha512",
+        "microsoft.aspnetcore.metadata.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Mvc.Razor.Extensions/6.0.25": {
+      "sha512": "8jlqgV4KnCUr1iiI01jc+QXPCpAbvFo94miIXEl88MuzRhCvIs59zo7NpBsvuO31Lryg9+VQh4W2kkDuJ8ozVQ==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.mvc.razor.extensions/6.0.25",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.Razor.Extensions.dll",
+        "microsoft.aspnetcore.mvc.razor.extensions.6.0.25.nupkg.sha512",
+        "microsoft.aspnetcore.mvc.razor.extensions.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/6.0.25": {
+      "sha512": "ZaEfnI1JcB2Crz1azK1zTi1AYH+3EUfT5COWoP3eNLvKzmC3R/gzfYTYNQUXhu57Wb46Q058w3AMEDf4wZZoiA==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.mvc.razor.runtimecompilation/6.0.25",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "build/net6.0/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.targets",
+        "buildTransitive/net6.0/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.targets",
+        "lib/net6.0/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.dll",
+        "lib/net6.0/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.xml",
+        "microsoft.aspnetcore.mvc.razor.runtimecompilation.6.0.25.nupkg.sha512",
+        "microsoft.aspnetcore.mvc.razor.runtimecompilation.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Razor.Language/6.0.25": {
+      "sha512": "Thv1gDVuakcVIErTEf/RVBJc8YKrAU2/3+aQiXqzvxAICidTmoObVwa0gg0g6G0R5DuS5wwfHJOB2jZgFQMbew==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.razor.language/6.0.25",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "THIRD-PARTY-NOTICES.TXT",
         "lib/netstandard2.0/Microsoft.AspNetCore.Razor.Language.dll",
-        "microsoft.aspnetcore.razor.language.6.0.0.nupkg.sha512",
+        "microsoft.aspnetcore.razor.language.6.0.25.nupkg.sha512",
         "microsoft.aspnetcore.razor.language.nuspec"
       ]
     },
@@ -5346,17 +5638,17 @@
         "microsoft.codeanalysis.features.nuspec"
       ]
     },
-    "Microsoft.CodeAnalysis.Razor/6.0.0": {
-      "sha512": "uqdzuQXxD7XrJCbIbbwpI/LOv0PBJ9VIR0gdvANTHOfK5pjTaCir+XcwvYvBZ5BIzd0KGzyiamzlEWw1cK1q0w==",
+    "Microsoft.CodeAnalysis.Razor/6.0.25": {
+      "sha512": "KmiuLPvmWQyzuXr9y9oR3pqmoNqnLq5q0f6SxH6h+i0gGcTbStcX80BcLmysZGyY0xdYWWfVZ8ppzjWiaZo0tQ==",
       "type": "package",
-      "path": "microsoft.codeanalysis.razor/6.0.0",
+      "path": "microsoft.codeanalysis.razor/6.0.25",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "THIRD-PARTY-NOTICES.TXT",
         "lib/netstandard2.0/Microsoft.CodeAnalysis.Razor.dll",
-        "microsoft.codeanalysis.razor.6.0.0.nupkg.sha512",
+        "microsoft.codeanalysis.razor.6.0.25.nupkg.sha512",
         "microsoft.codeanalysis.razor.nuspec"
       ]
     },
@@ -6270,6 +6562,21 @@
         "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.xml",
         "microsoft.identitymodel.tokens.6.21.0.nupkg.sha512",
         "microsoft.identitymodel.tokens.nuspec"
+      ]
+    },
+    "Microsoft.JSInterop/6.0.25": {
+      "sha512": "ZjSExPW/8RPcnk7hpOnNkevMrenQvm5QgjzUm0/IpSqLk5XY7p7qntB2ibL0ZI8xDNm1S1Ph5+AZI2geUxltRA==",
+      "type": "package",
+      "path": "microsoft.jsinterop/6.0.25",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net6.0/Microsoft.JSInterop.dll",
+        "lib/net6.0/Microsoft.JSInterop.xml",
+        "microsoft.jsinterop.6.0.25.nupkg.sha512",
+        "microsoft.jsinterop.nuspec"
       ]
     },
     "Microsoft.NET.StringTools/17.3.2": {
@@ -7228,6 +7535,24 @@
         "lib/netstandard2.0/NuGet.Versioning.dll",
         "nuget.versioning.6.6.1.nupkg.sha512",
         "nuget.versioning.nuspec"
+      ]
+    },
+    "ReflectionIT.Mvc.Paging/8.0.0": {
+      "sha512": "uMQYwUsmhNMjE0A8IEJlF5kqmly29hnKfnGuMWtiXyI57ksb4wussPCazHywdPj0ncfYGRUUjybh78Zi8cmcXA==",
+      "type": "package",
+      "path": "reflectionit.mvc.paging/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "License..txt",
+        "lib/net6.0/ReflectionIT.Mvc.Paging.dll",
+        "lib/net6.0/ReflectionIT.Mvc.Paging.pdb",
+        "lib/net7.0/ReflectionIT.Mvc.Paging.dll",
+        "lib/net7.0/ReflectionIT.Mvc.Paging.pdb",
+        "lib/net8.0/ReflectionIT.Mvc.Paging.dll",
+        "lib/net8.0/ReflectionIT.Mvc.Paging.pdb",
+        "reflectionit.mvc.paging.8.0.0.nupkg.sha512",
+        "reflectionit.mvc.paging.nuspec"
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
@@ -8609,30 +8934,29 @@
         "system.io.filesystem.primitives.nuspec"
       ]
     },
-    "System.IO.Pipelines/5.0.1": {
-      "sha512": "qEePWsaq9LoEEIqhbGe6D5J8c9IqQOUuTzzV6wn1POlfdLkJliZY3OlB0j0f17uMWlqZYjH7txj+2YbyrIA8Yg==",
+    "System.IO.Pipelines/6.0.3": {
+      "sha512": "ryTgF+iFkpGZY1vRQhfCzX0xTdlV3pyaTTqRu2ETbEv+HlV7O6y7hyQURnghNIXvctl5DuZ//Dpks6HdL/Txgw==",
       "type": "package",
-      "path": "system.io.pipelines/5.0.1",
+      "path": "system.io.pipelines/6.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/netcoreapp2.0/System.IO.Pipelines.targets",
+        "buildTransitive/netcoreapp3.1/_._",
         "lib/net461/System.IO.Pipelines.dll",
         "lib/net461/System.IO.Pipelines.xml",
-        "lib/netcoreapp3.0/System.IO.Pipelines.dll",
-        "lib/netcoreapp3.0/System.IO.Pipelines.xml",
-        "lib/netstandard1.3/System.IO.Pipelines.dll",
-        "lib/netstandard1.3/System.IO.Pipelines.xml",
+        "lib/net6.0/System.IO.Pipelines.dll",
+        "lib/net6.0/System.IO.Pipelines.xml",
+        "lib/netcoreapp3.1/System.IO.Pipelines.dll",
+        "lib/netcoreapp3.1/System.IO.Pipelines.xml",
         "lib/netstandard2.0/System.IO.Pipelines.dll",
         "lib/netstandard2.0/System.IO.Pipelines.xml",
-        "ref/netcoreapp2.0/System.IO.Pipelines.dll",
-        "ref/netcoreapp2.0/System.IO.Pipelines.xml",
-        "system.io.pipelines.5.0.1.nupkg.sha512",
+        "system.io.pipelines.6.0.3.nupkg.sha512",
         "system.io.pipelines.nuspec",
-        "useSharedDesignerContext.txt",
-        "version.txt"
+        "useSharedDesignerContext.txt"
       ]
     },
     "System.Linq/4.3.0": {
@@ -11393,7 +11717,8 @@
       "Microsoft.EntityFrameworkCore >= 7.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.0",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.0",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.16"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.16",
+      "ReflectionIT.Mvc.Paging >= 8.0.0"
     ]
   },
   "packageFolders": {
@@ -11467,6 +11792,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[6.0.16, )"
+          },
+          "ReflectionIT.Mvc.Paging": {
+            "target": "Package",
+            "version": "[8.0.0, )"
           }
         },
         "imports": [

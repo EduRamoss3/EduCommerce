@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ReflectionIT.Mvc.Paging;
 using WebApplication2.Models;
 using WebApplication2.Repository.Interfaces;
 
@@ -19,10 +20,16 @@ namespace WebApplication2.Areas.Admin.Controllers
        
         [HttpGet]
         [Route("{controller}/Index")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string filter, int pageindex = 1, string sort = "Nome")
         {
-            var list = await _productService.GetAll();
-           return View(list.Value);
+            var list =  _productService.PaginationProduct();
+            if (!string.IsNullOrWhiteSpace(filter))
+            {
+                list = list.Where(p => p.Nome.Contains(filter));
+            }
+            var model = await PagingList.CreateAsync(list, 5, pageindex, sort, "Nome");
+            model.RouteValue = new RouteValueDictionary { { "filter", filter } };
+            return View(model);
         }
 
         [HttpGet]

@@ -14,8 +14,10 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
-  width: 100vw;
-  height: 100vh;
-
+    margin-bottom: 60px;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto; /* Mostra a barra de rolagem somente quando necessário */
 }

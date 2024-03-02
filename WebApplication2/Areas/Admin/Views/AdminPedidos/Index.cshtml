@@ -6,34 +6,34 @@
 
 <h1>Visão geral</h1>
 
-<table class="table" style="color: white;">
-    <thead>
-        <tr>
-            <th>
+<table class="table table-light font-monospace" style="color: black; font-size:small">
+    <thead class="table-success">
+        <tr class="d-xl-table-row">
+            <th class="d-lg-table-cell border-1">
                 @Html.DisplayNameFor(model => model.Nome)
-            </th>
+            </th class="d-lg-table-cell border-1">
             <th>
                 @Html.DisplayNameFor(model => model.DataPedido)
             </th>
-            <th>
+            <th class="d-lg-table-cell border-1">
                 @Html.DisplayNameFor(model => model.Rua)
             </th>
-            <th>
+            <th class="d-lg-table-cell border-1">
                 @Html.DisplayNameFor(model => model.Numero)
             </th>
-            <th>
+            <th class="d-lg-table-cell border-1">
                 @Html.DisplayNameFor(model => model.Telefone)
             </th>
-            <th>
+            <th class="d-lg-table-cell border-1">
                 @Html.DisplayNameFor(model => model.TotalItensPedido)
             </th>
-            <th>
+            <th class="d-lg-table-cell border-1">
                 @Html.DisplayNameFor(model => model.TotalPedido)
             </th>
-            <th>
+            <th class="d-lg-table-cell border-1">
                 @Html.DisplayNameFor(model => model.Entregue)
             </th>
-            <th>
+            <th class="d-lg-table-cell border-1">
                 @Html.DisplayNameFor(model => model.Concluido)
             </th>
             <th></th>
@@ -42,60 +42,60 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
+            <tr class="d-lg-table-row">
+                <td class="d-print-table-cell border-1">
                     @Html.DisplayFor(modelItem => item.Nome)
                 </td>
-                <td>
+                <td class="d-print-table-cell border-1">
                     @Html.DisplayFor(modelItem => item.DataPedido)
                 </td>
-                <td>
+                <td class="d-print-table-cell border-1">
                     @Html.DisplayFor(modelItem => item.Rua)
                 </td>
-                <td>
+                <td class="d-print-table-cell border-1">
                     @Html.DisplayFor(modelItem => item.Numero)
                 </td>
-                <td>
+                <td class="d-print-table-cell border-1">
                     @Html.DisplayFor(modelItem => item.Telefone)
                 </td>
-                <td>
+                <td >
                     @Html.DisplayFor(modelItem => item.TotalItensPedido)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TotalPedido)
+                <td class="d-print-table-cell border-1">
+                    R$@Html.DisplayFor(modelItem => item.TotalPedido)
                 </td>
                 @if(item.Entregue)
                 {
-                    <td class="form-check-label" style="background-color: green;">
+                    <td class="form-check-label border-1" style="background-color: green;">
                         @Html.DisplayFor(modelItem => item.Entregue)
                     </td>
 
                 }
                 else
                 {
-                    <td class="form-check-label" style="background-color: red;">
+                    <td class="form-check-label border-1" style="background-color: red;">
                         @Html.DisplayFor(modelItem => item.Entregue)
                     </td>
                 }
                 @if (item.Concluido)
                 {
-                    <td class="form-check-label" style="background-color: green;">
+                    <td class="form-check-label border-1" style="background-color: green;">
                         @Html.DisplayFor(modelItem => item.Concluido)
                     </td>
                 }
                 else
                 {
                   
-                    <td class="form-check-label" style="background-color: red;">
+                    <td class="form-check-label border-1" style="background-color: red;">
                         @Html.DisplayFor(modelItem => item.Concluido)
                     </td>
                 }
                 
                 
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.IdPedido">Editar</a> |
-                    <a asp-action="Details" asp-route-id="@item.IdPedido">Detalhes</a> |
-                    <a asp-action="Delete" asp-route-id="@item.IdPedido">Deletar</a>
+                <td style="font-size:small">
+                    <a class="btn" style="background-color: lightgoldenrodyellow; border-radius: 10px; margin-top:7px;" asp-action="Edit" asp-route-id="@item.IdPedido">Editar</a> 
+                    <a class="btn" style="background-color: lightgoldenrodyellow; border-radius: 10px; margin-top:7px;" asp-action="Details" asp-route-id="@item.IdPedido">Detalhes</a> 
+                    <a class="btn" style="background-color: lightgoldenrodyellow; border-radius: 10px; margin-top:7px;"asp-action="Delete" asp-route-id="@item.IdPedido">Deletar</a>
                 </td>
             </tr>
         }

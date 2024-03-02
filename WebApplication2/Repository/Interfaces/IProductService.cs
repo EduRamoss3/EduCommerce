@@ -13,6 +13,7 @@ namespace WebApplication2.Repository.Interfaces
         Task<IActionResult> Update(Produto produto, int id);
         Task<IEnumerable<Produto>> GetByName(string searchString);
         Task<IActionResult> PatchQnt(Produto produto);
-        Task<bool> Any(int id); 
+        Task<bool> Any(int id);
+        IQueryable<Produto> PaginationProduct();
     }
 }

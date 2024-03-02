@@ -8,21 +8,20 @@
 {
     <script>
         alert('@TempData["Sucesso"]');
-        if (@ViewBag.NewBag.Count > 0){
+        if (@ViewBag.NewBag.Count > 0) {
             alert('Produto inexistente');
         }
     </script>
 }
 <style>
-    #sect{
+    #sect {
         width: 100%;
         background-color: #242729;
         position: absolute;
-
     }
 </style>
-                 
 <link rel="stylesheet" href="~/css/PaginaInicial.css" />
+
     <div id="carouselLanches" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -31,7 +30,7 @@
             <div class="carousel-item">
                 <img src="~/Imagens/mg.jpg" class="d-block w-100" alt="...">
             </div>
-           
+
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselLanches" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -42,15 +41,17 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-<section id="sect">
-    <div class="banneratras">
-        <div class="bannerup">
-            @foreach (var produto in Model.Produtos)
-            {
-                <div class="card-deck">
-                    <partial name="_SearchBy" for="@produto" />
-                </div>
-            }
+
+
+    <section id="sect">
+        <div class="banneratras">
+            <div class="bannerup">
+                @foreach (var produto in Model.Produtos)
+                {
+                    <div class="card-deck">
+                        <partial name="_SearchBy" for="@produto" />
+                    </div>
+                }
+            </div>
         </div>
-    </div>
-</section>
+    </section>

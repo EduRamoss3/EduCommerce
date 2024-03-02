@@ -48,6 +48,11 @@ namespace WebApplication2.Repository.Services
                 return new BadRequestObjectResult(produto);
             }
         }
+        public IQueryable<Produto> PaginationProduct()
+        {
+            var result = _context.Produtos.AsNoTracking().AsQueryable();
+            return result;
+        }
 
         public async Task<ActionResult<IEnumerable<Produto>>> GetAll()
         {
