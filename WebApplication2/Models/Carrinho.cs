@@ -77,7 +77,7 @@ namespace WebApplication2.Models
             {
                 itemCarrinho.QntProduto--;
             }
-            else if (itemCarrinho.QntProduto == 0)
+            else if (itemCarrinho.QntProduto == 1)
             {
                 _context.ItemCarrinhos.Remove(itemCarrinho);
             }
