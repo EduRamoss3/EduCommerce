@@ -12,12 +12,21 @@
 </head>
 
 <body>
+    <style>
+        .body{
+            width: 100vw;
+            height: 100vh;
+            margin: 0 auto;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
     <div class="wrapper">
         <div class="sidebar" id="sidebar">
             <button class="toggle-btn" style="color: lightgray" onclick="toggleSidebar()">☰</button>
             @await Component.InvokeAsync("CategoriaMenu")
         </div>
-        <div class="content">
+        <div class="container">
             <nav class="navbar navbar-expand-lg  custom-navbar" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
                 <a class="navbar-brand" style="color:lawngreen; font-size: 50px" asp-action="Index" asp-controller="Home">E-duCommerce</a>
                 <div class="container-fluid">
@@ -40,7 +49,6 @@
                         </ul>
                         @await Html.PartialAsync("_LoginPartial")
                         @await Html.PartialAsync("_AdmPartial")
-                        @await Html.PartialAsync("_Searching")
                         
                     </div>
                 </div>

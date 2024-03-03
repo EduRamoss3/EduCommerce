@@ -32,7 +32,7 @@ namespace WebApplication2.Controllers
             {
                 Produtos = prodCatg.Value
             };
-            return View("~/Views/Home/Index.cshtml",produtoViewModel);
+            return View(produtoViewModel);
         }
        
     }

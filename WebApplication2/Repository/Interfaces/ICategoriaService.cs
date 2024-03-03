@@ -10,5 +10,6 @@ namespace WebApplication2.Repository.Interfaces
     {
         IEnumerable<Categoria> GetAllCategorias();
         Task<ActionResult<IEnumerable<Produto>>> GetByCategoria(int id);
+        IQueryable<Categoria> PaginationCategoria();
     }
 }

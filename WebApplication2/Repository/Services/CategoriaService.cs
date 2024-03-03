@@ -28,5 +28,10 @@ namespace WebApplication2.Repository.Services
             }
             return new NotFoundObjectResult("Sem categorias nesse id");
         }
+        public IQueryable<Categoria> PaginationCategoria()
+        {
+            var ctg = _context.Categorias.AsNoTracking().AsQueryable();
+            return ctg;
+        }
     }
 }

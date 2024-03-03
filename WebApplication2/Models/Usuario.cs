@@ -14,7 +14,7 @@ namespace WebApplication2.Models
         [StringLength(100,ErrorMessage = "O nome só permite 100 caracteres")]
         [DisplayName("Usuário")]
         public string Nome { get; set; }
-        [Required]
+        [Required(ErrorMessage = "O número de telefone é obrigatório!")]
         public string Telefone { get; set; }
         [Required(ErrorMessage = "O CPF é obrigatório!")]
         [MaxLength(14)]

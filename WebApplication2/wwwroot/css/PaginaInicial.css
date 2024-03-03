@@ -1,14 +1,20 @@
 ﻿body {
     background-color: #242729;
-    margin: 0;
     padding: 0;
     width: 100vw;
     height: 100vh;
+    box-sizing: border-box;
 }
 
 .banneratras {
-    width: 100%;
-    overflow: hidden;
+    display: flex;
+    border:ridge;
+    border-color:green;
+    border-radius: 10px;
+    height: 100%;
+    width: 90%;
+    padding: 10px;
+
 }
 
 .natal {
@@ -21,28 +27,38 @@
 .containerx{
     width: 900px;
     height: 100%;
-    margin-left: 15px;
-    margin-right: 15px;
     margin-top: 100px;
     border: 1px ridge white;
     
 }
 
 .bannerup {
-
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    justify-content: center;
-    padding: 20px 20px 0; /* Adiciona espaço vazio dos dois lados e um pouco de espaço no topo */
+    border-radius: 10px;
+    gap: 12px;
+    padding: 20px 20px 10px; /* Adiciona espaço vazio dos dois lados e um pouco de espaço no topo */
     box-sizing: border-box;
     margin-top: 20px;
+    width: 100%;
+    position: relative;
+    background-image: linear-gradient(to right top, #11080d, #1e181d, #2a252c, #35333b, #41424b, #444e5d, #425b6f, #3a6a7e, #007a8a, #008a88, #009877, #19a35a);
 }
 
 @media (min-width: 768px) {
     .bannerup {
         padding: 0 calc(2 * 16px); /* Adiciona espaço vazio dos dois lados, aproximadamente dois dedos */
     }
+}
+.sect {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #242729;
+    padding: 10px;
+    margin: 0 auto;
+
 }
 
 .card {

@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ReflectionIT.Mvc.Paging;
+using System.Collections.Generic;
 using WebApplication2.Areas.Admin.ViewModel;
 using WebApplication2.Context;
 using WebApplication2.Models;
+using WebApplication2.Repository.Interfaces;
 
 namespace WebApplication2.Areas.Admin.Controllers
 {
@@ -12,18 +15,27 @@ namespace WebApplication2.Areas.Admin.Controllers
     public class AdminCategoriasController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly ICategoriaService _categoriaService;
 
-        public AdminCategoriasController(AppDbContext context)
+        public AdminCategoriasController(AppDbContext context, ICategoriaService categoriaService)
         {
             _context = context;
+            _categoriaService = categoriaService;
         }
 
         [HttpGet]
         [Route("{controller}/Index")]
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string filter, int pageindex = 1, string sort = "CategoriaNome")
         {
-              return View(await _context.Categorias.ToListAsync());
+            var ctgPagination = _categoriaService.PaginationCategoria();
+            if (!string.IsNullOrWhiteSpace(filter))
+            {
+                ctgPagination = ctgPagination.Where(p => p.CategoriaNome.Contains(filter));
+            }
+            var model = await PagingList.CreateAsync(ctgPagination, 5, pageindex, sort, "CategoriaNome");
+            model.RouteValue = new RouteValueDictionary { { "filter", filter } };
+            return View(model);
         }
 
         [HttpGet]

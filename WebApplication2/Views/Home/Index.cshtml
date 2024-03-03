@@ -1,5 +1,5 @@
 ﻿@using WebApplication2.ViewModel;
-@model ProdutoViewModel
+@model ReflectionIT.Mvc.Paging.PagingList<Produto>
 @{
     ViewData["Title"] = "E-duCommerce, Seja bem-vindo a tecnologia!";
 
@@ -14,44 +14,98 @@
     </script>
 }
 <style>
-    #sect {
+
+   
+
+    .itemsform {
+        display: flex;
+        flex-direction: row;
+        justify-self: center;
+        justify-content: flex-end;
+        margin-top: 10px;
+        margin-bottom: 2px;
+    }
+
+    .vcpager {
+        display: flex;
+        box-sizing: border-box;
+        height: 100px;
+        width: 200px;
+        overflow: visible;
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+    .containerf{
         width: 100%;
-        background-color: #242729;
-        position: absolute;
+        height: 100%;
     }
 </style>
 <link rel="stylesheet" href="~/css/PaginaInicial.css" />
 
-    <div id="carouselLanches" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="~/Imagens/razer-brand-banner.jpg" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="~/Imagens/mg.jpg" class="d-block w-100" alt="...">
-            </div>
-
+<div id="carouselLanches" class="carousel slide" style="width:100%;" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="~/Imagens/razer-brand-banner.jpg" class="d-block w-100" alt="...">
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselLanches" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselLanches" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+        <div class="carousel-item">
+            <img src="~/Imagens/mg.jpg" class="d-block w-100" alt="...">
+        </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselLanches" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselLanches" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<div class="containerf">
+    <div class="contenthome">
+        <div>
+            <div class="row">
+
+                <form class="form-inline" method="get">
+
+                    <div class="itemsform">
+
+                        <input name="filter" class="form-control" style="width: 40%" placeholder="Pesquise um produto..." value="@Model.RouteValue["Filter"]" />
+                        <button type="submit" class="btn btn-info" style="margin-left: 2px;">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true">Procurar</span>
+
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <section class="sect">
+            <div class="banneratras">
+
+                <div class="bannerup">
+
+                    @foreach (var produto in Model)
+                    {
+                        <div class="card-deck">
+                            <partial name="_SearchBy" for="@produto" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+
+        <div class="vcpager">
+            <vc:pager paging-list="@Model"></vc:pager>
+        </div>
     </div>
 
 
-    <section id="sect">
-        <div class="banneratras">
-            <div class="bannerup">
-                @foreach (var produto in Model.Produtos)
-                {
-                    <div class="card-deck">
-                        <partial name="_SearchBy" for="@produto" />
-                    </div>
-                }
-            </div>
-        </div>
-    </section>
+
+</div>
+
+
+
+

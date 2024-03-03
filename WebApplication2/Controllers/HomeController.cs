@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Scripting;
+using ReflectionIT.Mvc.Paging;
 using System.Diagnostics;
 using WebApplication2.Models;
 using WebApplication2.Repository.Interfaces;
+using WebApplication2.Repository.Services;
 using WebApplication2.ViewModel;
 
 namespace WebApplication2.Controllers
@@ -16,21 +18,16 @@ namespace WebApplication2.Controllers
             _produtos = produtos;
         }
 
-        public async Task<IActionResult> Index(ProdutoViewModel produtoViewModel)
+        public async Task<IActionResult> Index(string filter, int pageindex = 1, string sort = "Nome")
         {
-            if (produtoViewModel.Produtos is null)
+            var list = _produtos.PaginationProduct();
+            if (!string.IsNullOrWhiteSpace(filter))
             {
-                ActionResult<IEnumerable<Produto>> produtos =  await _produtos.GetAll();
-                ProdutoViewModel produtoViewModelPadrao = new ProdutoViewModel()
-                {
-                    Produtos = produtos.Value
-                };
-                return View(produtoViewModelPadrao);
+                list = list.Where(p => p.Nome.Contains(filter));
             }
-            else
-            {
-                return View(produtoViewModel);
-            }
+            var model = await PagingList.CreateAsync(list, 5, pageindex, sort, "Nome");
+            model.RouteValue = new RouteValueDictionary { { "filter", filter } };
+            return View(model);
 
         }
         [HttpGet]

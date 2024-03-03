@@ -1,0 +1,48 @@
+﻿@using WebApplication2.ViewModel;
+@model ProdutoViewModel;
+
+<link rel="stylesheet" href="~/css/Variaveis.css" />
+<link rel="stylesheet" href="~/css/PaginaInicial.css" />
+<section class="sect">
+    <div class="banneratras">
+        <div class="bannerup">
+            
+            @foreach (var produto in Model.Produtos)
+            {
+                <div class="card-deck">
+                    <div class="card" id="titulos" style="width: 18rem; height: 800px; margin-top: 10px;font-family:'Franklin Gothic Medium', 'Arial Narrow' , Arial, sans-serif;">
+                        @if (@produto.ImagemUrl.Contains("www"))
+                        {
+                            <img class="card-img-top" src='@produto.ImagemUrl' width="200" height="250" alt="Card image cap">
+                        }
+                        else
+                        {
+                            <img class="card-img-top" src='~/Imagens/@produto.ImagemUrl' width="200px" height="250px" alt="Card image cap">
+                        }
+
+                        <div class="card-body">
+                            <h5 class="card-title">@produto.Nome</h5>
+                            <p class="card-text">@produto.DescricaoCurta</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item" id="groupitem">de <span id="antigoPreco">R$@produto.AntigoPreco</span> por: <span id="focoItem">R$@produto.Preco</span></li>
+                            <li class="list-group-item" id="backgroundcartao">
+                                em até <span id="danger">12x de R$@produto.MaxVezes</span> sem juros no cartão!
+                            </li>
+
+                            <li class="list-group-item" id="avista">à vista <span id="focoItem">R$@produto.AVista</span></li>
+                        </ul>
+                        <div class="card-body">
+                            <span class="card-text" style="color:red; font-weight:bold;">R$@produto.Preco</span>
+                            <span class="card-subtitle" id="pix">No PIX com 10% de desconto</span>
+                        </div>
+                        <div class="text-box">
+                            <a class="btn btn-outline-success" asp-controller="Produto" asp-action="ProdutoDetalhe" method="get" asp-route-id="@produto.IdProduto" role="button">Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+</section>
