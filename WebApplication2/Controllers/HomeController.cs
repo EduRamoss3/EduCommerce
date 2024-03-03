@@ -25,7 +25,7 @@ namespace WebApplication2.Controllers
             {
                 list = list.Where(p => p.Nome.Contains(filter));
             }
-            var model = await PagingList.CreateAsync(list, 5, pageindex, sort, "Nome");
+            var model = await PagingList.CreateAsync(list, 6, pageindex, sort, "Nome");
             model.RouteValue = new RouteValueDictionary { { "filter", filter } };
             return View(model);
 
