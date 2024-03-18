@@ -11,11 +11,13 @@ namespace WebApplication2.Controllers
     public class CadastroController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
-        
-        public CadastroController(UserManager<IdentityUser> userManager)
+        private readonly IUsuarioService _usuarioService;
+
+        public CadastroController(UserManager<IdentityUser> userManager, IUsuarioService usuarioService)
         {
-            
+
             _userManager = userManager;
+            _usuarioService = usuarioService;
         }
 
         [HttpGet]
@@ -38,21 +40,25 @@ namespace WebApplication2.Controllers
                     PhoneNumber = usuario.Telefone
 
                 };
-            
-            var result = await _userManager.CreateAsync(user, usuario.Senha);
-            if (result.Succeeded)
-            {
-                await _userManager.AddToRoleAsync(user, "Member");
-              
-                return RedirectToAction("Login", "Account");
+
+                var result = await _userManager.CreateAsync(user, usuario.Senha);
+
+
+                if (result.Succeeded)
+                {
+                    await _userManager.AddToRoleAsync(user, "Member");
+                    var id_User = user.Id;
+                    usuario.Id_User = id_User;
+                    await _usuarioService.Add(usuario);
+                    return RedirectToAction("Login", "Account");
+                }
+                else
+                {
+                    ModelState.AddModelError("", result.Errors.ToString());
+                }
             }
-            else
-            {
-                ModelState.AddModelError("", result.Errors.ToString());
-            }
-        }
             return View(usuario);
 
+        }
     }
-}
 }

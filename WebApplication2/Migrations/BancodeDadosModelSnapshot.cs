@@ -301,6 +301,9 @@ namespace WebApplication2.Migrations
                     b.Property<bool>("Entregue")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Id_User")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -322,7 +325,12 @@ namespace WebApplication2.Migrations
                     b.Property<double>("TotalPedido")
                         .HasColumnType("float");
 
+                    b.Property<int?>("_ClienteIdPessoa")
+                        .HasColumnType("int");
+
                     b.HasKey("IdPedido");
+
+                    b.HasIndex("_ClienteIdPessoa");
 
                     b.ToTable("Pedidos");
                 });
@@ -399,14 +407,12 @@ namespace WebApplication2.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<double>("Preco")
-                        .HasMaxLength(100000)
                         .HasColumnType("float");
 
                     b.Property<decimal>("PrecoSecundario")
                         .HasColumnType("decimal(10,2)");
 
                     b.Property<int>("Quantidade")
-                        .HasMaxLength(999)
                         .HasColumnType("int");
 
                     b.Property<int>("Tipos")
@@ -443,6 +449,9 @@ namespace WebApplication2.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("IdCarrinho")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Id_User")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nome")
@@ -552,6 +561,15 @@ namespace WebApplication2.Migrations
                     b.Navigation("Produto");
                 });
 
+            modelBuilder.Entity("WebApplication2.Models.Pedido", b =>
+                {
+                    b.HasOne("WebApplication2.Models.Usuario", "_Cliente")
+                        .WithMany("Pedidos")
+                        .HasForeignKey("_ClienteIdPessoa");
+
+                    b.Navigation("_Cliente");
+                });
+
             modelBuilder.Entity("WebApplication2.Models.PedidoDetalhe", b =>
                 {
                     b.HasOne("WebApplication2.Models.Pedido", "Pedido")
@@ -595,6 +613,11 @@ namespace WebApplication2.Migrations
                     b.Navigation("ProdutosPedido");
 
                     b.Navigation("_PedidoDetalhes");
+                });
+
+            modelBuilder.Entity("WebApplication2.Models.Usuario", b =>
+                {
+                    b.Navigation("Pedidos");
                 });
 
             modelBuilder.Entity("WebApplication2.Models.Vendas", b =>

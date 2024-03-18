@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication2.Migrations;
 using WebApplication2.Models;
@@ -12,20 +13,24 @@ namespace WebApplication2.Controllers
     {
         private readonly Carrinho _carrinhoCompra;
         private readonly IProductService _productService;
-        public CarrinhoController(Carrinho carrinhoCompra, IProductService productService)
+        private readonly UserManager<IdentityUser> _userManager;    
+        public CarrinhoController(Carrinho carrinhoCompra, IProductService productService, UserManager<IdentityUser> userManager)
         {
             _carrinhoCompra = carrinhoCompra;
             _productService = productService;
+            _userManager = userManager;
         }
         [Authorize]
         public IActionResult Index()
         {
             var itens = _carrinhoCompra.GetItemCarrinhos();
             _carrinhoCompra.ItensCarrinhos = itens;
-            var  carrinhoViewModel = new CarrinhoViewModel
+
+            var carrinhoViewModel = new CarrinhoViewModel
             {
                 CarrinhoCompra = _carrinhoCompra,
-                CarrinhoCompraTotal = _carrinhoCompra.GetTotalCarrinho()
+                CarrinhoCompraTotal = _carrinhoCompra.GetTotalCarrinho(),
+                IdUser = _userManager.GetUserId(User),
             };
             return View(carrinhoViewModel);
 

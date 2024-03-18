@@ -7,5 +7,6 @@ namespace WebApplication2.ViewModel
     {
         public Carrinho CarrinhoCompra { get; set; }
         public double CarrinhoCompraTotal { get; set; }
+        public string IdUser { get; set; }
     }
 }

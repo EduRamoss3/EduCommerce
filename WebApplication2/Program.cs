@@ -16,6 +16,7 @@ builder.Services.AddDbContext<AppDbContext>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IPedidoService, PedidoService>();
 builder.Services.AddScoped<ICategoriaService, CategoriaService>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped(sp => Carrinho.GetCarrinho(sp));
 builder.Services.AddScoped<ISeedRoleInitial, SeedUserRoleInitial>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

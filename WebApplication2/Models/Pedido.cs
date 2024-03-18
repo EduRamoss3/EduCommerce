@@ -28,7 +28,9 @@ namespace WebApplication2.Models
         public double TotalPedido { get; set; }
         public bool Concluido { get; set; }
         public bool Entregue { get; set; }
+        public string Id_User { get; set; }
         public List<PedidoDetalhe> _PedidoDetalhes { get; set; }
+        public Usuario _Cliente { get; set; }
 
     }
 }

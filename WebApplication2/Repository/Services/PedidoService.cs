@@ -6,6 +6,7 @@ using WebApplication2.Context;
 using WebApplication2.Migrations;
 using WebApplication2.Models;
 using WebApplication2.Repository.Interfaces;
+using WebApplication2.ViewModel;
 using PedidoDetalhe = WebApplication2.Models.PedidoDetalhe;
 
 namespace WebApplication2.Repository.Services
@@ -14,10 +15,50 @@ namespace WebApplication2.Repository.Services
     {
         private readonly AppDbContext _context;
         private readonly Carrinho _carrinho;
-        public PedidoService(AppDbContext context, Carrinho carrinho)
+        private readonly IProductService _productService;
+        public PedidoService(AppDbContext context, Carrinho carrinho, IProductService productService)
         {
             _context = context;
             _carrinho = carrinho;
+            _productService = productService;   
+        }
+        public async Task<MeusPedidosViewModel> GetMeusPedidos(string user_id)
+        {
+            var meusPedidos = _context.Pedidos.Where(mp => mp.Id_User == user_id).ToList();
+            List<Produto> meusProdutos = new List<Produto>();
+            foreach (var pedido in meusPedidos)
+            {
+                var items = await GetMeusProdutos(pedido.IdPedido); // Chama GetMeusProdutos passando o Id do pedido
+                foreach (Produto item in items)
+                {
+                    if (!meusProdutos.Any(p => p.IdProduto == item.IdProduto)) // Verifica se o produto já foi adicionado
+                    {
+                        meusProdutos.Add(item);
+                    }
+                }
+            }
+            MeusPedidosViewModel meusPedidosViewModel = new MeusPedidosViewModel()
+            {
+                ProdutosPedido = meusProdutos,
+                Pedidos = meusPedidos
+            };
+            return meusPedidosViewModel;
+        }
+
+        public async Task<IEnumerable<Produto>> GetMeusProdutos(int cod_pedido)
+        {
+            var meuPedidoDetalhe = _context.PedidoDetalhe.FirstOrDefault(mp => mp.PedidoId == cod_pedido);
+            string[] Ids = meuPedidoDetalhe.strPedidos.Split(',');
+            List<Produto> ProdutosEmPedido = new();
+
+            for (int i = 0; i < Ids.Length; i++)
+            {
+                int idGet = Convert.ToInt32(Ids[i]);
+                var item = await _productService.GetById(idGet);
+                ProdutosEmPedido.Add(item.Value);
+            }
+
+            return ProdutosEmPedido;
         }
         public async Task<ActionResult<IEnumerable<Pedido>>> GetAll()
         {
@@ -74,7 +115,7 @@ namespace WebApplication2.Repository.Services
             }
             return new BadRequestObjectResult("O Pedido é nulo!");
         }
-        public async Task<ActionResult> CriarPedido(Pedido pedido)
+        public async Task<ActionResult> CriarPedido(Pedido pedido, string id_user)
         {
             if (pedido is not null)
             {
@@ -93,7 +134,7 @@ namespace WebApplication2.Repository.Services
                     result += produtoIdString + ",";
                 }
                 result = result.TrimEnd(',');
-
+                pedido.Id_User = id_user;
 
                 foreach (var item in carrinhoItems)
                 {

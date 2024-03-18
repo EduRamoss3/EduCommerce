@@ -34,6 +34,8 @@ namespace WebApplication2.Models
         public DateTime DateNasc { get; set; }
         public string IdCarrinho { get; set; }
         public virtual Carrinho _Carrinho { get; set; }
+        public string Id_User { get; set; }   
+        public List<Pedido> Pedidos { get; set; }
         public bool PasswordIsValid(string senha)
         {
             if (senha == Senha) { return true; }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using WebApplication2.Migrations;
 using WebApplication2.Models;
 using WebApplication2.Repository.Interfaces;
+using WebApplication2.ViewModel;
 
 namespace WebApplication2.Controllers
 {
@@ -17,14 +18,20 @@ namespace WebApplication2.Controllers
             _carrinho = carrinho;
             _pedidoService = pedidoService;
         }
-    
+        [HttpGet]
+        public async Task<IActionResult> MeusPedidos(string user_id)
+        {
+            MeusPedidosViewModel pedidos = await _pedidoService.GetMeusPedidos(user_id);
+            return View(pedidos);
+        }
+
         [HttpGet]
         public IActionResult Checkout()
         {
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Checkout(Pedido pedido)
+        public async Task<IActionResult> Checkout(Pedido pedido, string id_user)
         {
             int totalItemsPedido = 0;
             double precoTotalPedido = 0.0;
@@ -41,9 +48,10 @@ namespace WebApplication2.Controllers
             }
             pedido.TotalItensPedido = totalItemsPedido;
             pedido.TotalPedido = precoTotalPedido;
+           
             if (ModelState.IsValid)
             {
-                var result = await _pedidoService.CriarPedido(pedido);
+                var result = await _pedidoService.CriarPedido(pedido, id_user);
                 if (result is not null)
                 {
                     ViewBag.CheckoutCompletoMensagem = "Obrigado pelo seu pedido ;)";

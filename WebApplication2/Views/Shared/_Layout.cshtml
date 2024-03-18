@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -37,6 +38,13 @@
                             </li>
                             <li class="nav-item ">
                                 @await Component.InvokeAsync("CarrinhoComponent")
+                            </li>
+                            <li class="nav-item ">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    @inject UserManager<IdentityUser> UserManager
+                                    <a class="nav-link" style="color: lightgray;" asp-area="" asp-controller="Pedido" asp-action="MeusPedidos" asp-route-user_id="@UserManager.GetUserId(User)">Meus Pedidos</a>
+                                }
                             </li>
                         </ul>
                         @await Html.PartialAsync("_LoginPartial")
