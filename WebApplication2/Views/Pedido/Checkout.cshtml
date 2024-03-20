@@ -24,8 +24,7 @@
                 <input asp-for="Telefone" class="form-control" />
                 <span asp-validation-for="Telefone" class="text-danger"></span>
             </div>
-            @inject UserManager<IdentityUser> UserManager
-            <input class="btn btn-success" type="submit" role="button" asp-action="Checkout" asp-controller="Pedido" asp-route-id_user="@UserManager.GetUserId(User)" value="Realizar pedido" />
+            <input class="btn btn-success" type="submit" role="button" asp-action="Checkout" asp-controller="Pedido" value="Realizar pedido" />
         </div>
     </div>
 </form> 

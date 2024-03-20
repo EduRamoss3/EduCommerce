@@ -31,6 +31,7 @@ namespace WebApplication2.Models
         public string Id_User { get; set; }
         public List<PedidoDetalhe> _PedidoDetalhes { get; set; }
         public Usuario _Cliente { get; set; }
+        public string strPedidos { get; set; }
 
     }
 }

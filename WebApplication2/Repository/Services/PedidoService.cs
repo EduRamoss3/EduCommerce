@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using WebApplication2.Areas.Admin.ViewModel;
 using WebApplication2.Context;
 using WebApplication2.Migrations;
 using WebApplication2.Models;
@@ -24,31 +25,25 @@ namespace WebApplication2.Repository.Services
         }
         public async Task<MeusPedidosViewModel> GetMeusPedidos(string user_id)
         {
-            var meusPedidos = _context.Pedidos.Where(mp => mp.Id_User == user_id).ToList();
-            List<Produto> meusProdutos = new List<Produto>();
-            foreach (var pedido in meusPedidos)
+            var meusPedidos = await _context.Pedidos.Where(p => p.Id_User == user_id).ToListAsync();
+
+            foreach(Pedido pedido in meusPedidos)
             {
-                var items = await GetMeusProdutos(pedido.IdPedido); // Chama GetMeusProdutos passando o Id do pedido
-                foreach (Produto item in items)
-                {
-                    if (!meusProdutos.Any(p => p.IdProduto == item.IdProduto)) // Verifica se o produto já foi adicionado
-                    {
-                        meusProdutos.Add(item);
-                    }
-                }
+                var pedidoDetalhe = DetalhePedido(pedido.IdPedido);
+                pedido._PedidoDetalhes.Add(pedidoDetalhe);
             }
             MeusPedidosViewModel meusPedidosViewModel = new MeusPedidosViewModel()
             {
-                ProdutosPedido = meusProdutos,
                 Pedidos = meusPedidos
             };
             return meusPedidosViewModel;
+
         }
 
         public async Task<IEnumerable<Produto>> GetMeusProdutos(int cod_pedido)
         {
-            var meuPedidoDetalhe = _context.PedidoDetalhe.FirstOrDefault(mp => mp.PedidoId == cod_pedido);
-            string[] Ids = meuPedidoDetalhe.strPedidos.Split(',');
+            var meuPedido = _context.Pedidos.FirstOrDefault(mp => mp.IdPedido == cod_pedido);
+            string[] Ids = meuPedido.strPedidos.Split(',');
             List<Produto> ProdutosEmPedido = new();
 
             for (int i = 0; i < Ids.Length; i++)
@@ -122,6 +117,7 @@ namespace WebApplication2.Repository.Services
                 await _context.Pedidos.AddAsync(pedido);
                 await _context.SaveChangesAsync();
                 var carrinhoItems = _carrinho.ItensCarrinhos;
+
                 List<string> strList = new List<string>();
                 string result = "";
                 foreach (var produto in carrinhoItems)
@@ -135,10 +131,11 @@ namespace WebApplication2.Repository.Services
                 }
                 result = result.TrimEnd(',');
                 pedido.Id_User = id_user;
+                pedido.strPedidos = result;
 
                 foreach (var item in carrinhoItems)
                 {
-
+                    strList.Add(item.Produto.IdProduto.ToString());
                     PedidoDetalhe pedidoDetalhe = new PedidoDetalhe
                     {
                         PedidoId = pedido.IdPedido,
@@ -146,7 +143,8 @@ namespace WebApplication2.Repository.Services
                         Quantidade = item.QntProduto,
                         Preco = (decimal)(item.Produto.Preco * item.QntProduto),
                         Produto = item.Produto,
-                        strPedidos = result,
+                        strPedidos = item.Produto.ToString()+",",
+                       
                     };
                     _context.PedidoDetalhe.Add(pedidoDetalhe);
                 }

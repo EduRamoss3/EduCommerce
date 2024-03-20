@@ -328,6 +328,9 @@ namespace WebApplication2.Migrations
                     b.Property<int?>("_ClienteIdPessoa")
                         .HasColumnType("int");
 
+                    b.Property<string>("strPedidos")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("IdPedido");
 
                     b.HasIndex("_ClienteIdPessoa");
@@ -345,6 +348,9 @@ namespace WebApplication2.Migrations
 
                     b.Property<int>("IdProduto")
                         .HasColumnType("int");
+
+                    b.Property<string>("Id_User")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PedidoId")
                         .HasColumnType("int");

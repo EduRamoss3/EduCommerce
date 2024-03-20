@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication2.Migrations;
 using WebApplication2.Models;
@@ -13,10 +14,12 @@ namespace WebApplication2.Controllers
     {
         private readonly Carrinho _carrinho;
         private readonly IPedidoService _pedidoService;
-        public PedidoController(Carrinho carrinho, IPedidoService pedidoService)
+        UserManager<IdentityUser> _userMananger;
+        public PedidoController(Carrinho carrinho, IPedidoService pedidoService, UserManager<IdentityUser> userMananger)
         {
             _carrinho = carrinho;
             _pedidoService = pedidoService;
+            _userMananger = userMananger;
         }
         [HttpGet]
         public async Task<IActionResult> MeusPedidos(string user_id)
@@ -31,7 +34,7 @@ namespace WebApplication2.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Checkout(Pedido pedido, string id_user)
+        public async Task<IActionResult> Checkout(Pedido pedido)
         {
             int totalItemsPedido = 0;
             double precoTotalPedido = 0.0;
@@ -51,7 +54,9 @@ namespace WebApplication2.Controllers
            
             if (ModelState.IsValid)
             {
-                var result = await _pedidoService.CriarPedido(pedido, id_user);
+                var user_id = _userMananger.GetUserId(User);
+                pedido.Id_User = user_id;
+                var result = await _pedidoService.CriarPedido(pedido, user_id);
                 if (result is not null)
                 {
                     ViewBag.CheckoutCompletoMensagem = "Obrigado pelo seu pedido ;)";
