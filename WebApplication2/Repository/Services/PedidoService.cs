@@ -27,17 +27,18 @@ namespace WebApplication2.Repository.Services
         {
             var meusPedidos = await _context.Pedidos.Where(p => p.Id_User == user_id).ToListAsync();
 
-            foreach(Pedido pedido in meusPedidos)
+            foreach (Pedido pedido in meusPedidos)
             {
-                var pedidoDetalhe = DetalhePedido(pedido.IdPedido);
-                pedido._PedidoDetalhes.Add(pedidoDetalhe);
+                // Criar uma nova lista de detalhes do pedido para cada pedido
+                var pedidoDetalhes = DetalhePedidoList(pedido.IdPedido);
+                pedido._PedidoDetalhes = pedidoDetalhes; // Definir a lista de detalhes do pedido para o pedido atual
             }
+
             MeusPedidosViewModel meusPedidosViewModel = new MeusPedidosViewModel()
             {
                 Pedidos = meusPedidos
             };
             return meusPedidosViewModel;
-
         }
 
         public async Task<IEnumerable<Produto>> GetMeusProdutos(int cod_pedido)
@@ -135,7 +136,7 @@ namespace WebApplication2.Repository.Services
 
                 foreach (var item in carrinhoItems)
                 {
-                    strList.Add(item.Produto.IdProduto.ToString());
+                    
                     PedidoDetalhe pedidoDetalhe = new PedidoDetalhe
                     {
                         PedidoId = pedido.IdPedido,
@@ -143,7 +144,7 @@ namespace WebApplication2.Repository.Services
                         Quantidade = item.QntProduto,
                         Preco = (decimal)(item.Produto.Preco * item.QntProduto),
                         Produto = item.Produto,
-                        strPedidos = item.Produto.ToString()+",",
+                        strPedidos = result,
                        
                     };
                     _context.PedidoDetalhe.Add(pedidoDetalhe);
@@ -158,14 +159,15 @@ namespace WebApplication2.Repository.Services
         {
             throw new NotImplementedException();
         }
+        public List<PedidoDetalhe> DetalhePedidoList(int id)
+        {
+            var detalhe = _context.PedidoDetalhe.Where(p => p.PedidoId == id).ToList();
+            
+            return detalhe;
+        }
         public PedidoDetalhe DetalhePedido(int id)
         {
             var detalhe = _context.PedidoDetalhe.FirstOrDefault(p => p.PedidoId == id);
-            if (detalhe is null)
-            {
-                PedidoDetalhe pedidoDetalheNull = new PedidoDetalhe();
-                return pedidoDetalheNull;
-            }
             return detalhe;
         }
         public List<Produto> ProdutosPedido(int id)
