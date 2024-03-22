@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Pedido>
+
+ <h2>Pedidos Por Período</h2>
+ <nav class="navbar navbar-dark">
+     <div class="container-fluid">
+         <form class="navbar-form navbar-left">
+             <div class="form-group">
+                 <div class="form-group">
+                     <label for="minDate">Data Inicial</label>
+                     <input type="date" class="form-control" name="minDate" value="@ViewData["minDate"]"/>
+                 </div>
+                <div class="form-group">
+                    <label for="minDate">Data Final</label>
+                    <input type="date" class="form-control" name="maxDate" value="@ViewData["maxDate"]" />
+                </div>
+                <button type="submit" class="btn btn-success">Filtrar</button>
+             </div>
+         </form>
+     </div>
+ </nav>
+ <div class="panel-body">
+     <table class="table table-striped table-hover">
+         <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdPedido)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataPedido)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rua)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Numero)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Telefone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalItensPedido)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalPedido)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Concluido)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Entregue)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id_User)
+                </th>
+            </tr>
+         </thead>
+        <tbody>
+            @foreach (var pedido in Model)
+            {
+                <tr>
+                    <td>@pedido.IdPedido</td>
+                    <td>@pedido.Nome</td>
+                    <td>@pedido.DataPedido.ToString("dd/MM/yyyy")</td>
+                    <td>@pedido.Rua</td>
+                    <td>@pedido.Numero</td>
+                    <td>@pedido.Telefone</td>
+                    <td>@pedido.TotalItensPedido</td>
+                    <td>@pedido.TotalPedido.ToString("C")</td>
+                    <td>@pedido.Concluido</td>
+                    <td>@pedido.Entregue</td>
+                    <td>@pedido.Id_User</td>
+                </tr>
+            }
+        </tbody>
+     </table>
+ </div>

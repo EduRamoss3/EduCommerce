@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using WebApplication2.Migrations;
 using WebApplication2.Models;
 using WebApplication2.Repository.Interfaces;
 using WebApplication2.ViewModel;
