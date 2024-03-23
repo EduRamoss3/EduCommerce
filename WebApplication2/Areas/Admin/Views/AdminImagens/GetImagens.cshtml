@@ -1,0 +1,54 @@
+﻿@using EduCommerceWeb.Configuration.ConfigImages;
+@model FileManagerModel
+@{
+    ViewBag.Title = "Arquivos";
+}
+<style>
+    .image-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-gap: 20px;
+    }
+
+    .image-card {
+        width: 100%;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+        .image-card img {
+            max-width: 100%;
+            height: auto;
+        }
+
+    .delete-button {
+        display: block;
+        background-color: #dc3545;
+        color: #fff;
+        text-align: center;
+        padding: 5px 10px;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+</style>
+
+@if (Model.Files != null)
+{
+    <h3>Imagens:</h3>
+    <hr />
+    var caminho = Model.PathImagesProduto;
+    <div class="image-grid">
+        @foreach (FileInfo file in Model.Files)
+        {
+            <div class="image-card">
+                <img src="~/Imagens/Produtos/@file.Name" alt="@file.Name">
+                <div style="padding: 10px; text-align: left">
+                    <a href="@Url.Action("DeleteFile","AdminImagens", new { fname=file.Name })" class="delete-button">Deletar</a>
+                </div>
+            </div>
+        }
+    </div>
+}

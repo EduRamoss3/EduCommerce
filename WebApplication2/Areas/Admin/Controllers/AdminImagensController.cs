@@ -23,6 +23,8 @@ namespace EduCommerceWeb.Areas.Admin.Controllers
 
             return View();
         }
+        [HttpPost]
+        [Route("{controller}/UploadFiles/files")]
         public async Task<IActionResult> UploadFiles(List<IFormFile> files)
         {
             if (files == null || files.Count == 0)
@@ -30,7 +32,7 @@ namespace EduCommerceWeb.Areas.Admin.Controllers
                 ViewData["Erro"] = "Erro: Arquivo(s) não selecionado(s)";
                 return View(ViewData);
             }
-            if (files.Count > 10)
+            if (files.Count > 50)
             {
                 ViewData["Erro"] = "Erro: Quantidade de arquivos excedeu o limite (10)";
                 return View(ViewData);
@@ -53,6 +55,27 @@ namespace EduCommerceWeb.Areas.Admin.Controllers
             ViewData["Resultado"] = $"{files.Count} arquivos foram enviados ao servidor, " + $"com tamanho total de: {size} bytes";
             ViewBag.Arquivos = filePathsName;
             return View(ViewData);
+        }
+        [Route("{controller}/GetImagens")]
+        public IActionResult GetImagens()
+        {
+
+            FileManagerModel fileManagerModel = new FileManagerModel();
+
+            var usersImagensPath = Path.Combine(_hostingEnvironment.WebRootPath, _myConfig.NomePastaImagensProdutos);
+
+            DirectoryInfo dir = new DirectoryInfo(usersImagensPath);
+
+            FileInfo[] files = dir.GetFiles();
+
+            fileManagerModel.PathImagesProduto = _myConfig.NomePastaImagensProdutos;
+
+            if (files.Length == 0)
+            {
+                ViewData["Erro"] = $"Nenhum arquivo encontrado na pasta {usersImagensPath}";
+            }
+            fileManagerModel.Files = files;
+            return View(fileManagerModel);
         }
     }
 }
