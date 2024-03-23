@@ -8,9 +8,6 @@
 
 .banneratras {
     display: flex;
-    border:ridge;
-    border-color:green;
-    border-radius: 10px;
     height: 100%;
     width: 90%;
     padding: 10px;
@@ -35,22 +32,21 @@
 .bannerup {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    border-radius: 10px;
+    background-image: linear-gradient( 180deg, hsl(233deg 26% 14%) 9%, hsl(232deg 36% 17%) 40%, hsl(230deg 45% 19%) 52%, hsl(229deg 52% 22%) 61%, hsl(228deg 59% 24%) 68%, hsl(227deg 65% 27%) 74%, hsl(226deg 71% 29%) 79%, hsl(226deg 75% 32%) 85%, hsl(226deg 78% 35%) 91%, hsl(227deg 78% 38%) 100% );
     gap: 12px;
     padding: 20px 20px 10px; /* Adiciona espaço vazio dos dois lados e um pouco de espaço no topo */
     box-sizing: border-box;
     margin-top: 20px;
     width: 100%;
     position: relative;
-    background-image: linear-gradient(to right top, #11080d, #1e181d, #2a252c, #35333b, #41424b, #444e5d, #425b6f, #3a6a7e, #007a8a, #008a88, #009877, #19a35a);
 }
-
-@media (min-width: 768px) {
-    .bannerup {
-        padding: 0 calc(2 * 16px); /* Adiciona espaço vazio dos dois lados, aproximadamente dois dedos */
+    @media (min-width: 768px) {
+        .bannerup {
+            padding: 0 calc(2 * 16px); /* Adiciona espaço vazio dos dois lados, aproximadamente dois dedos */
+        }
     }
-}
-.sect {
+
+    .sect {
 
     display: flex;
     justify-content: center;

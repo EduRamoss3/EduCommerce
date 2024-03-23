@@ -39,7 +39,7 @@ namespace WebApplication2.Models
             }
             else 
             {
-                if(quantidadeAdicionar != 0 && quantidadeAdicionar > 1)
+                if(quantidadeAdicionar > 1)
                 {
                     ItemCarrinho itemCompras = new ItemCarrinho()
                     {
