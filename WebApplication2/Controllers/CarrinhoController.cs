@@ -36,14 +36,14 @@ namespace WebApplication2.Controllers
 
         }
 
-        public async Task<IActionResult> AdicionarNoCarrinho(int Idproduto)
+        public async Task<IActionResult> AdicionarNoCarrinho(int Idproduto, int quantidadeAdicionar)
         {
             if (User.Identity.IsAuthenticated)
             {
                 var produtoSelecionado = await _productService.GetById(Idproduto);
                 if (produtoSelecionado is not null)
                 {
-                     _carrinhoCompra.AdicionarNoCarrinho(produtoSelecionado.Value);
+                     _carrinhoCompra.AdicionarNoCarrinho(produtoSelecionado.Value, quantidadeAdicionar);
                     return RedirectToAction("Index","Carrinho");
                 }
                 else

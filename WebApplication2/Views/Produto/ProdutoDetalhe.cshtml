@@ -23,10 +23,14 @@
         <h2 id="product-price">R$@Model.Value.Preco</h2>
         <span id="product-por"> à vista @Model.Value.AVista!</span>
         <p style="color: yellow; font-size:smaller;">No PIX com 10% de desconto em até 12x de R$@Model.Value.PrecoSecundario @Model.Value.MaxVezes sem juros no cartão</p>
-
+        @{
+            int quantidade = 1;
+        }
+        <input type="number" id="quantidade" value="@quantidade" min="1" max="12" />
         <div class="text-box">
-            <a class="productbtn" asp-controller="Carrinho" asp-action="AdicionarNoCarrinho" asp-route-IdProduto="@Model.Value.IdProduto">Adicionar @Model.Value.Nome ao carrinho</a>
+            <a class="productbtn" asp-controller="Carrinho" asp-action="AdicionarNoCarrinho" asp-route-IdProduto="@Model.Value.IdProduto" asp-route-quantidadeAdicionar="@quantidade">Adicionar @Model.Value.Nome ao carrinho</a>
         </div>
+         
     </div>
 </div>
 

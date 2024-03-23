@@ -28,7 +28,7 @@ namespace WebApplication2.Models
             };
 
         }
-        public void AdicionarNoCarrinho(Produto produto)
+        public void AdicionarNoCarrinho(Produto produto, int quantidadeAdicionar)
         {
             var itemCarrinho = _context.ItemCarrinhos.SingleOrDefault(p => p.Produto.IdProduto == produto.IdProduto
             && p.IdCarrinho == IdCarrinho);
@@ -37,19 +37,37 @@ namespace WebApplication2.Models
                 itemCarrinho.QntProduto++;
                 _context.SaveChanges();
             }
-            else
+            else 
             {
-              
-                ItemCarrinho itemCompras = new ItemCarrinho()
+                if(quantidadeAdicionar != 0 && quantidadeAdicionar > 1)
                 {
-                    IdItensCarrinho = Guid.NewGuid().ToString(),
-                    Produto = produto,
-                    QntProduto = 1,
-                    IdCarrinho = IdCarrinho
+                    ItemCarrinho itemCompras = new ItemCarrinho()
+                    {
+                        IdItensCarrinho = Guid.NewGuid().ToString(),
+                        Produto = produto,
+                        QntProduto = quantidadeAdicionar,
+                        IdCarrinho = IdCarrinho
 
-                };
-                _context.ItemCarrinhos.Add(itemCompras);
-                _context.SaveChanges();
+                    };
+                    _context.ItemCarrinhos.Add(itemCompras);
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    ItemCarrinho itemCompras = new ItemCarrinho()
+                    {
+                        IdItensCarrinho = Guid.NewGuid().ToString(),
+                        Produto = produto,
+                        QntProduto = 1,
+                        IdCarrinho = IdCarrinho
+
+                    };
+                    _context.ItemCarrinhos.Add(itemCompras);
+                    _context.SaveChanges();
+
+                }
+
+                
             }
            
         }

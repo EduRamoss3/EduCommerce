@@ -3,7 +3,7 @@
         <div class="col-md-6">
             <form method="post" enctype="multipart/form-data" asp-controller="AdminImagens" asp-action="UploadFiles">
                 <div class="form-group">
-                    <img src="~/Imagens/upload-na-nuvem.png" alt="imagem-selecionar-arquivos" class="img-fluid" />
+                    <img src="~/Imagens/upload-na-nuvem.png" alt="imagem-selecionar-arquivos" width="200" height="200" class="img-fluid" />
                     <p><b>Selecione um ou mais arquivos para enviar:</b></p>
                     <p>(Arquivos com o mesmo nome serão sobrescritos)</p>
                     <input type="file" name="files" multiple class="form-control" />
@@ -17,11 +17,11 @@
         <div class="col-md-6">
             <form method="post" enctype="multipart/form-data" asp-controller="AdminImagens" asp-action="GetImagens">
                 <div class="form-group">
+                    <img src="~/Imagens/search-engine-optimization.png" alt="imagem-visualizar-arquivos" width="200" height="200" class="img-fluid" />
                     <p><strong>Visualizar imagens na pasta do servidor:</strong></p>
                 </div>
                 <hr />
                 <div class="form-group">
-                    <img src="~/Imagens/search-engine-optimization.png" alt="imagem-visualizar-arquivos" class="img-fluid" />
                     <input type="submit" value="Visualizar arquivos no servidor" class="btn btn-primary" />
                 </div>
             </form>

@@ -39,9 +39,9 @@ namespace WebApplication2.Models
         [DisplayName("Preço secundario")]
         public decimal PrecoSecundario { get; set; }
         [Required(ErrorMessage = "Máxima de parcelas é obrigatória!")]
-        [Column(TypeName = "decimal(10,2)")]
         [DisplayName("Máximo de vezes")]
-        public decimal MaxVezes { get; set; }
+        [Range(0, 12, ErrorMessage = "O campo {0} deve estar entre {1} e {2}.")]
+        public int MaxVezes { get; set; }
         [Required]
         [DisplayName("Categoria")]
         public int IdCategoria { get; set; }
