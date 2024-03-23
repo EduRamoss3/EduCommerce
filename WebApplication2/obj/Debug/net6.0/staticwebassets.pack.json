@@ -457,20 +457,20 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.WebApplication2.Microsoft.AspNetCore.StaticWebAssets.props",
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.EduCommerceWeb.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
     {
-      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.WebApplication2.props",
-      "PackagePath": "build\\WebApplication2.props"
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.EduCommerceWeb.props",
+      "PackagePath": "build\\EduCommerceWeb.props"
     },
     {
-      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.WebApplication2.props",
-      "PackagePath": "buildMultiTargeting\\WebApplication2.props"
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.EduCommerceWeb.props",
+      "PackagePath": "buildMultiTargeting\\EduCommerceWeb.props"
     },
     {
-      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.WebApplication2.props",
-      "PackagePath": "buildTransitive\\WebApplication2.props"
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.EduCommerceWeb.props",
+      "PackagePath": "buildTransitive\\EduCommerceWeb.props"
     }
   ],
   "ElementsToRemove": []

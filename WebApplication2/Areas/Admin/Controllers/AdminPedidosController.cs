@@ -47,7 +47,8 @@ namespace WebApplication2.Areas.Admin.Controllers
             string[] idsPedido = pedidoDetalhe.strPedidos.Split(",");  // pegando todos os ids de produtos que estão em str pedidos, exemplo "1,2,3,4,5" 
             foreach (string idProd in idsPedido)
             {
-                Idprodutos.Add(Convert.ToInt32(idProd)); //depois de separado por virgula, transformei todos em numero e adicionei em uma lista
+                int idProdToInt = Convert.ToInt32(idProd);
+                Idprodutos.Add(idProdToInt); //depois de separado por virgula, transformei todos em numero e adicionei em uma lista
 
             }
             foreach (int idProd in Idprodutos) // agora, com base em todos os ids de produtos, posso pesquisar cada produto que foi utilizado
