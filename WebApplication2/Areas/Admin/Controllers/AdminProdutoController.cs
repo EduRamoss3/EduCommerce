@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using EduCommerceWeb.Areas.Admin.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ReflectionIT.Mvc.Paging;
 using WebApplication2.Models;
@@ -12,9 +13,11 @@ namespace WebApplication2.Areas.Admin.Controllers
     public class AdminProdutoController : Controller
     {
         private readonly IProductService _productService;
-        public AdminProdutoController(IProductService productService)
+        private readonly ICategoriaService _categoriaService;
+        public AdminProdutoController(IProductService productService, ICategoriaService categoriaService)
         {
             _productService = productService;
+            _categoriaService = categoriaService;
         }
 
        
@@ -59,7 +62,13 @@ namespace WebApplication2.Areas.Admin.Controllers
                 return RedirectToAction("Index");
                 
             }
-            return View(produto);
+            var categorias = _categoriaService.GetAllCategorias();
+            EditProdutoViewModel editProdutoViewModel = new EditProdutoViewModel()
+            {
+                Produto = produto,
+                ListCategorias = categorias,
+            };
+            return View(editProdutoViewModel);
         }
 
         [HttpGet]
@@ -69,13 +78,18 @@ namespace WebApplication2.Areas.Admin.Controllers
 
 
             var produto = await _productService.GetById(id);
+            var categorias =  _categoriaService.GetAllCategorias();
             if (produto == null)
             {
                 return NotFound();
             }
-            
+            EditProdutoViewModel editProdutoViewModel = new EditProdutoViewModel()
+            {
+                Produto = produto.Value,
+                ListCategorias = categorias
+            };
          
-            return View(produto.Value);
+            return View(editProdutoViewModel);
         }
 
 
@@ -141,4 +155,5 @@ namespace WebApplication2.Areas.Admin.Controllers
             return await _productService.Any(id);
         }
     }
+    
 }

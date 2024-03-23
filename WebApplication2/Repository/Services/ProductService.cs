@@ -88,7 +88,6 @@ namespace WebApplication2.Repository.Services
                 productExist.Quantidade = produto.Quantidade;
                 productExist.Nome = produto.Nome;
                 productExist.Preco = produto.Preco;
-                productExist.Tipos = produto.Tipos;
                 
                 _context.Produtos.Update(productExist);
                 await _context.SaveChangesAsync();

@@ -155,10 +155,7 @@ namespace WebApplication2.Repository.Services
             return new NotFoundObjectResult("O Pedido é nulo!");
         }
 
-        public async Task<ActionResult> VerificarPedido(int id)
-        {
-            throw new NotImplementedException();
-        }
+        
         public List<PedidoDetalhe> DetalhePedidoList(int id)
         {
             var detalhe = _context.PedidoDetalhe.Where(p => p.PedidoId == id).ToList();

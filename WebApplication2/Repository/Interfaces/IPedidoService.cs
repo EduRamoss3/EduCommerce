@@ -7,7 +7,6 @@ namespace WebApplication2.Repository.Interfaces
     public interface IPedidoService
     {
         Task<ActionResult> CriarPedido(Pedido pedido, string id_user);
-        Task<ActionResult> VerificarPedido(int id);
         List<PedidoDetalhe> DetalhePedidoList(int id);
         PedidoDetalhe DetalhePedido(int id);
         List<Produto> ProdutosPedido(int id);

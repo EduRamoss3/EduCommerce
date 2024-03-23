@@ -244,9 +244,6 @@ namespace WebApplication2.Migrations
                     b.Property<string>("CategoriaNome")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Tipos")
-                        .HasColumnType("int");
-
                     b.HasKey("IdCategoria");
 
                     b.ToTable("Categorias");
@@ -419,9 +416,6 @@ namespace WebApplication2.Migrations
                         .HasColumnType("decimal(10,2)");
 
                     b.Property<int>("Quantidade")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Tipos")
                         .HasColumnType("int");
 
                     b.Property<int?>("VendasVendaId")

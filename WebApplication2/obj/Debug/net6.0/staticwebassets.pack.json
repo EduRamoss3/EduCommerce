@@ -165,6 +165,10 @@
       "PackagePath": "staticwebassets\\Imagens\\register.png"
     },
     {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\search-engine-optimization.png",
+      "PackagePath": "staticwebassets\\Imagens\\search-engine-optimization.png"
+    },
+    {
       "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\shopping-cart_3144456.png",
       "PackagePath": "staticwebassets\\Imagens\\shopping-cart_3144456.png"
     },
@@ -191,6 +195,10 @@
     {
       "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\tela.png",
       "PackagePath": "staticwebassets\\Imagens\\tela.png"
+    },
+    {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\upload-na-nuvem.png",
+      "PackagePath": "staticwebassets\\Imagens\\upload-na-nuvem.png"
     },
     {
       "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\vista-da-configuracao-e-do-controlador-de-teclado-para-jogos-de-neon-iluminado (1).jpg",

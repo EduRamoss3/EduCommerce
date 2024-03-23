@@ -1,7 +1,8 @@
-
+using EduCommerceWeb.Configuration.ConfigImages;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using ReflectionIT.Mvc.Paging;
+using System.Configuration;
 using WebApplication2.Areas.Admin.Services;
 using WebApplication2.Context;
 using WebApplication2.Migrations;
@@ -48,6 +49,7 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequireUppercase = false;
 });
+builder.Services.Configure<ConfigurationImagens>(builder.Configuration.GetSection("ConfigurationPastaImagens"));
 builder.Services.AddMemoryCache();
 builder.Services.AddSession(options =>
 {

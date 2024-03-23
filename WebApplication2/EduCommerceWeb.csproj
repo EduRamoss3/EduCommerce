@@ -32,7 +32,8 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\Components\" />
-    <Folder Include="Models\Entities\" />
+    <Folder Include="Enums\" />
+    <Folder Include="wwwroot\Imagens\Produtos\" />
   </ItemGroup>
 
 </Project>

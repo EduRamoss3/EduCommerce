@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "RjpdwlYnuum8Ljx0ZffxrDlqIbWLwwSjR7gOxpBbs6o=",
+  "Hash": "Jyg0a9bY7vJYyBBeCBOhEsD6YCh05aLCknAG6tmof0o=",
   "Source": "EduCommerceWeb",
   "BasePath": "_content/EduCommerceWeb",
   "Mode": "Default",
@@ -816,6 +816,23 @@
       "OriginalItemSpec": "wwwroot\\Imagens\\register.png"
     },
     {
+      "Identity": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\search-engine-optimization.png",
+      "SourceId": "EduCommerceWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\",
+      "BasePath": "_content/EduCommerceWeb",
+      "RelativePath": "Imagens/search-engine-optimization.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Imagens\\search-engine-optimization.png"
+    },
+    {
       "Identity": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\shopping-cart_3144456.png",
       "SourceId": "EduCommerceWeb",
       "SourceType": "Discovered",
@@ -933,6 +950,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Imagens\\tela.png"
+    },
+    {
+      "Identity": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\upload-na-nuvem.png",
+      "SourceId": "EduCommerceWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\",
+      "BasePath": "_content/EduCommerceWeb",
+      "RelativePath": "Imagens/upload-na-nuvem.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Imagens\\upload-na-nuvem.png"
     },
     {
       "Identity": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\vista-da-configuracao-e-do-controlador-de-teclado-para-jogos-de-neon-iluminado (1).jpg",

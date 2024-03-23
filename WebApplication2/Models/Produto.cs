@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using WebApplication2.Enums;
 
 namespace WebApplication2.Models
 {
@@ -20,8 +19,6 @@ namespace WebApplication2.Models
         [Required(ErrorMessage ="A data do produto é obrigátoria!")]
         [DisplayName("Data de entrada")]
         public DateTime DataEntrada { get; set; }
-        [Required]
-        public Tipo Tipos { get; set; }
         [Required(ErrorMessage = " A quantidade de produtos não pode ser 0")]
         public int Quantidade { get; set; }
         [DisplayName("Imagem")]
