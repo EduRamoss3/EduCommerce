@@ -33,6 +33,10 @@
       "PackagePath": "staticwebassets\\Imagens\\botao-de-simbolo-de-telefone.png"
     },
     {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\botao-x.png",
+      "PackagePath": "staticwebassets\\Imagens\\botao-x.png"
+    },
+    {
       "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\cadeira_gamer.png",
       "PackagePath": "staticwebassets\\Imagens\\cadeira_gamer.png"
     },
@@ -99,6 +103,10 @@
     {
       "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\lixeiras.png",
       "PackagePath": "staticwebassets\\Imagens\\lixeiras.png"
+    },
+    {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\lupa.png",
+      "PackagePath": "staticwebassets\\Imagens\\lupa.png"
     },
     {
       "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\mg.jpg",

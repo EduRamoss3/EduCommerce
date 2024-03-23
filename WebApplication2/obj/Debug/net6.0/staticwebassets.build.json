@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Jyg0a9bY7vJYyBBeCBOhEsD6YCh05aLCknAG6tmof0o=",
+  "Hash": "ruVzSSTfkGSwknGAPuJ6aD6ksLiy7gaM3WIaIm+FEZ4=",
   "Source": "EduCommerceWeb",
   "BasePath": "_content/EduCommerceWeb",
   "Mode": "Default",
@@ -219,6 +219,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Imagens\\botao-de-simbolo-de-telefone.png"
+    },
+    {
+      "Identity": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\botao-x.png",
+      "SourceId": "EduCommerceWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\",
+      "BasePath": "_content/EduCommerceWeb",
+      "RelativePath": "Imagens/botao-x.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Imagens\\botao-x.png"
     },
     {
       "Identity": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\cadeira_gamer.png",
@@ -525,6 +542,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Imagens\\lixeiras.png"
+    },
+    {
+      "Identity": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\lupa.png",
+      "SourceId": "EduCommerceWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\",
+      "BasePath": "_content/EduCommerceWeb",
+      "RelativePath": "Imagens/lupa.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Imagens\\lupa.png"
     },
     {
       "Identity": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\mg.jpg",
