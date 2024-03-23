@@ -5,10 +5,10 @@ using WebApplication2.Areas.Admin.Services;
 namespace WebApplication2.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize("Admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminRelatorioVendasController : Controller
     {
-        
+
         private readonly RelatorioVendasService _relatorioVendasService;
         public AdminRelatorioVendasController(RelatorioVendasService relatorioVendasService)
         {
@@ -32,8 +32,8 @@ namespace WebApplication2.Areas.Admin.Controllers
             {
                 maxDate = DateTime.Now;
             }
-            ViewData["minDate"] = minDate.Value.ToString("yyyy-MM-dd");
-            ViewData["maxDate"] = minDate.Value.ToString("yyyy-MM-dd");
+            ViewData["minDate"] = minDate.Value.ToString("dd-MM-yyyy");
+            ViewData["maxDate"] = minDate.Value.ToString("dd-MM-yyyy");
             var result = await _relatorioVendasService.FindByDateAsync(minDate, maxDate);
             return View(result);
         }

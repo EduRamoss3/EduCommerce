@@ -26,11 +26,15 @@ namespace WebApplication2.Models
         public int TotalItensPedido { get; set; }
         [DisplayName("Total do pedido")]
         public double TotalPedido { get; set; }
+        [DisplayName("Preparo do pedido")]
         public bool Concluido { get; set; }
+        [DisplayName("Entrega do pedido")]
         public bool Entregue { get; set; }
+        [DisplayName("Identificador do Cliente")]
         public string Id_User { get; set; }
         public List<PedidoDetalhe> _PedidoDetalhes { get; set; }
         public Usuario _Cliente { get; set; }
+        [DisplayName("Conjunto de ID's dos produtos")]
         public string strPedidos { get; set; }
 
     }
