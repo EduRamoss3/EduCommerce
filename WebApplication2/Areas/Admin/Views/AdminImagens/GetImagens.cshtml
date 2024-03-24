@@ -16,6 +16,7 @@
         border: 1px solid #ddd;
         border-radius: 5px;
         overflow: hidden;
+        position: relative;
     }
 
         .image-card img {
@@ -24,14 +25,22 @@
         }
 
     .delete-button {
-        display: block;
+        position: absolute; 
+        bottom: 10px; 
+        left: 50%;
+        transform: translateX(-50%);
         background-color: #dc3545;
         color: #fff;
         text-align: center;
         padding: 5px 10px;
         text-decoration: none;
         border-radius: 5px;
-        margin-top: 10px;
+        display: none; 
+    }
+
+    .image-card:hover .delete-button {
+        display: block; 
+        
     }
 </style>
 
@@ -44,10 +53,9 @@
         @foreach (FileInfo file in Model.Files)
         {
             <div class="image-card">
-                <img src="~/Imagens/Produtos/@file.Name" alt="@file.Name">
-                <div style="padding: 10px; text-align: left">
-                    <a href="@Url.Action("DeleteFile","AdminImagens", new { fname=file.Name })" class="delete-button">Deletar</a>
-                </div>
+                <p style="color: black">@file.Name</p>
+                <img src="~/@caminho/@file.Name" alt="@file.Name">
+                <a href="@Url.Action("DeleteFile","AdminImagens", new { fname=file.Name })" class="delete-button">Deletar</a>
             </div>
         }
     </div>

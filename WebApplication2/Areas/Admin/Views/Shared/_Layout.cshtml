@@ -36,6 +36,19 @@
                         <li class="nav-item">
                             <a class="nav-link active" asp-area="Admin" style="color:lightgray" aria-current="page" asp-action="Index" asp-controller="AdminImagens">Gerenciar Imagens</a>
                         </li>
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Gráfico de vendas
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" asp-area="Admin" asp-controller="AdminGraficoController" asp-action="Index">Vendas anuais</a></li>
+                                    <li class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" asp-area="Admin" asp-controller="AdminGraficoController" asp-action="VendasMensal" asp-route-dias="30">Vendas mensais</a></li>
+                                    <li><a class="dropdown-item" asp-area="Admin" asp-controller="AdminGraficoController" asp-action="VendasSemanal" asp-route-dias="7">Vendas semanais</a></li>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </div>
                 @await Html.PartialAsync("_LoginPartial")

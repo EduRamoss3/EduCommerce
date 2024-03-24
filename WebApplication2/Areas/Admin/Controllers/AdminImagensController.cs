@@ -77,5 +77,17 @@ namespace EduCommerceWeb.Areas.Admin.Controllers
             fileManagerModel.Files = files;
             return View(fileManagerModel);
         }
+        [Route("{controller}/DeleteFile")]
+        public IActionResult DeleteFile(string fname)
+        {
+            var imagePath = Path.Combine(_hostingEnvironment.WebRootPath, _myConfig.NomePastaImagensProdutos + "\\", fname);
+            if ((System.IO.File.Exists(imagePath)))
+            {
+                System.IO.File.Delete(imagePath);
+                ViewData["Deletado"] = $"Arquivo(s) {imagePath} deletado com sucesso!";
+               
+            }
+            return View("Index");
+        }
     }
 }

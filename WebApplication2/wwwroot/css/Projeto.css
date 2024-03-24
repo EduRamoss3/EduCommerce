@@ -1,5 +1,5 @@
 ﻿body {
-    background-color: #1c2860;
+    background-image: linear-gradient( 180deg, hsl(233deg 26% 14%) 9%, hsl(232deg 36% 17%) 40%, hsl(230deg 45% 19%) 52%, hsl(229deg 52% 22%) 61%, hsl(228deg 59% 24%) 68%, hsl(227deg 65% 27%) 74%, hsl(226deg 71% 29%) 79%, hsl(226deg 75% 32%) 85%, hsl(226deg 78% 35%) 91%, hsl(227deg 78% 38%) 100% );
     margin: 0;
     padding: 0;
     width: 100vw;
