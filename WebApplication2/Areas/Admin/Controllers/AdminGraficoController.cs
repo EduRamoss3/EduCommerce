@@ -14,25 +14,25 @@ namespace EduCommerceWeb.Areas.Admin.Controllers
             _graficoVendas = graficoVendas;
         }
         [HttpGet]
-        [Route("{controller}/Index")]
+        [Route("grafico/index")]
         public IActionResult Index(int dias)
         {
             return View(dias);
         }
-        [HttpGet]
-        [Route("{controller}/VendasMensal")]
+
+        [Route("grafico/vendas-mensais")]  
         public IActionResult VendasMensal()
         {
             return View();
         }
         [HttpGet]
-        [Route("{controller}/VendasSemanal/")]
+        [Route("grafico/vendas-semanais")]
         public IActionResult VendasSemanal()
         {
             return View();
         }
         [HttpGet]
-        [Route("{controller}/VendasProdutos")]
+        [Route("grafico/json")]
         public JsonResult VendasProdutos(int dias)
         {
             var produtosVendasTotais = _graficoVendas.GetVendasProdutos(dias);

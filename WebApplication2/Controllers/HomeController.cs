@@ -31,6 +31,11 @@ namespace WebApplication2.Controllers
 
         }
         [HttpGet]
+        public IActionResult RedesSociais()
+        {
+            return View();
+        }
+        [HttpGet]
         public async Task<IActionResult> SearchBy(string searchString)
         {
             IEnumerable<Produto> produtos = new List<Produto>();

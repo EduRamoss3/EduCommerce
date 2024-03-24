@@ -29,10 +29,10 @@
                                 <a class="nav-link active" style="color:lightgray" aria-current="page" asp-action="Index" asp-controller="Home">Página inicial</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" style="color: lightgray">Loja</a>
+                                <a class="nav-link" asp-action="Index" asp-controller="Home" style="color: lightgray">Loja</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" style="color: lightgray">
+                                <a class="nav-link" asp-action="RedesSociais" asp-controller="Home" style="color: lightgray">
                                     Redes Sociais
                                 </a>
                             </li>
@@ -58,7 +58,10 @@
             <script src="~/js/site.js" asp-append-version="true"></script>
             @RenderBody()
         </div>
+
     </div>
+
+
     <script>
         function toggleSidebar() {
             var sidebar = document.getElementById('sidebar');
@@ -73,5 +76,9 @@
             }
         }
     </script>
+
+    <partial name="_Footer" />
 </body>
+
+
 </html>

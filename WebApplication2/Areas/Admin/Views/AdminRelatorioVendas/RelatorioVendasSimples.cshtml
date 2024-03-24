@@ -1,79 +1,120 @@
 ﻿@model IEnumerable<Pedido>
+<style>
+    body {
+        color: white; /* Cor do texto */
+        font-family: Arial, sans-serif; /* Fonte do texto */
+        margin: 20px; /* Margem ao redor da "folha" */
+        padding: 20px; /* Espaçamento interno da "folha" */
+        overflow: hidden;
+    }
 
- <h2>Pedidos Por Período</h2>
- <nav class="navbar navbar-dark">
-     <div class="container-fluid">
-         <form class="navbar-form navbar-left">
-             <div class="form-group">
-                 <div class="form-group">
-                     <label for="minDate">Data Inicial</label>
-                     <input type="date" class="form-control" name="minDate" value="@ViewData["minDate"]"/>
-                 </div>
-                <div class="form-group">
-                    <label for="minDate">Data Final</label>
-                    <input type="date" class="form-control" name="maxDate" value="@ViewData["maxDate"]" />
-                </div>
-                <button type="submit" class="btn btn-success">Filtrar</button>
-             </div>
-         </form>
-     </div>
- </nav>
-<div class="panel-body">
-    <table class="table table-responsive-lg" style="color:antiquewhite;">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.IdPedido)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Nome)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DataPedido)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Rua)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Numero)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Telefone)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TotalItensPedido)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TotalPedido)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Concluido)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Entregue)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Id_User)
-                </th>
-            </tr>
-         </thead>
-        <tbody style="color: white;">
-            @foreach (var pedido in Model)
-            {
-                <tr>
-                    <td>@pedido.IdPedido</td>
-                    <td>@pedido.Nome</td>
-                    <td>@pedido.DataPedido.ToString("dd/MM/yyyy")</td>
-                    <td>@pedido.Rua</td>
-                    <td>@pedido.Numero</td>
-                    <td>@pedido.Telefone</td>
-                    <td>@pedido.TotalItensPedido</td>
-                    <td>@pedido.TotalPedido.ToString("C")</td>
-                    <td>@pedido.Concluido</td>
-                    <td>@pedido.Entregue</td>
-                    <td>@pedido.Id_User</td>
-                </tr>
-            }
-        </tbody>
-     </table>
- </div>
+    h2 {
+        margin-bottom: 20px; /* Espaçamento após o título */
+    }
+
+    table {
+        background-color: #fff; /* Cor de fundo da tabela */
+        border-collapse: collapse; /* Colapso das bordas da tabela */
+        width: 100%;
+    }
+
+    th, td {
+        border: 1px solid #dee2e6; /* Borda das células */
+        padding: 8px; /* Espaçamento interno das células */
+        text-align: left; /* Alinhamento do texto */
+    }
+
+    th {
+        background-color: #f8f9fa; /* Cor de fundo dos cabeçalhos */
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #f2f2f2; /* Cor de fundo das linhas pares */
+    }
+
+    tbody tr:hover {
+        background-color: #e9ecef; /* Cor de fundo ao passar o mouse */
+    }
+
+    .form-group {
+        margin-bottom: 10px; /* Espaçamento após cada campo do formulário */
+    }
+</style>
+
+    <div class="container">
+        <h2>Pedidos Por Período</h2>
+        <nav class="navbar navbar-dark">
+            <div class="container-fluid">
+                <form class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <label for="minDate">Data Inicial</label>
+                        <input type="date" class="form-control" name="minDate" value="@ViewData["minDate"]" />
+                    </div>
+                    <div class="form-group">
+                        <label for="minDate">Data Final</label>
+                        <input type="date" class="form-control" name="maxDate" value="@ViewData["maxDate"]" />
+                    </div>
+                    <button type="submit" class="btn btn-success">Filtrar</button>
+                </form>
+            </div>
+        </nav>
+        <div class="panel-body">
+            <table class="table table-responsive-lg">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IdPedido)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nome)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DataPedido)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Rua)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Numero)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Telefone)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TotalItensPedido)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TotalPedido)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Concluido)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Entregue)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Id_User)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var pedido in Model)
+                    {
+                        <tr>
+                            <td>@pedido.IdPedido</td>
+                            <td>@pedido.Nome</td>
+                            <td>@pedido.DataPedido.ToString("dd/MM/yyyy")</td>
+                            <td>@pedido.Rua</td>
+                            <td>@pedido.Numero</td>
+                            <td>@pedido.Telefone</td>
+                            <td>@pedido.TotalItensPedido</td>
+                            <td>@pedido.TotalPedido.ToString("C")</td>
+                            <td>@pedido.Concluido</td>
+                            <td>@pedido.Entregue</td>
+                            <td>@pedido.Id_User</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
