@@ -4,6 +4,16 @@
 @if (Model.Pedidos.Count() == 0)
 {
     <h1 class="text-center">Você ainda não realizou nenhum pedido</h1>
+    <style>
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
 }
 
 <div class="container">
@@ -19,31 +29,37 @@
                         <p class="card-text">Nome: @pedido.Nome</p>
                         <p class="card-text">Preço total: @pedido.TotalPedido</p>
                         <p class="card-text">Total itens pedido: @pedido.TotalItensPedido</p>
-                        <p>
-                            <strong>Status:  </strong>
-                            @if (pedido.Concluido)
-                            {
-                                <span> Seu pedido já foi preparado! </span>
-                            }
-                            else
-                            {
-                                <span> Seu pedido já foi recebido!</span>
-                            }
+                        <div class="row">
+                            <p>
+                                <strong style="color: greenyellow">Status:  </strong>
+                                @if (pedido.Concluido)
+                                {
+                                    <span style="font-size: smaller;"> Seu pedido já foi preparado! <img src="~/Imagens/preparacao.png" width="45" height="45"> </span>
+                                }
+                                @if(pedido.Concluido && pedido.Entregue)
+                                {
+                                    <span style="font-size: smaller;"> O Seu pedido já foi entregue :) <img src="~/Imagens/caixa.png" width="45" height="45"></span>
+                                }
+                                else
+                                {
+                                    <span style="font-size: smaller;"> Seu pedido foi recebido e está sendo preparado! <img src="~/Imagens/preparacao.png" width="45" height="45"></span>
+                                }
 
-                            @if (pedido.Entregue)
-                            {
-                                <span> O Seu pedido já foi entregue :)</span>
-                            }
-                            else if (pedido.Concluido)
-                            {
-                                <span>Seu pedido já foi preparado e irá ser entregue em breve!</span>
-                            }
-                            else
-                            {
-                                <span>Mas ainda não saiu para a entrega.</span>
-                            }
+                                @if (pedido.Entregue)
+                                {
+                                    <span style="font-size: smaller;"> O Seu pedido já foi entregue :) <img src="~/Imagens/caixa.png" width="45" height="45"></span>
+                                }
+                                else if (pedido.Concluido)
+                                {
+                                    <span style="font-size: smaller;">Seu pedido já foi preparado e irá ser entregue em breve!  <img src="~/Imagens/caminhao.png" width="45" height="45" /></span>
+                                }
+                                else
+                                {
+                                    <span>Mas ainda não saiu para a entrega.</span>
+                                }
 
-                        </p>
+                            </p>
+                        </div>
                         <h6>Produtos:</h6>
                         @inject IPedidoService _pedidoService
                         @{
@@ -63,7 +79,7 @@
                             }
                             @foreach (PedidoDetalhe p in pedido._PedidoDetalhes)
                             {
-                                if(p.Quantidade > 1)
+                                if (p.Quantidade > 1)
                                 {
                                     <p style="color: yellow; font-size: smaller">Informações adicionais:   @p.Produto.Nome <strong>foi adicionado x @p.Quantidade vezes</strong></p>
 
@@ -84,7 +100,8 @@
     </div>
 </div>
 <style>
-    body{
+    body {
         overflow-x: hidden;
     }
+
 </style>

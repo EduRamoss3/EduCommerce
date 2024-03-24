@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "hlQtlk7YwU1uQAMJOijZX8u/sl/BlKwijS/2jqY43C0=",
+  "Hash": "7TINEhkiuhe7ZlrQjqOrwTjo39lk3tRXsqQJdt8fllc=",
   "Source": "EduCommerceWeb",
   "BasePath": "_content/EduCommerceWeb",
   "Mode": "Default",
@@ -187,6 +187,23 @@
       "OriginalItemSpec": "wwwroot\\Imagens\\asus.png"
     },
     {
+      "Identity": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\ativo.png",
+      "SourceId": "EduCommerceWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\",
+      "BasePath": "_content/EduCommerceWeb",
+      "RelativePath": "Imagens/ativo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Imagens\\ativo.png"
+    },
+    {
       "Identity": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\blackRoom-1500x380.jpg",
       "SourceId": "EduCommerceWeb",
       "SourceType": "Discovered",
@@ -253,6 +270,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Imagens\\cadeira_gamer.png"
+    },
+    {
+      "Identity": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\caixa.png",
+      "SourceId": "EduCommerceWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\",
+      "BasePath": "_content/EduCommerceWeb",
+      "RelativePath": "Imagens/caixa.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Imagens\\caixa.png"
+    },
+    {
+      "Identity": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\caminhao.png",
+      "SourceId": "EduCommerceWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\",
+      "BasePath": "_content/EduCommerceWeb",
+      "RelativePath": "Imagens/caminhao.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Imagens\\caminhao.png"
     },
     {
       "Identity": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\campp.jpg",
@@ -612,6 +663,23 @@
       "OriginalItemSpec": "wwwroot\\Imagens\\notebook.jpg"
     },
     {
+      "Identity": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\olho.png",
+      "SourceId": "EduCommerceWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\",
+      "BasePath": "_content/EduCommerceWeb",
+      "RelativePath": "Imagens/olho.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Imagens\\olho.png"
+    },
+    {
       "Identity": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\pc1.png",
       "SourceId": "EduCommerceWeb",
       "SourceType": "Discovered",
@@ -763,6 +831,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Imagens\\Portable-Laptop-Notebook-PNG-Image.png"
+    },
+    {
+      "Identity": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\preparacao.png",
+      "SourceId": "EduCommerceWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\",
+      "BasePath": "_content/EduCommerceWeb",
+      "RelativePath": "Imagens/preparacao.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Imagens\\preparacao.png"
     },
     {
       "Identity": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\prodcamera.png",

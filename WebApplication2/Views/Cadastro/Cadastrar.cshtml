@@ -63,10 +63,15 @@
                                 <input class="form-control" asp-for="CPF" />
                                 <span asp-validation-for="CPF"></span>
                             </div>
-                            <div class="col-md-8">
-                                <label  asp-for="Senha"></label>
-                                <input class="form-control" asp-for="Senha" />
-                                <span asp-validation-for="Senha"></span>
+                            <div class="form-group">
+                                <label asp-for="Senha"></label>
+                                <div class="input-group">
+                                    <input type="password" asp-for="Senha" class="form-control" />
+                                    <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility(this)">
+                                        <img src="~/Imagens/olho.png" alt="password-show" width="25" height="25" />
+                                    </button>
+                                </div>
+                                <span class="text-danger" asp-validation-for="Senha"></span>
                             </div>
                             <div class="col-md-8">
                                 <label asp-for="Telefone"></label>
@@ -84,3 +89,14 @@
         </tr>
     </table>
 </div>
+<script>
+    function togglePasswordVisibility(button) {
+        var input = button.previousElementSibling;
+        if (input.type === "password") {
+            input.type = "text";
+        } else {
+            input.type = "password";
+        }
+    }
+</script>
+

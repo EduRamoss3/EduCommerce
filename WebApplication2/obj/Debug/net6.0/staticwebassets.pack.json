@@ -181,6 +181,10 @@
       "PackagePath": "staticwebassets\\Imagens\\asus.png"
     },
     {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\ativo.png",
+      "PackagePath": "staticwebassets\\Imagens\\ativo.png"
+    },
+    {
       "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\blackRoom-1500x380.jpg",
       "PackagePath": "staticwebassets\\Imagens\\blackRoom-1500x380.jpg"
     },
@@ -195,6 +199,14 @@
     {
       "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\cadeira_gamer.png",
       "PackagePath": "staticwebassets\\Imagens\\cadeira_gamer.png"
+    },
+    {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\caixa.png",
+      "PackagePath": "staticwebassets\\Imagens\\caixa.png"
+    },
+    {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\caminhao.png",
+      "PackagePath": "staticwebassets\\Imagens\\caminhao.png"
     },
     {
       "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\campp.jpg",
@@ -277,6 +289,10 @@
       "PackagePath": "staticwebassets\\Imagens\\notebook.jpg"
     },
     {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\olho.png",
+      "PackagePath": "staticwebassets\\Imagens\\olho.png"
+    },
+    {
       "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\pc1.png",
       "PackagePath": "staticwebassets\\Imagens\\pc1.png"
     },
@@ -307,6 +323,10 @@
     {
       "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\pngwing.com.png",
       "PackagePath": "staticwebassets\\Imagens\\pngwing.com.png"
+    },
+    {
+      "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\preparacao.png",
+      "PackagePath": "staticwebassets\\Imagens\\preparacao.png"
     },
     {
       "Id": "C:\\Users\\Eduardo\\Source\\Repos\\EduCommerce\\WebApplication2\\wwwroot\\Imagens\\prodcamera.png",
