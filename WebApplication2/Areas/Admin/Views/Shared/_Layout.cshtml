@@ -42,10 +42,12 @@
                                     Gráfico de vendas
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" asp-area="Admin" asp-controller="AdminGraficoController" asp-action="Index">Vendas anuais</a></li>
+                                    <li><a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="AdminGrafico">Vendas anuais</a></li>
                                     <li class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" asp-area="Admin" asp-controller="AdminGraficoController" asp-action="VendasMensal" asp-route-dias="30">Vendas mensais</a></li>
-                                    <li><a class="dropdown-item" asp-area="Admin" asp-controller="AdminGraficoController" asp-action="VendasSemanal" asp-route-dias="7">Vendas semanais</a></li>
+                                    <li><a class="dropdown-item" asp-area="Admin" asp-action="VendasMensal" asp-controller="AdminGraficoController" asp-route-dias="30">Vendas mensais</a></li>
+                                    <li class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" asp-area="Admin" asp-action="VendasSemanal" asp-controller="AdminGraficoController" asp-route-dias="7">Vendas semanais</a></li>
+                                    <li class="dropdown-divider"></li>
                                 </ul>
                             </div>
                         </li>

@@ -22,7 +22,7 @@ namespace EduCommerceWeb.Areas.Admin.Services
                             {
                                 NomeProduto = g.Key.Nome,
                                 QuantidadeProduto = g.Sum( q=> q.Quantidade),
-                                ProdutosValorTotal =  g.Sum( a=> a.Preco * a.Quantidade)
+                                ProdutosValorTotal =  g.Sum( a=> a.Preco)
                             });
             var lista = new List<GraficoProduto>();
             foreach(var item in produtos)
