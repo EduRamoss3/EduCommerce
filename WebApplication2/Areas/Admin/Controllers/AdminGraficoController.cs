@@ -20,14 +20,14 @@ namespace EduCommerceWeb.Areas.Admin.Controllers
             return View(dias);
         }
         [HttpGet]
-        [Route("{controller}/VendasMensal/{dias}")]
-        public IActionResult VendasMensal(int dias)
+        [Route("{controller}/VendasMensal")]
+        public IActionResult VendasMensal()
         {
             return View();
         }
         [HttpGet]
-        [Route("{controller}/VendasSemanal/{dias}")]
-        public IActionResult VendasSemanal(int dias)
+        [Route("{controller}/VendasSemanal/")]
+        public IActionResult VendasSemanal()
         {
             return View();
         }
